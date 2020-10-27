@@ -1,0 +1,16 @@
+version: '2'
+services:
+  projectreactspr-app:
+    image: projectreactspr
+    environment:
+      - _JAVA_OPTIONS=-Xmx512m -Xms256m
+      - SPRING_PROFILES_ACTIVE=prod,swagger
+      - MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED=true
+      - SPRING_DATASOURCE_URL=jdbc:sqlserver://projectreactspr-mssql:1433;database=projectReactSpr
+      - JHIPSTER_SLEEP=30 # gives time for other services to boot before the application
+    ports:
+      - 8080:8080
+  projectreactspr-mssql:
+    extends:
+      file: mssql.yml
+      service: projectreactspr-mssql
