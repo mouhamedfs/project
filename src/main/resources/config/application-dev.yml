@@ -37,9 +37,9 @@ spring:
       indent-output: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:sqlserver://localhost:1433;database=projectReactSpr
-    username: SA
-    password: yourStrong(!)Password
+    url: jdbc:sqlserver://localhost:55917;database=projectReactSpr
+    username: mss
+    password: passer
     hikari:
       poolName: Hikari
       auto-commit: false

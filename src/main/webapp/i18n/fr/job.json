@@ -1,0 +1,24 @@
+{
+  "projectReactSprApp": {
+    "job": {
+      "home": {
+        "title": "Jobs",
+        "createLabel": "Créer un nouveau Job",
+        "createOrEditLabel": "Créer ou éditer un Job",
+        "notFound": "Aucun Job trouvé"
+      },
+      "created": "Un nouveau Job a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Job avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Job avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Job {{ id }} ?"
+      },
+      "detail": {
+        "title": "Job"
+      },
+      "nomJob": "Nom Job",
+      "salaireMin": "Salaire Min",
+      "salaireMax": "Salaire Max"
+    }
+  }
+}

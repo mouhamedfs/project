@@ -1,0 +1,29 @@
+{
+  "name": "Job",
+  "fields": [
+    {
+      "fieldName": "nomJob",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "salaireMin",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "salaireMax",
+      "fieldType": "Long"
+    }
+  ],
+  "relationships": [],
+  "changelogDate": "20201027164806",
+  "entityTableName": "job",
+  "dto": "no",
+  "pagination": "no",
+  "service": "no",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}

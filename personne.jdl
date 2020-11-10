@@ -1,0 +1,18 @@
+entity Personne {
+	id Long,
+    nom String,
+    prenom String,
+    age Integer,
+    adresse String,
+    email String
+}
+
+entity Job {
+nomJob String,
+salaireMin Long,
+salaireMax Long
+}
+
+entity Departement {
+	NomDepartement String required
+}

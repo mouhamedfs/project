@@ -48,6 +48,9 @@ public class CacheConfiguration {
             createCache(cm, reactspr.domain.User.class.getName());
             createCache(cm, reactspr.domain.Authority.class.getName());
             createCache(cm, reactspr.domain.User.class.getName() + ".authorities");
+            createCache(cm, reactspr.domain.Personne.class.getName());
+            createCache(cm, reactspr.domain.Job.class.getName());
+            createCache(cm, reactspr.domain.Departement.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }
