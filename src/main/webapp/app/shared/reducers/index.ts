@@ -24,6 +24,8 @@ import job, {
 import departement, {
   DepartementState
 } from 'app/entities/departement/departement.reducer';
+
+import authority, { AuthorityState } from 'app/entities/authority/authority.reducer';
 /* jhipster-needle-add-reducer-import - JHipster will add reducer here */
 
 export interface IRootState {
@@ -40,6 +42,7 @@ export interface IRootState {
   readonly personne: PersonneState;
   readonly job: JobState;
   readonly departement: DepartementState;
+  readonly authority: AuthorityState;
   /* jhipster-needle-add-reducer-type - JHipster will add reducer type here */
   readonly loadingBar: any;
 }
@@ -58,6 +61,7 @@ const rootReducer = combineReducers<IRootState>({
   personne,
   job,
   departement,
+  authority,
   /* jhipster-needle-add-reducer-combine - JHipster will add reducer here */
   loadingBar,
 });

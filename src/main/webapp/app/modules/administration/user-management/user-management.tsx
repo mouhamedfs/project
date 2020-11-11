@@ -65,6 +65,12 @@ export const UserManagement = (props: IUserManagementProps) => {
     <div>
       <h2 id="user-management-page-heading">
         <Translate contentKey="userManagement.home.title">Users</Translate>
+
+        <Link  to={"/authority"} className="btn btn-danger float-right jh-create-entity">
+          <FontAwesomeIcon icon="plus" /> <Translate contentKey="role.home.createLabel">Create a new rôle</Translate>
+        </Link>
+
+        
         <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity">
           <FontAwesomeIcon icon="plus" /> <Translate contentKey="userManagement.home.createLabel">Create a new user</Translate>
         </Link>
