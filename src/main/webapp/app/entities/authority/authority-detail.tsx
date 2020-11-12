@@ -22,12 +22,12 @@ export const AuthorityDetail = (props: IAuthorityDetailProps) => {
     <Row>
       <Col md="8">
         <h2>
-          <Translate contentKey="role.detail.title">Role</Translate>
+          <Translate contentKey="projectReactSprApp.role.detail.title">Role</Translate>
         </h2>
         <dl className="jh-entity-details">
           <dt>
             <span id="Nom Rôle">
-              <Translate contentKey="role.nomRole">Nom Rôle</Translate>
+              <Translate contentKey="projectReactSprApp.role.nomRole">Nom Rôle</Translate>
             </span>
           </dt>
           <dd>{authorityEntity.name}</dd>

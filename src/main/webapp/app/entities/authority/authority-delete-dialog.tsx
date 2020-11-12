@@ -36,8 +36,8 @@ export const AuthorityDeleteDialog = (props: IAuthorityDeleteDialogProps) => {
       <ModalHeader toggle={handleClose}>
         <Translate contentKey="entity.delete.title">Confirm delete operation</Translate>
       </ModalHeader>
-      <ModalBody id="role.delete.question">
-        <Translate contentKey="role.delete.question" interpolate={{ name: authorityEntity.name }}>
+      <ModalBody id="projectReactSprApp.role.delete.question">
+        <Translate contentKey="projectReactSprApp.role.delete.question" interpolate={{ name: authorityEntity.name }}>
           Are you sure you want to delete this Rôle?
         </Translate>
       </ModalBody>

@@ -67,7 +67,7 @@ export const UserManagement = (props: IUserManagementProps) => {
         <Translate contentKey="userManagement.home.title">Users</Translate>
 
         <Link  to={"/authority"} className="btn btn-danger float-right jh-create-entity">
-          <FontAwesomeIcon icon="plus" /> <Translate contentKey="role.home.createLabel">Create a new rôle</Translate>
+          <FontAwesomeIcon icon="home" /> <Translate contentKey="projectReactSprApp.role.home.gestionRole">Role</Translate>
         </Link>
 
         

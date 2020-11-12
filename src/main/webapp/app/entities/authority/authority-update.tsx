@@ -56,8 +56,8 @@ export const AuthorityUpdate = (props: IAuthorityUpdateProps) => {
     <div>
       <Row className="justify-content-center">
         <Col md="8">
-          <h2 id="role.home.createOrEditLabel">
-            <Translate contentKey="role.home.createOrEditLabel">Create or edit a Rôle</Translate>
+          <h2 id="projectReactSprApp.role.home.createOrEditLabel">
+            <Translate contentKey="projectReactSprApp.role.home.createOrEditLabel">Create or edit a Rôle</Translate>
           </h2>
         </Col>
       </Row>
@@ -69,7 +69,7 @@ export const AuthorityUpdate = (props: IAuthorityUpdateProps) => {
             <AvForm model={isNew ? {} : authorityEntity} onSubmit={saveEntity}>
               <AvGroup>
                 <Label id="nomRole" for="authority-name">
-                  <Translate contentKey="role.nomRole">Nom Role</Translate>
+                  <Translate contentKey="projectReactSprApp.role.nomRole">Nom Role</Translate>
                 </Label>
                 <AvField
                   id="authority-name"

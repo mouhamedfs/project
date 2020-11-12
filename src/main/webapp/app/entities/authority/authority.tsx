@@ -21,11 +21,11 @@ export const Authority = (props: IAuthorityProps) => {
   return (
     <div>
       <h2 id="authority-heading">
-        <Translate contentKey="role.home.title">Rôle</Translate>
+        <Translate contentKey="projectReactSprApp.role.home.title">Rôle</Translate>
         <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
           <FontAwesomeIcon icon="plus" />
           &nbsp;
-          <Translate contentKey="role.home.createLabel">Create new Rôle</Translate>
+          <Translate contentKey="projectReactSprApp.role.home.createLabel">Create new Rôle</Translate>
         </Link>
       </h2>
       <div className="table-responsive">
@@ -76,7 +76,7 @@ export const Authority = (props: IAuthorityProps) => {
         ) : (
           !loading && (
             <div className="alert alert-warning">
-              <Translate contentKey="role.home.notFound">No Rôle found</Translate>
+              <Translate contentKey="projectReactSprApp.role.home.notFound">No Rôle found</Translate>
             </div>
           )
         )}

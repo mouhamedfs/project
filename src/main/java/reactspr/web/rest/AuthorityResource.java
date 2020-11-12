@@ -29,7 +29,7 @@ public class AuthorityResource {
 
     private final Logger log = LoggerFactory.getLogger(AuthorityResource.class);
 
-    private static final String ENTITY_NAME = "authority";
+    private static final String ENTITY_NAME = "role";
 
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
@@ -51,8 +51,8 @@ public class AuthorityResource {
     public ResponseEntity<Authority> createAuthority(@Valid @RequestBody Authority authority) throws URISyntaxException {
         log.debug("REST request to save Authority : {}", authority);
         Authority result = authorityRepository.save(authority);
-        return ResponseEntity.created(new URI("/api/authority/"+result.toString()))
-            .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.toString()))
+        return ResponseEntity.created(new URI("/api/authority/"+result.getName()))
+            .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getName()))
             .body(result);
     }
 
@@ -70,10 +70,13 @@ public class AuthorityResource {
     @PutMapping("/authority")
     public ResponseEntity<Authority> updateDepartement(@Valid @RequestBody Authority authority) throws URISyntaxException {
         log.debug("REST request to update Authority : {}", authority);
+        if (authority.getName() == null) {
+            throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "namenull");
+        }
         Authority result = authorityRepository.save(authority);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, 
-                        authority.toString()))
+                        authority.getName()))
             .body(result);
     }
 

@@ -1,21 +1,24 @@
 {
-  "role": {
-    "home": {
-      "title": "Rôle",
-      "createLabel": "Créer un nouveau rôle",
-      "createOrEditLabel": "Créer ou éditer un rôle",
-      "notFound": "Aucun Rôle trouvé"
-    },
-    "name": "Rôle",
-    "created": "Un nouveau Rôle a été créé avec le nom {{ param }}",
-    "updated": "Le Rôle avec le nom {{ param }} a été mis à jour",
-    "deleted": "Le Rôle avec le nom {{ param }} a été supprimé",
-    "delete": {
-      "question": "Etes-vous certain de vouloir supprimer le Rôle {{ name }} ?"
-    },
-    "detail": {
-      "title": "Rôle"
-    },
-    "nomRole": "Nom Rôle"
+  "projectReactSprApp": {
+    "role": {
+      "home": {
+        "title": "Rôle",
+        "createLabel": "Créer un nouveau rôle",
+        "gestionRole": "Gestion des rôles",
+        "createOrEditLabel": "Créer ou éditer un rôle",
+        "notFound": "Aucun Rôle trouvé"
+      },
+      "name": "Rôle",
+      "created": "Un nouveau Rôle a été créé avec le nom {{ param }}",
+      "updated": "Le Rôle avec le nom {{ param }} a été mis à jour",
+      "deleted": "Le Rôle avec le nom {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Rôle {{ name }} ?"
+      },
+      "detail": {
+        "title": "Rôle"
+      },
+      "nomRole": "Nom Rôle : nom du rôle avec le prefixe ROLE_ "
+    }
   }
 }

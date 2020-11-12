@@ -22,10 +22,10 @@ export const Personne = (props: IPersonneProps) => {
     <div>
       <h2 id="personne-heading">
         <Translate contentKey="projectReactSprApp.personne.home.title">Personnes</Translate>
-        <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
+        <Link to={`${match.url}/new`}  className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
           <FontAwesomeIcon icon="plus" />
           &nbsp;
-          <Translate contentKey="projectReactSprApp.personne.home.createLabel">Create new Personne</Translate>
+          <Translate  contentKey="projectReactSprApp.personne.home.createLabel">Create new Personne</Translate>
         </Link>
       </h2>
       <div className="table-responsive">
