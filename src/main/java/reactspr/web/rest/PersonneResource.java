@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,9 +44,12 @@ public class PersonneResource {
      * {@code POST  /personnes} : Create a new personne.
      *
      * @param personne the personne to create.
-     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new personne, or with status {@code 400 (Bad Request)} if the personne has already an ID.
+     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with
+     *         body the new personne, or with status {@code 400 (Bad Request)} if
+     *         the personne has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
+    @PreAuthorize("hasAnyAuthority('ROLE_USER','ROLE_ADMIN','ROLE_PARAM')")
     @PostMapping("/personnes")
     public ResponseEntity<Personne> createPersonne(@RequestBody Personne personne) throws URISyntaxException {
         log.debug("REST request to save Personne : {}", personne);
@@ -67,6 +71,7 @@ public class PersonneResource {
      * or with status {@code 500 (Internal Server Error)} if the personne couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
+    @PreAuthorize("hasAnyAuthority('ROLE_USER','ROLE_ADMIN','ROLE_MANAGER')")
     @PutMapping("/personnes")
     public ResponseEntity<Personne> updatePersonne(@RequestBody Personne personne) throws URISyntaxException {
         log.debug("REST request to update Personne : {}", personne);
@@ -84,7 +89,7 @@ public class PersonneResource {
      *
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of personnes in body.
      */
-    @GetMapping("/personnes")
+     @GetMapping("/personnes")
     public List<Personne> getAllPersonnes() {
         log.debug("REST request to get all Personnes");
         return personneRepository.findAll();
@@ -109,6 +114,7 @@ public class PersonneResource {
      * @param id the id of the personne to delete.
      * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
      */
+    @PreAuthorize("hasAnyAuthority('ROLE_USER','ROLE_ADMIN','ROLE_PARAM')")
     @DeleteMapping("/personnes/{id}")
     public ResponseEntity<Void> deletePersonne(@PathVariable Long id) {
         log.debug("REST request to delete Personne : {}", id);

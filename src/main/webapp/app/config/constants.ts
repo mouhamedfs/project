@@ -10,6 +10,8 @@ export const AUTHORITIES = {
   ADMIN: 'ROLE_ADMIN',
   USER: 'ROLE_USER',
   MANAGER: 'ROLE_MANAGER',
+  TEST: 'ROLE_TEST',
+  PARAM: 'ROLE_PARAM',
 };
 
 export const messages = {

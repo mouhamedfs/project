@@ -10,6 +10,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.*;
+import javax.persistence.*;
 
 /**
  * An authority (a security role) used by Spring Security.
@@ -34,6 +36,10 @@ public class Authority implements Serializable {
         this.name = name;
     }
 
+    @OneToMany(mappedBy="authority")
+    private Set<Privilege> privileges = new HashSet<Privilege>();
+
+    
     @Override
     public boolean equals(Object o) {
         if (this == o) {
