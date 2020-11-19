@@ -49,18 +49,15 @@ public class PrepaImmo implements Serializable {
     private String numBonComm;
 
      @Column(name = "dateBonComm")
-     @Temporal(TemporalType.TIMESTAMP)
     private Date dateBonComm;
 
      @Column(name = "bonLiv")
     private String bonLiv;
 
     @Column(name = "dateBonLiv")
-     @Temporal(TemporalType.TIMESTAMP)
     private Date dateBonLiv;
 
     @Column(name = "dfact")
-     @Temporal(TemporalType.TIMESTAMP)
     private Date dfact;
 
     @Column(name = "valacq")
@@ -79,11 +76,9 @@ public class PrepaImmo implements Serializable {
     private Float mnttaxe2;
 
     @Column(name = "ddac")
-     @Temporal(TemporalType.TIMESTAMP)
     private Date ddac;
 
     @Column(name = "dms")
-     @Temporal(TemporalType.TIMESTAMP)
     private Date dms;
 
     @Column(name = "age")
@@ -186,7 +181,6 @@ public class PrepaImmo implements Serializable {
     private String blocnotes;
 
      @Column(name = "SSMA_TimeStamp")
-     @Temporal(TemporalType.TIMESTAMP)
     private Date SSMA_TimeStamp;
 
     @Column(name = "numSubv")

@@ -1,0 +1,77 @@
+{
+  "projectReactSprApp": {
+    "prepaImmo": {
+      "home": {
+        "title": "prepaImmo",
+        "createLabel": "Créer une nouvelle Immobilisation",
+        "createOrEditLabel": "Créer ou éditer une Immobilisation",
+        "notFound": "Aucun Immobilisation trouvé"
+      },
+      "created": "Un nouvelle Immobilisation a été créé avec l'identifiant {{ param }}",
+      "updated": "L'Immobilisation avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "L'Immobilisation avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer cette Immobilisation {{ numero }} ?"
+      },
+      "detail": {
+        "title": "Prepa Immo"
+      },
+
+      "libimmo": "Libellé",
+      "genre": "Genre",
+      "age": "Age",
+      "marque": "Marque",
+      "type": "Type",
+      "reference": "Reference",
+      "nbre": "Nombre",
+      "fourn": "Fourn",
+      "numfact": "Numero Facture",
+      "numBonComm": "Numero Bon Commande",
+      "dateBonComm": "Date Bon Commande",
+      "bonLiv": "Bon Livraison",
+      "dfact": "Date Facture",
+      "valacq": "ValacQ",
+      "mnttaxe": "Montant Taxe",
+      "montreeval": "Montant Reel Val",
+      "valacq2": "ValacQ2",
+      "mnttaxe2": "Montant Taxe 2",
+      "ddac": "Ddac",
+      "dms": "DMS",
+      "cdir": "Cdir",
+      "cserv": "Cserv",
+      "local": "Local",
+      "csfam": "Csfam",
+      "cpttva": "Cpttva",
+      "cptimmo": "Cptimmo",
+      "cptamort": "Cptamort",
+      "cptdot": "Cptdot",
+      "taux": "Taux",
+      "taux2": "Taux2",
+      "duree2": "Duree2",
+      "cpteBenef": "CpteBenef",
+      "immoamort": "Immoamort",
+      "regul": "Regul",
+      "reeval": "Reeval",
+      "anccodif": "Anccodif",
+      "fiscale": "Fiscale",
+      "contrat": "Contrat",
+      "taxe": "Taxe",
+      "ancCompte": "AncCompte",
+      "operateurSaisi": "OperateurSaisi",
+      "etat": "Etat",
+      "motifRejet": "MotifRejet",
+      "nummodif": "nummodif",
+      "item": "Item",
+      "comptabilise": "Comptabilise",
+      "ImmoRattache": "ImmoRattache",
+      "numinv": "Numinv",
+      "codevalo": "Codevalo",
+      "ancienlocal": "Ancienlocal",
+      "numAvance": "NumAvance",
+      "blocnotes": "Blocnotes",
+      "SSMA_TimeStamp": "SSMA_TimeStamp",
+      "numSubv": "NumSubv",
+      "tauxSubv": "TauxSubv"
+    }
+  }
+}
