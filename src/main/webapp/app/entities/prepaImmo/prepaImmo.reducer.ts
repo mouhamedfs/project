@@ -4,7 +4,7 @@ import { ICrudGetAction, ICrudGetAllAction, ICrudPutAction, ICrudDeleteAction } 
 import { cleanEntity } from 'app/shared/util/entity-utils';
 import { REQUEST, SUCCESS, FAILURE } from 'app/shared/reducers/action-type.util';
 
-import { IPrepaImmo } from 'app/shared/model/prepaImmo.model';
+import { IPrepaImmo, defaultValue } from 'app/shared/model/prepaImmo.model';
 
 export const ACTION_TYPES = {
   FETCH_PREPAIMMO_LIST: 'prepaImmo/FETCH_PREPAIMMO_LIST',
@@ -95,7 +95,7 @@ export default (state: PrepaImmoState = initialState, action): PrepaImmoState =>
   }
 };
 
-const apiUrl = 'api/prepaImmos';
+const apiUrl = 'api/prepaImmo';
 
 // Actions
 

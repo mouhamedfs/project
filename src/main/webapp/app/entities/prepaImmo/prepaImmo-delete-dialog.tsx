@@ -47,7 +47,7 @@ export const PrepaImmoDeleteDialog = (props: IPrepaImmoDeleteDialogProps) => {
           &nbsp;
           <Translate contentKey="entity.action.cancel">Cancel</Translate>
         </Button>
-        <Button id="jhi-confirm-delete-personne" color="danger" onClick={confirmDelete}>
+        <Button id="jhi-confirm-delete-prepaImmo" color="danger" onClick={confirmDelete}>
           <FontAwesomeIcon icon="trash" />
           &nbsp;
           <Translate contentKey="entity.action.delete">Delete</Translate>

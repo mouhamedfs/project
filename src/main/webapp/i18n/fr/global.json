@@ -10,6 +10,7 @@
         "personne": "Personne",
         "job": "Job",
         "departement": "Departement",
+        "prepaImmo": "Immobilisation",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

@@ -38,11 +38,11 @@ export const PrepaImmoDetail = (props: IPrepaImmoDetailProps) => {
           </dt>
           <dd>{prepaImmoEntity.genre}</dd>
           <dt>
-            <span id="age">
-              <Translate contentKey="projectReactSprApp.prepaImmo.age">Age</Translate>
+            <span id="marque">
+              <Translate contentKey="projectReactSprApp.prepaImmo.marque">marque</Translate>
             </span>
           </dt>
-          <dd>{prepaImmoEntity.age}</dd>
+          <dd>{prepaImmoEntity.marque}</dd>
           <dt>
             <span id="type">
               <Translate contentKey="projectReactSprApp.prepaImmo.type">type</Translate>
@@ -139,6 +139,12 @@ export const PrepaImmoDetail = (props: IPrepaImmoDetailProps) => {
             </span>
           </dt>
           <dd>{prepaImmoEntity.dms}</dd>
+          <dt>
+            <span id="age">
+              <Translate contentKey="projectReactSprApp.prepaImmo.age">Age</Translate>
+            </span>
+          </dt>
+          <dd>{prepaImmoEntity.age}</dd>
            <dt>
             <span id="cdir">
               <Translate contentKey="projectReactSprApp.prepaImmo.cdir">cdir</Translate>

@@ -4,19 +4,19 @@ import { Switch } from 'react-router-dom';
 import ErrorBoundaryRoute from 'app/shared/error/error-boundary-route';
 
 import PrepaImmo from './prepaImmo';
-import PersonneDetail from './prepaImmo-detail';
-import PersonneUpdate from './personne-update';
-import PersonneDeleteDialog from './prepaImmo-delete-dialog';
+import PrepaImmoDetail from './prepaImmo-detail';
+import PrepaImmoUpdate from './prepaImmo-update';
+import PrepaImmoDeleteDialog from './prepaImmo-delete-dialog';
 
 const Routes = ({ match }) => (
   <>
     <Switch>
-      <ErrorBoundaryRoute exact path={`${match.url}/new`} component={PersonneUpdate} />
-      <ErrorBoundaryRoute exact path={`${match.url}/:id/edit`} component={PersonneUpdate} />
-      <ErrorBoundaryRoute exact path={`${match.url}/:id`} component={PersonneDetail} />
-      <ErrorBoundaryRoute path={match.url} component={Personne} />
+      <ErrorBoundaryRoute exact path={`${match.url}/new`} component={PrepaImmoUpdate} />
+      <ErrorBoundaryRoute exact path={`${match.url}/:numero/edit`} component={PrepaImmoUpdate} />
+      <ErrorBoundaryRoute exact path={`${match.url}/:numero`} component={PrepaImmoDetail} />
+      <ErrorBoundaryRoute path={match.url} component={PrepaImmo} />
     </Switch>
-    <ErrorBoundaryRoute exact path={`${match.url}/:id/delete`} component={PersonneDeleteDialog} />
+    <ErrorBoundaryRoute exact path={`${match.url}/:numero/delete`} component={PrepaImmoDeleteDialog} />
   </>
 );
 

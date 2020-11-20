@@ -141,7 +141,7 @@ public class PrepaImmo implements Serializable {
      @Column(name = "taxe")
     private boolean taxe;
 
-    @Column(name = "ancCompte")
+    @Column(name = "anc_compte")
     private String ancCompte;
 
     @Column(name = "operateurSaisi")
@@ -162,7 +162,7 @@ public class PrepaImmo implements Serializable {
     @Column(name = "comptabilise")
     private String comptabilise;
 
-     @Column(name = "ImmoRattache")
+     @Column(name = ("immo_rattache"))
     private int ImmoRattache;
 
     @Column(name = "numinv")
@@ -180,7 +180,7 @@ public class PrepaImmo implements Serializable {
      @Column(name = "blocnotes")
     private String blocnotes;
 
-     @Column(name = "SSMA_TimeStamp")
+     @Column(name = "ssma_time_stamp")
     private Date SSMA_TimeStamp;
 
     @Column(name = "numSubv")
