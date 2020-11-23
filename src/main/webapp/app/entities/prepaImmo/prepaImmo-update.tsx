@@ -53,15 +53,18 @@ export const PrepaImmoUpdate = (props: IPrepaImmoUpdateProps) => {
   };
   return (
     <div>
-      <Row className="justify-content-center">
+      <Row className="justify-content-start">
         <Col md="8">
           <h2 id="projectReactSprApp.prepaImmo.home.createOrEditLabel">
             <Translate contentKey="projectReactSprApp.prepaImmo.home.createOrEditLabel">Create or edit a PrepaImmo</Translate>
           </h2>
+          <br />
+        <h3><strong>SAISIE ACQUISITION</strong></h3>
         </Col>
       </Row>
-      <Row className="justify-content-center">
-        <Col md="8">
+      <br />
+      <Row className="justify-content-start">
+        <Col md="12">
           {loading ? (
             <p>Loading...</p>
           ) : (
@@ -74,12 +77,19 @@ export const PrepaImmoUpdate = (props: IPrepaImmoUpdateProps) => {
                   <AvInput id="prepaImmo-numero" type="number" className="form-control" name="numero" required readOnly />
                 </AvGroup>
               ) : null}
+              <Row className="justify-content-center">
+                <Col md="10">
               <AvGroup>
                 <Label id="libimmoLabel" for="prepaImmo-libimmo">
                   <Translate contentKey="projectReactSprApp.prepaImmo.libimmo">Libellé</Translate>
                 </Label>
                 <AvField id="prepaImmo-libimmo" type="text" name="libimmo" />
               </AvGroup>
+              </Col>
+              </Row>
+                <Row className="justify-content-start">
+                <Col md="6">
+                  <Label><strong>Infos Nature</strong></Label>
               <AvGroup>
                 <Label id="genreLabel" for="prepaImmo-genre">
                   <Translate contentKey="projectReactSprApp.prepaImmo.genre">genre</Translate>
@@ -87,42 +97,15 @@ export const PrepaImmoUpdate = (props: IPrepaImmoUpdateProps) => {
                 <AvField id="prepaImmo-genre" type="text" name="genre" />
               </AvGroup>
               <AvGroup>
-                <Label id="marqueLabel" for="prepaImmo-marque">
-                  <Translate contentKey="projectReactSprApp.prepaImmo.marque">marque</Translate>
-                </Label>
-                <AvField id="prepaImmo-marque" type="number" name="marque" />
-              </AvGroup>
-              <AvGroup>
                 <Label id="typeLabel" for="prepaImmo-type">
                   <Translate contentKey="projectReactSprApp.prepaImmo.type">type</Translate>
                 </Label>
                 <AvField id="prepaImmo-type" type="text" name="type" />
               </AvGroup>
-              <AvGroup>
-                <Label id="referenceLabel" for="prepaImmo-reference">
-                  <Translate contentKey="projectReactSprApp.prepaImmo.reference">reference</Translate>
-                </Label>
-                <AvField id="prepaImmo-reference" type="text" name="reference" />
-              </AvGroup>
-              <AvGroup>
-                <Label id="nbreLabel" for="prepaImmo-nbre">
-                  <Translate contentKey="projectReactSprApp.prepaImmo.nbre">nbre</Translate>
-                </Label>
-                <AvField id="prepaImmo-nbre" type="number" name="nbre" />
-              </AvGroup>
-              <AvGroup>
-                <Label id="fournLabel" for="prepaImmo-fourn">
-                  <Translate contentKey="projectReactSprApp.prepaImmo.fourn">fourn</Translate>
-                </Label>
-                <AvField id="prepaImmo-fourn" type="text" name="fourn" />
-              </AvGroup>
-              <AvGroup>
-                <Label id="numfactLabel" for="prepaImmo-numfact">
-                  <Translate contentKey="projectReactSprApp.prepaImmo.numfact">numfact</Translate>
-                </Label>
-                <AvField id="prepaImmo-numfact" type="text" name="numfact" />
-              </AvGroup>
-              <AvGroup>
+              </Col>
+              <Col md="5">
+                  <Label><strong>Infos commande/facture</strong></Label>
+                  <AvGroup>
                 <Label id="numBonCommLabel" for="prepaImmo-numBonComm">
                   <Translate contentKey="projectReactSprApp.prepaImmo.numBonComm">numBonComm</Translate>
                 </Label>
@@ -133,6 +116,12 @@ export const PrepaImmoUpdate = (props: IPrepaImmoUpdateProps) => {
                   <Translate contentKey="projectReactSprApp.prepaImmo.dateBonComm">dateBonComm</Translate>
                 </Label>
                 <AvField id="prepaImmo-type" type="date" name="dateBonComm" />
+              </AvGroup>
+              <AvGroup>
+                <Label id="fournLabel" for="prepaImmo-fourn">
+                  <Translate contentKey="projectReactSprApp.prepaImmo.fourn">fourn</Translate>
+                </Label>
+                <AvField id="prepaImmo-fourn" type="text" name="fourn" />
               </AvGroup>
               <AvGroup>
                 <Label id="bonLivLabel" for="prepaImmo-bonLiv">
@@ -146,6 +135,12 @@ export const PrepaImmoUpdate = (props: IPrepaImmoUpdateProps) => {
                 </Label>
                 <AvField id="prepaImmo-dateBonLiv" type="date" name="dateBonLiv" />
               </AvGroup>
+               <AvGroup>
+                <Label id="numfactLabel" for="prepaImmo-numfact">
+                  <Translate contentKey="projectReactSprApp.prepaImmo.numfact">numfact</Translate>
+                </Label>
+                <AvField id="prepaImmo-numfact" type="text" name="numfact" />
+              </AvGroup>
               <AvGroup>
                 <Label id="dfactLabel" for="prepaImmo-dfact">
                   <Translate contentKey="projectReactSprApp.prepaImmo.dfact">dfact</Translate>
@@ -153,16 +148,128 @@ export const PrepaImmoUpdate = (props: IPrepaImmoUpdateProps) => {
                 <AvField id="prepaImmo-dfact" type="date" name="dfact" />
               </AvGroup>
               <AvGroup>
-                <Label id="valacqLabel" for="prepaImmo-valacq">
-                  <Translate contentKey="projectReactSprApp.prepaImmo.valacq">valacq</Translate>
-                </Label>
-                <AvField id="prepaImmo-valacq" type="number" name="valacq" />
-              </AvGroup>
-              <AvGroup>
                 <Label id="mnttaxeLabel" for="prepaImmo-mnttaxe">
                   <Translate contentKey="projectReactSprApp.prepaImmo.mnttaxe">mnttaxe</Translate>
                 </Label>
                 <AvField id="prepaImmo-mnttaxe" type="number" name="mnttaxe" />
+              </AvGroup>
+                </Col>
+                </Row>
+              <Row className="justify-content-start">
+              <Col md="3">
+              <AvGroup>
+                <Label id="cptimmoLabel" for="prepaImmo-cptimmo">
+                  <Translate contentKey="projectReactSprApp.prepaImmo.cptimmo">cptimmo</Translate>
+                </Label>
+                <AvField id="prepaImmo-cptimmo" type="text" name="cptimmo" />
+              </AvGroup>
+              <AvGroup>
+                <Label id="cptamortLabel" for="prepaImmo-cptamort">
+                  <Translate contentKey="projectReactSprApp.prepaImmo.cptamort">cptamort</Translate>
+                </Label>
+                <AvField id="prepaImmo-cptamort" type="text" name="cptamort" />
+              </AvGroup>
+              <AvGroup>
+                <Label id="cptdotLabel" for="prepaImmo-cptdot">
+                  <Translate contentKey="projectReactSprApp.prepaImmo.cptdot">cptdot</Translate>
+                </Label>
+                <AvField id="prepaImmo-cptdot" type="text" name="cptdot" />
+              </AvGroup>
+              <AvGroup>
+                <Label id="tauxLabel" for="prepaImmo-taux">
+                  <Translate contentKey="projectReactSprApp.prepaImmo.taux">taux</Translate>
+                </Label>
+                <AvField id="prepaImmo-taux" type="number" name="taux" />
+              </AvGroup>
+              </Col>
+              <Col md="3">
+              <AvGroup>
+                <Label id="itemLabel" for="prepaImmo-item">
+                  <Translate contentKey="projectReactSprApp.prepaImmo.item">item</Translate>
+                </Label>
+                <AvField id="prepaImmo-item" type="text" name="item" size="20" />
+              </AvGroup>
+              <AvGroup>
+                <Label id="patenteLabel" for="prepaImmo-patente">
+                  <Translate contentKey="projectReactSprApp.prepaImmo.patente">patente</Translate>
+                </Label>
+                <AvField id="prepaImmo-patente" type="text" value="0,00%" name="patente" />
+              </AvGroup>
+              <AvGroup>
+                <Label id="impotLabel" for="prepaImmo-impot">
+                  <Translate contentKey="projectReactSprApp.prepaImmo.impot">impot</Translate>
+                </Label>
+                <AvField id="prepaImmo-impot" type="text" value="0,00%" name="impot" />
+              </AvGroup>
+              </Col>
+              </Row>
+              <Label><strong>Localisation</strong></Label>
+                <Row className="justify-content-start">
+                <Col md="8">
+              <AvGroup>
+                <Label id="marqueLabel" for="prepaImmo-marque">
+                  <Translate contentKey="projectReactSprApp.prepaImmo.marque">marque</Translate>
+                </Label>
+                <AvField id="prepaImmo-marque" type="text" name="marque" />
+              </AvGroup>
+              <AvGroup>
+                <Label id="localLabel" for="prepaImmo-local">
+                  <Translate contentKey="projectReactSprApp.prepaImmo.local">local</Translate>
+                </Label>
+                <AvField id="prepaImmo-local" type="text" name="local" />
+              </AvGroup>
+              </Col>
+              </Row>
+              <Label><strong>Autres Infos</strong></Label>
+                <Row className="justify-content-start">
+                <Col md="8">
+              <AvGroup>
+                <Label id="referenceLabel" for="prepaImmo-reference">
+                  <Translate contentKey="projectReactSprApp.prepaImmo.reference">reference</Translate>
+                </Label>
+                <AvField id="prepaImmo-reference" type="text" name="reference" />
+              </AvGroup>
+              <AvGroup>
+                <Label id="ancienlocalLabel" for="prepaImmo-ancienlocal">
+                  <Translate contentKey="projectReactSprApp.prepaImmo.ancienlocal">ancienlocal</Translate>
+                </Label>
+                <AvField id="prepaImmo-ancienlocal" type="text" name="ancienlocal" />
+              </AvGroup>
+              <AvGroup>
+                <Label id="ImmoRattacheLabel" for="prepaImmo-ImmoRattache">
+                  <Translate contentKey="projectReactSprApp.prepaImmo.ImmoRattache">ImmoRattache</Translate>
+                </Label>
+                <AvField id="prepaImmo-ImmoRattache" type="number" name="ImmoRattache" />
+              </AvGroup>
+              <AvGroup>
+                <Label id="numSubvLabel" for="prepaImmo-numSubv">
+                  <Translate contentKey="projectReactSprApp.prepaImmo.numSubv">numSubv</Translate>
+                </Label>
+                <AvField id="prepaImmo-numSubv" type="number" name="numSubv" />
+              </AvGroup>
+               </Col>
+              </Row>
+              <Row className="justify-content-start">
+                <Col md="2">
+              <AvGroup>
+                <Label id="tauxSubvLabel" for="prepaImmo-tauxSubv">
+                  <Translate contentKey="projectReactSprApp.prepaImmo.tauxSubv">tauxSubv</Translate>
+                </Label>
+                <AvField id="prepaImmo-tauxSubv" type="number" name="tauxSubv" />
+              </AvGroup>
+              </Col>
+              </Row>
+              <AvGroup>
+                <Label id="nbreLabel" for="prepaImmo-nbre">
+                  <Translate contentKey="projectReactSprApp.prepaImmo.nbre">nbre</Translate>
+                </Label>
+                <AvField id="prepaImmo-nbre" type="number" name="nbre" />
+              </AvGroup>
+              <AvGroup>
+                <Label id="valacqLabel" for="prepaImmo-valacq">
+                  <Translate contentKey="projectReactSprApp.prepaImmo.valacq">valacq</Translate>
+                </Label>
+                <AvField id="prepaImmo-valacq" type="number" name="valacq" />
               </AvGroup>
               <AvGroup>
                 <Label id="montreevalLabel" for="prepaImmo-montreeval">
@@ -212,12 +319,8 @@ export const PrepaImmoUpdate = (props: IPrepaImmoUpdateProps) => {
                 </Label>
                 <AvField id="prepaImmo-cserv" type="number" name="cserv" />
               </AvGroup>
-              <AvGroup>
-                <Label id="localLabel" for="prepaImmo-local">
-                  <Translate contentKey="projectReactSprApp.prepaImmo.local">local</Translate>
-                </Label>
-                <AvField id="prepaImmo-local" type="text" name="local" />
-              </AvGroup>
+              
+              
               <AvGroup>
                 <Label id="csfamLabel" for="prepaImmo-csfam">
                   <Translate contentKey="projectReactSprApp.prepaImmo.csfam">csfam</Translate>
@@ -229,30 +332,6 @@ export const PrepaImmoUpdate = (props: IPrepaImmoUpdateProps) => {
                   <Translate contentKey="projectReactSprApp.prepaImmo.cpttva">cpttva</Translate>
                 </Label>
                 <AvField id="prepaImmo-cpttva" type="text" name="cpttva" />
-              </AvGroup>
-              <AvGroup>
-                <Label id="cptimmoLabel" for="prepaImmo-cptimmo">
-                  <Translate contentKey="projectReactSprApp.prepaImmo.cptimmo">cptimmo</Translate>
-                </Label>
-                <AvField id="prepaImmo-cptimmo" type="text" name="cptimmo" />
-              </AvGroup>
-              <AvGroup>
-                <Label id="cptamortLabel" for="prepaImmo-cptamort">
-                  <Translate contentKey="projectReactSprApp.prepaImmo.cptamort">cptamort</Translate>
-                </Label>
-                <AvField id="prepaImmo-cptamort" type="text" name="cptamort" />
-              </AvGroup>
-              <AvGroup>
-                <Label id="cptdotLabel" for="prepaImmo-cptdot">
-                  <Translate contentKey="projectReactSprApp.prepaImmo.cptdot">cptdot</Translate>
-                </Label>
-                <AvField id="prepaImmo-cptdot" type="text" name="cptdot" />
-              </AvGroup>
-              <AvGroup>
-                <Label id="tauxLabel" for="prepaImmo-taux">
-                  <Translate contentKey="projectReactSprApp.prepaImmo.taux">taux</Translate>
-                </Label>
-                <AvField id="prepaImmo-taux" type="number" name="taux" />
               </AvGroup>
               <AvGroup>
                 <Label id="taux2Label" for="prepaImmo-taux2">
@@ -344,24 +423,14 @@ export const PrepaImmoUpdate = (props: IPrepaImmoUpdateProps) => {
                 </Label>
                 <AvField id="prepaImmo-nummodif" type="number" name="nummodif" />
               </AvGroup>
-              <AvGroup>
-                <Label id="itemLabel" for="prepaImmo-item">
-                  <Translate contentKey="projectReactSprApp.prepaImmo.item">item</Translate>
-                </Label>
-                <AvField id="prepaImmo-item" type="text" name="item" />
-              </AvGroup>
+              
               <AvGroup>
                 <Label id="comptabiliseLabel" for="prepaImmo-comptabilise">
                   <Translate contentKey="projectReactSprApp.prepaImmo.comptabilise">comptabilise</Translate>
                 </Label>
                 <AvField id="prepaImmo-comptabilise" type="text" name="comptabilise" />
               </AvGroup>
-              <AvGroup>
-                <Label id="ImmoRattacheLabel" for="prepaImmo-ImmoRattache">
-                  <Translate contentKey="projectReactSprApp.prepaImmo.ImmoRattache">ImmoRattache</Translate>
-                </Label>
-                <AvField id="prepaImmo-ImmoRattache" type="number" name="ImmoRattache" />
-              </AvGroup>
+              
               <AvGroup>
                 <Label id="numinvLabel" for="prepaImmo-numinv">
                   <Translate contentKey="projectReactSprApp.prepaImmo.numinv">numinv</Translate>
@@ -374,12 +443,7 @@ export const PrepaImmoUpdate = (props: IPrepaImmoUpdateProps) => {
                 </Label>
                 <AvField id="prepaImmo-codevalo" type="text" name="codevalo" />
               </AvGroup>
-              <AvGroup>
-                <Label id="ancienlocalLabel" for="prepaImmo-ancienlocal">
-                  <Translate contentKey="projectReactSprApp.prepaImmo.ancienlocal">ancienlocal</Translate>
-                </Label>
-                <AvField id="prepaImmo-ancienlocal" type="text" name="ancienlocal" />
-              </AvGroup>
+              
               <AvGroup>
                 <Label id="numAvanceLabel" for="prepaImmo-numAvance">
                   <Translate contentKey="projectReactSprApp.prepaImmo.numAvance">numAvance</Translate>
@@ -398,18 +462,6 @@ export const PrepaImmoUpdate = (props: IPrepaImmoUpdateProps) => {
                 </Label>
                 <AvField id="prepaImmo-SSMA_TimeStamp" type="date" name="SSMA_TimeStamp" />
               </AvGroup>
-              <AvGroup>
-                <Label id="numSubvLabel" for="prepaImmo-numSubv">
-                  <Translate contentKey="projectReactSprApp.prepaImmo.numSubv">numSubv</Translate>
-                </Label>
-                <AvField id="prepaImmo-numSubv" type="number" name="numSubv" />
-              </AvGroup>
-              <AvGroup>
-                <Label id="tauxSubvLabel" for="prepaImmo-tauxSubv">
-                  <Translate contentKey="projectReactSprApp.prepaImmo.tauxSubv">tauxSubv</Translate>
-                </Label>
-                <AvField id="prepaImmo-tauxSubv" type="number" name="tauxSubv" />
-              </AvGroup>
               <Button tag={Link} id="cancel-save" to="/prepaImmo" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;
@@ -422,6 +474,11 @@ export const PrepaImmoUpdate = (props: IPrepaImmoUpdateProps) => {
                 <FontAwesomeIcon icon="save" />
                 &nbsp;
                 <Translate contentKey="entity.action.save">Save</Translate>
+              </Button>
+              <Button color="danger" id="reset-entity" type="reset" disabled={updating}>
+                <FontAwesomeIcon icon="hard-hat" />
+                &nbsp;
+                <Translate contentKey="entity.action.reset">Effacer Tout</Translate>
               </Button>
             </AvForm>
           )}

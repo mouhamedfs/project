@@ -45,16 +45,16 @@ public class PrepaImmo implements Serializable {
      @Column(name = "numfact")
     private String numfact;
 
-     @Column(name = "numBonComm")
+     @Column(name = "num_bon_comm")
     private String numBonComm;
 
-     @Column(name = "dateBonComm")
+     @Column(name = "date_bon_comm")
     private Date dateBonComm;
 
-     @Column(name = "bonLiv")
+     @Column(name = "bon_liv")
     private String bonLiv;
 
-    @Column(name = "dateBonLiv")
+    @Column(name = "date_bon_liv")
     private Date dateBonLiv;
 
     @Column(name = "dfact")
@@ -117,7 +117,7 @@ public class PrepaImmo implements Serializable {
     @Column(name = "duree2")
     private Float duree2;
 
-    @Column(name = "cpteBenef")
+    @Column(name = "cpte_benef")
     private String cpteBenef;
 
     @Column(name = "immoamort")
@@ -144,13 +144,13 @@ public class PrepaImmo implements Serializable {
     @Column(name = "anc_compte")
     private String ancCompte;
 
-    @Column(name = "operateurSaisi")
+    @Column(name = "operateur_saisi")
     private String operateurSaisi;
 
      @Column(name = "etat")
     private String etat;
 
-     @Column(name = "motifRejet")
+     @Column(name = "motif_rejet")
     private String motifRejet;
 
     @Column(name = "nummodif")
@@ -174,7 +174,7 @@ public class PrepaImmo implements Serializable {
     @Column(name = "ancienlocal")
     private String ancienlocal;
 
-    @Column(name = "numAvance")
+    @Column(name = "num_avance")
     private int numAvance;
 
      @Column(name = "blocnotes")
@@ -183,10 +183,10 @@ public class PrepaImmo implements Serializable {
      @Column(name = "ssma_time_stamp")
     private Date SSMA_TimeStamp;
 
-    @Column(name = "numSubv")
+    @Column(name = "num_subv")
     private int numSubv;
 
-     @Column(name = "tauxSubv")
+     @Column(name = "taux_subv")
     private int tauxSubv;
 
     public static long getSerialversionuid() {

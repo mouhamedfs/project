@@ -103,7 +103,8 @@
       "delete": "Supprimer",
       "open": "Ouvrir",
       "save": "Sauvegarder",
-      "view": "Voir"
+      "view": "Voir",
+      "reset": "Effacer Tout"
     },
     "detail": {
       "field": "Champs",

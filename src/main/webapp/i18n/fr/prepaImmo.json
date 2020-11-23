@@ -2,8 +2,8 @@
   "projectReactSprApp": {
     "prepaImmo": {
       "home": {
-        "title": "prepaImmo",
-        "createLabel": "Créer une nouvelle Immobilisation",
+        "title": "Préparation Immobilisation",
+        "createLabel": "Préparation Immobilisation",
         "createOrEditLabel": "Créer ou éditer une Immobilisation",
         "notFound": "Aucun Immobilisation trouvé"
       },
@@ -17,21 +17,22 @@
         "title": "Prepa Immo"
       },
 
-      "libimmo": "Libellé",
-      "genre": "Genre",
+      "libimmo": "Libellé immo (50 car.max)*",
+      "genre": "Famille",
       "age": "Age",
       "marque": "Marque",
-      "type": "Type",
+      "type": "Libellé ss famille",
       "reference": "Reference",
       "nbre": "Nombre",
-      "fourn": "Fourn",
-      "numfact": "Numero Facture",
-      "numBonComm": "Numero Bon Commande",
-      "dateBonComm": "Date Bon Commande",
-      "bonLiv": "Bon Livraison",
+      "fourn": "Fournisseur",
+      "numfact": "N° Facture",
+      "numBonComm": "N° Commande",
+      "dateBonComm": "Date Commande",
+      "dateBonLiv": "Date Bon Livraison",
+      "bonLiv": "N° Bon Livraison",
       "dfact": "Date Facture",
       "valacq": "ValacQ",
-      "mnttaxe": "Montant Taxe",
+      "mnttaxe": "Prix d'acquisition TTC*(unité)",
       "montreeval": "Montant Reel Val",
       "valacq2": "ValacQ2",
       "mnttaxe2": "Montant Taxe 2",
@@ -42,9 +43,9 @@
       "local": "Local",
       "csfam": "Csfam",
       "cpttva": "Cpttva",
-      "cptimmo": "Cptimmo",
-      "cptamort": "Cptamort",
-      "cptdot": "Cptdot",
+      "cptimmo": "Cpte Immobilisation",
+      "cptamort": "Cpte amortissement",
+      "cptdot": "Cpte dotation",
       "taux": "Taux",
       "taux2": "Taux2",
       "duree2": "Duree2",
@@ -63,15 +64,17 @@
       "nummodif": "nummodif",
       "item": "Item",
       "comptabilise": "Comptabilise",
-      "ImmoRattache": "ImmoRattache",
+      "ImmoRattache": "Rattachement",
       "numinv": "Numinv",
       "codevalo": "Codevalo",
-      "ancienlocal": "Ancienlocal",
+      "ancienlocal": "Ancien Code",
       "numAvance": "NumAvance",
       "blocnotes": "Blocnotes",
       "SSMA_TimeStamp": "SSMA_TimeStamp",
-      "numSubv": "NumSubv",
-      "tauxSubv": "TauxSubv"
+      "numSubv": "Subventionnée",
+      "tauxSubv": "Prorata Subventionné",
+      "patente": "Patente",
+      "impot": "Impot"
     }
   }
 }
