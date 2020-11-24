@@ -104,8 +104,8 @@ export const getEntities: ICrudGetAllAction<IPrepaImmo> = (page, size, sort) => 
   payload: axios.get<IPrepaImmo>(`${apiUrl}?cacheBuster=${new Date().getTime()}`),
 });
 
-export const getEntity: ICrudGetAction<IPrepaImmo> = id => {
-  const requestUrl = `${apiUrl}/${id}`;
+export const getEntity: ICrudGetAction<IPrepaImmo> = numero => {
+  const requestUrl = `${apiUrl}/${numero}`;
   return {
     type: ACTION_TYPES.FETCH_PREPAIMMO,
     payload: axios.get<IPrepaImmo>(requestUrl),
