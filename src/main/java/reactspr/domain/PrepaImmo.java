@@ -3,6 +3,7 @@ package reactspr.domain;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
+
 import java.io.Serializable;
 import java.sql.Date;
 
@@ -10,7 +11,7 @@ import java.sql.Date;
  * PrepaImmo.
  */
 @Entity
-@Table(name = "T_PREPAIMMO")
+@Table(name = "T_PREPAIMMOS")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class PrepaImmo implements Serializable {
 
@@ -37,7 +38,7 @@ public class PrepaImmo implements Serializable {
     private String reference;
 
     @Column(name = "nbre")
-    private int nbre;
+    private Integer nbre;
 
     @Column(name = "fourn")
     private String fourn;
@@ -82,13 +83,13 @@ public class PrepaImmo implements Serializable {
     private Date dms;
 
     @Column(name = "age")
-    private int age;
+    private Integer age;
 
     @Column(name = "cdir")
-    private int cdir;
+    private Integer cdir;
 
     @Column(name = "cserv")
-    private int cserv;
+    private Integer cserv;
 
     @Column(name = "local")
     private String local;
@@ -121,25 +122,25 @@ public class PrepaImmo implements Serializable {
     private String cpteBenef;
 
     @Column(name = "immoamort")
-    private boolean  immoamort;
+    private Boolean  immoamort;
 
     @Column(name = "regul")
-    private boolean regul;
+    private Boolean regul;
 
     @Column(name = "reeval")
-    private boolean reeval;
+    private Boolean reeval;
 
     @Column(name = "anccodif")
     private String anccodif;
 
     @Column(name = "fiscale")
-    private boolean fiscale;
+    private Boolean fiscale;
 
     @Column(name = "contrat")
-    private boolean contrat;
+    private Boolean contrat;
 
      @Column(name = "taxe")
-    private boolean taxe;
+    private Boolean taxe;
 
     @Column(name = "anc_compte")
     private String ancCompte;
@@ -154,7 +155,7 @@ public class PrepaImmo implements Serializable {
     private String motifRejet;
 
     @Column(name = "nummodif")
-    private int nummodif;
+    private Integer nummodif;
 
     @Column(name = "item")
     private String item;
@@ -163,7 +164,7 @@ public class PrepaImmo implements Serializable {
     private String comptabilise;
 
      @Column(name = ("immo_rattache"))
-    private int ImmoRattache;
+    private Integer ImmoRattache;
 
     @Column(name = "numinv")
     private String numinv;
@@ -175,7 +176,7 @@ public class PrepaImmo implements Serializable {
     private String ancienlocal;
 
     @Column(name = "num_avance")
-    private int numAvance;
+    private Integer numAvance;
 
      @Column(name = "blocnotes")
     private String blocnotes;
@@ -184,10 +185,10 @@ public class PrepaImmo implements Serializable {
     private Date SSMA_TimeStamp;
 
     @Column(name = "num_subv")
-    private int numSubv;
+    private Integer numSubv;
 
      @Column(name = "taux_subv")
-    private int tauxSubv;
+    private Integer tauxSubv;
 
     public static long getSerialversionuid() {
         return serialVersionUID;
@@ -241,11 +242,11 @@ public class PrepaImmo implements Serializable {
         this.reference = reference;
     }
 
-    public int getNbre() {
+    public Integer getNbre() {
         return nbre;
     }
 
-    public void setNbre(int nbre) {
+    public void setNbre(Integer nbre) {
         this.nbre = nbre;
     }
 
@@ -361,27 +362,27 @@ public class PrepaImmo implements Serializable {
         this.dms = dms;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
-    public int getCdir() {
+    public Integer getCdir() {
         return cdir;
     }
 
-    public void setCdir(int cdir) {
+    public void setCdir(Integer cdir) {
         this.cdir = cdir;
     }
 
-    public int getCserv() {
+    public Integer getCserv() {
         return cserv;
     }
 
-    public void setCserv(int cserv) {
+    public void setCserv(Integer cserv) {
         this.cserv = cserv;
     }
 
@@ -465,27 +466,27 @@ public class PrepaImmo implements Serializable {
         this.cpteBenef = cpteBenef;
     }
 
-    public boolean isImmoamort() {
+    public Boolean isImmoamort() {
         return immoamort;
     }
 
-    public void setImmoamort(boolean immoamort) {
+    public void setImmoamort(Boolean immoamort) {
         this.immoamort = immoamort;
     }
 
-    public boolean isRegul() {
+    public Boolean isRegul() {
         return regul;
     }
 
-    public void setRegul(boolean regul) {
+    public void setRegul(Boolean regul) {
         this.regul = regul;
     }
 
-    public boolean isReeval() {
+    public Boolean isReeval() {
         return reeval;
     }
 
-    public void setReeval(boolean reeval) {
+    public void setReeval(Boolean reeval) {
         this.reeval = reeval;
     }
 
@@ -497,27 +498,27 @@ public class PrepaImmo implements Serializable {
         this.anccodif = anccodif;
     }
 
-    public boolean isFiscale() {
+    public Boolean isFiscale() {
         return fiscale;
     }
 
-    public void setFiscale(boolean fiscale) {
+    public void setFiscale(Boolean fiscale) {
         this.fiscale = fiscale;
     }
 
-    public boolean isContrat() {
+    public Boolean isContrat() {
         return contrat;
     }
 
-    public void setContrat(boolean contrat) {
+    public void setContrat(Boolean contrat) {
         this.contrat = contrat;
     }
 
-    public boolean isTaxe() {
+    public Boolean isTaxe() {
         return taxe;
     }
 
-    public void setTaxe(boolean taxe) {
+    public void setTaxe(Boolean taxe) {
         this.taxe = taxe;
     }
 
@@ -553,11 +554,11 @@ public class PrepaImmo implements Serializable {
         this.motifRejet = motifRejet;
     }
 
-    public int getNummodif() {
+    public Integer getNummodif() {
         return nummodif;
     }
 
-    public void setNummodif(int nummodif) {
+    public void setNummodif(Integer nummodif) {
         this.nummodif = nummodif;
     }
 
@@ -577,11 +578,11 @@ public class PrepaImmo implements Serializable {
         this.comptabilise = comptabilise;
     }
 
-    public int getImmoRattache() {
+    public Integer getImmoRattache() {
         return ImmoRattache;
     }
 
-    public void setImmoRattache(int immoRattache) {
+    public void setImmoRattache(Integer immoRattache) {
         ImmoRattache = immoRattache;
     }
 
@@ -609,11 +610,11 @@ public class PrepaImmo implements Serializable {
         this.ancienlocal = ancienlocal;
     }
 
-    public int getNumAvance() {
+    public Integer getNumAvance() {
         return numAvance;
     }
 
-    public void setNumAvance(int numAvance) {
+    public void setNumAvance(Integer numAvance) {
         this.numAvance = numAvance;
     }
 
@@ -633,19 +634,19 @@ public class PrepaImmo implements Serializable {
         SSMA_TimeStamp = sSMA_TimeStamp;
     }
 
-    public int getNumSubv() {
+    public Integer getNumSubv() {
         return numSubv;
     }
 
-    public void setNumSubv(int numSubv) {
+    public void setNumSubv(Integer numSubv) {
         this.numSubv = numSubv;
     }
 
-    public int getTauxSubv() {
+    public Integer getTauxSubv() {
         return tauxSubv;
     }
 
-    public void setTauxSubv(int tauxSubv) {
+    public void setTauxSubv(Integer tauxSubv) {
         this.tauxSubv = tauxSubv;
     }
 

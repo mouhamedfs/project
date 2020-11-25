@@ -158,7 +158,7 @@ export const PrepaImmoUpdate = (props: IPrepaImmoUpdateProps) => {
                 <Label id="marqueLabel" for="prepaImmo-marque">
                   <Translate contentKey="projectReactSprApp.prepaImmo.marque">marque</Translate>
                 </Label>
-                <AvField id="prepaImmo-marque" type="number" name="marque" />
+                <AvField id="prepaImmo-marque" type="text" name="marque" />P
               </AvGroup>
               <AvGroup>
                 <Label id="localLabel" for="prepaImmo-local">
@@ -299,11 +299,6 @@ export const PrepaImmoUpdate = (props: IPrepaImmoUpdateProps) => {
                 <Translate contentKey="entity.action.save">Save</Translate>
               </Button>
                 &nbsp;
-              <Button color="danger" id="reset-entity" type="reset" disabled={updating}>
-                <FontAwesomeIcon icon="hard-hat" />
-                &nbsp;
-                <Translate contentKey="entity.action.reset">Effacer Tout</Translate>
-              </Button>
               </Col></Row>
             </AvForm>
           )}

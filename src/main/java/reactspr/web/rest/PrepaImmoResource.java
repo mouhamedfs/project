@@ -1,8 +1,5 @@
 package reactspr.web.rest;
-
-import reactspr.domain.Personne;
 import reactspr.domain.PrepaImmo;
-import reactspr.repository.PersonneRepository;
 import reactspr.repository.PrepaImmoRepository;
 import reactspr.web.rest.errors.BadRequestAlertException;
 

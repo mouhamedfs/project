@@ -70,7 +70,8 @@ export const UserManagement = (props: IUserManagementProps) => {
           <FontAwesomeIcon icon="home" /> <Translate contentKey="projectReactSprApp.role.home.gestionRole">Role</Translate>
         </Link>
 
-        
+          &nbsp;
+          &nbsp;
         <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity">
           <FontAwesomeIcon icon="plus" /> <Translate contentKey="userManagement.home.createLabel">Create a new user</Translate>
         </Link>
