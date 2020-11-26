@@ -76,19 +76,10 @@ export const PrepaImmo = (props: IPrepaImmoProps) => {
                   <Translate contentKey="projectReactSprApp.prepaImmo.dfact">dfact</Translate>
                 </th>
                 <th>
-                  <Translate contentKey="projectReactSprApp.prepaImmo.valacq">valacq</Translate>
-                </th>
-                <th>
                   <Translate contentKey="projectReactSprApp.prepaImmo.mnttaxe">mnttaxe</Translate>
                 </th>
                 <th>
                   <Translate contentKey="projectReactSprApp.prepaImmo.montreeval">montreeval</Translate>
-                </th>
-                <th>
-                  <Translate contentKey="projectReactSprApp.prepaImmo.valacq2">valacq2</Translate>
-                </th>
-                <th>
-                  <Translate contentKey="projectReactSprApp.prepaImmo.mnttaxe2">mnttaxe2</Translate>
                 </th>
                 <th>
                   <Translate contentKey="projectReactSprApp.prepaImmo.ddac">ddac</Translate>
@@ -96,20 +87,8 @@ export const PrepaImmo = (props: IPrepaImmoProps) => {
                 <th>
                   <Translate contentKey="projectReactSprApp.prepaImmo.dms">dms</Translate>
                 </th>
-                <th>
-                  <Translate contentKey="projectReactSprApp.prepaImmo.age">Age</Translate>
-                </th>
-                <th>
-                  <Translate contentKey="projectReactSprApp.prepaImmo.cdir">cdir</Translate>
-                </th>
-                <th>
-                  <Translate contentKey="projectReactSprApp.prepaImmo.cserv">cserv</Translate>
-                </th>
                  <th>
                   <Translate contentKey="projectReactSprApp.prepaImmo.local">local</Translate>
-                </th>
-                 <th>
-                  <Translate contentKey="projectReactSprApp.prepaImmo.csfam">csfam</Translate>
                 </th>
                  <th>
                   <Translate contentKey="projectReactSprApp.prepaImmo.cpttva">cpttva</Translate>
@@ -130,28 +109,13 @@ export const PrepaImmo = (props: IPrepaImmoProps) => {
                   <Translate contentKey="projectReactSprApp.prepaImmo.taux2">taux2</Translate>
                 </th>
                  <th>
-                  <Translate contentKey="projectReactSprApp.prepaImmo.duree2">duree2</Translate>
-                </th>
-                 <th>
                   <Translate contentKey="projectReactSprApp.prepaImmo.cpteBenef">cpteBenef</Translate>
                 </th>
                  <th>
                   <Translate contentKey="projectReactSprApp.prepaImmo.immoamort">immoamort</Translate>
                 </th>
                  <th>
-                  <Translate contentKey="projectReactSprApp.prepaImmo.regul">regul</Translate>
-                </th>
-                 <th>
-                  <Translate contentKey="projectReactSprApp.prepaImmo.reeval">reeval</Translate>
-                </th>
-                 <th>
                   <Translate contentKey="projectReactSprApp.prepaImmo.anccodif">anccodif</Translate>
-                </th>
-                 <th>
-                  <Translate contentKey="projectReactSprApp.prepaImmo.fiscale">fiscale</Translate>
-                </th>
-                 <th>
-                  <Translate contentKey="projectReactSprApp.prepaImmo.contrat">contrat</Translate>
                 </th>
                  <th>
                   <Translate contentKey="projectReactSprApp.prepaImmo.taxe">taxe</Translate>
@@ -193,12 +157,6 @@ export const PrepaImmo = (props: IPrepaImmoProps) => {
                   <Translate contentKey="projectReactSprApp.prepaImmo.numAvance">numAvance</Translate>
                 </th>
                  <th>
-                  <Translate contentKey="projectReactSprApp.prepaImmo.blocnotes">blocnotes</Translate>
-                </th>
-                 <th>
-                  <Translate contentKey="projectReactSprApp.prepaImmo.SSMA_TimeStamp">SSMA_TimeStamp</Translate>
-                </th>
-                 <th>
                   <Translate contentKey="projectReactSprApp.prepaImmo.numSubv">numSubv</Translate>
                 </th>
                 <th>
@@ -228,32 +186,20 @@ export const PrepaImmo = (props: IPrepaImmoProps) => {
                   <td>{prepaImmo.bonLiv}</td>
                   <td>{prepaImmo.dateBonLiv}</td>
                   <td>{prepaImmo.dfact}</td>
-                  <td>{prepaImmo.valacq}</td>
                   <td>{prepaImmo.mnttaxe}</td>
                   <td>{prepaImmo.montreeval}</td>
-                  <td>{prepaImmo.valacq2}</td>
-                  <td>{prepaImmo.mnttaxe2}</td>
                   <td>{prepaImmo.ddac}</td>
                   <td>{prepaImmo.dms}</td>
-                  <td>{prepaImmo.age}</td>
-                  <td>{prepaImmo.cdir}</td>
-                  <td>{prepaImmo.cserv}</td>
                   <td>{prepaImmo.local}</td>
-                  <td>{prepaImmo.csfam}</td>
                   <td>{prepaImmo.cpttva}</td>
                   <td>{prepaImmo.cptimmo}</td>
                   <td>{prepaImmo.cptamort}</td>
                   <td>{prepaImmo.cptdot}</td>
                   <td>{prepaImmo.taux}</td>
                   <td>{prepaImmo.taux2}</td>
-                  <td>{prepaImmo.duree2}</td>
                   <td>{prepaImmo.cpteBenef}</td>
                   <td>{prepaImmo.immoamort}</td>
-                  <td>{prepaImmo.regul}</td>
-                  <td>{prepaImmo.reeval}</td>
                   <td>{prepaImmo.anccodif}</td>
-                  <td>{prepaImmo.fiscale}</td>
-                  <td>{prepaImmo.contrat}</td>
                   <td>{prepaImmo.taxe}</td>
                   <td>{prepaImmo.ancCompte}</td>
                   <td>{prepaImmo.operateurSaisi}</td>
@@ -267,8 +213,6 @@ export const PrepaImmo = (props: IPrepaImmoProps) => {
                   <td>{prepaImmo.codevalo}</td>
                   <td>{prepaImmo.ancienlocal}</td>
                   <td>{prepaImmo.numAvance}</td>
-                  <td>{prepaImmo.blocnotes}</td>
-                  <td>{prepaImmo.SSMA_TimeStamp}</td>
                   <td>{prepaImmo.numSubv}</td>
                   <td>{prepaImmo.tauxSubv}</td>
                   <td className="text-right">
