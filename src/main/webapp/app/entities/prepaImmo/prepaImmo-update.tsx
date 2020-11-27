@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
-import { Button, Row, Col, Label } from 'reactstrap';
+import { Button, Row, Col, Label, } from 'reactstrap';
 import { AvFeedback, AvForm, AvGroup, AvInput, AvField } from 'availity-reactstrap-validation';
 import { Translate, translate, ICrudGetAction, ICrudGetAllAction, ICrudPutAction } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -87,6 +87,7 @@ export const PrepaImmoUpdate = (props: IPrepaImmoUpdateProps) => {
               </AvGroup>
               </Col>
               </Row>
+              <div className="group-box">
                 <Row className="justify-content-start">
                 <Col md="8">
                   <Label><strong>Infos Nature</strong></Label>
@@ -151,6 +152,9 @@ export const PrepaImmoUpdate = (props: IPrepaImmoUpdateProps) => {
               </AvGroup>
               </Col>
               </Row>
+              </div>
+              <br />
+              <div className="group-box">
               <Label><strong>Localisation</strong></Label>
                 <Row className="justify-content-start">
                 <Col md="6">
@@ -168,6 +172,9 @@ export const PrepaImmoUpdate = (props: IPrepaImmoUpdateProps) => {
               </AvGroup>
               </Col>
               </Row>
+              </div>
+              <br />
+               <div className="group-box">
               <Label><strong>Autres Infos</strong></Label>
                 <Row className="justify-content-start">
                 <Col md="7">
@@ -283,6 +290,8 @@ export const PrepaImmoUpdate = (props: IPrepaImmoUpdateProps) => {
               </AvGroup>
                 </Col>
                 </Row>
+                 </div>
+                  &nbsp;
               <Row className="justify-content-end">
                 <Col md="5">
               <Button tag={Link} id="cancel-save" to="/prepaImmo" replace color="info">
