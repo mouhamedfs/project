@@ -99,10 +99,13 @@ const apiUrl = 'api/prepaImmo';
 
 // Actions
 
-export const getEntities: ICrudGetAllAction<IPrepaImmo> = (page, size, sort) => ({
-  type: ACTION_TYPES.FETCH_PREPAIMMO_LIST,
-  payload: axios.get<IPrepaImmo>(`${apiUrl}?cacheBuster=${new Date().getTime()}`),
-});
+export const getEntities: ICrudGetAllAction<IPrepaImmo> = (page, size, sort) => {
+  const requestUrl = `${apiUrl}${sort ? `?page=${page}&size=${size}&sort=${sort}` : ''}`;
+  return {
+    type: ACTION_TYPES.FETCH_PREPAIMMO_LIST,
+    payload: axios.get<IPrepaImmo>(requestUrl),
+  };
+};
 
 export const getEntity: ICrudGetAction<IPrepaImmo> = numero => {
   const requestUrl = `${apiUrl}/${numero}`;

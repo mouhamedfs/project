@@ -3,7 +3,7 @@ import { Switch } from 'react-router-dom';
 
 import ErrorBoundaryRoute from 'app/shared/error/error-boundary-route';
 
-import PrepaImmo from './prepaImmo';
+import PrepaImmo from './prepaImmo2';
 import PrepaImmoDetail from './prepaImmo-detail';
 import PrepaImmoUpdate from './prepaImmo-update';
 import PrepaImmoDeleteDialog from './prepaImmo-delete-dialog';
