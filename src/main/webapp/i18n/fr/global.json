@@ -10,7 +10,8 @@
         "personne": "Personne",
         "job": "Job",
         "departement": "Departement",
-        "prepaImmo": "Immobilisation",
+        "prepaImmo": "Preparation Immobilisation",
+        "immobilisation": "Immobilisation",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
@@ -99,10 +100,10 @@
       "addimage": "Ajouter image",
       "back": "Retour",
       "cancel": "Annuler",
-      "edit": "Editer",
+      "edit": "Modifier",
       "delete": "Supprimer",
       "open": "Ouvrir",
-      "save": "Sauvegarder",
+      "save": "Valider",
       "view": "Voir",
       "reset": "Effacer Tout"
     },

@@ -1,9 +1,9 @@
 {
   "projectReactSprApp": {
-    "prepaImmo": {
+    "Immobilisation": {
       "home": {
-        "title": "Préparation Immobilisation",
-        "createLabel": "Préparation Immobilisation",
+        "title": "Immobilisation",
+        "createLabel": "Immobilisation",
         "createOrEditLabel": "Créer ou éditer une Immobilisation",
         "notFound": "Aucun Immobilisation trouvé"
       },
@@ -14,9 +14,8 @@
         "question": "Etes-vous certain de vouloir supprimer cette Immobilisation {{ numero }} ?"
       },
       "detail": {
-        "title": "Préparation Immobilisation"
+        "title": "Immobilisation"
       },
-
       "libimmo": "Libellé immo (50 car.max)*",
       "genre": "Famille",
       "age": "Age",
@@ -48,7 +47,32 @@
       "cptdot": "Cpte dotation",
       "taux": "Taux",
       "taux2": "Taux2",
-      "duree2": "Duree2",
+      "duree": "Duree",
+      "dfs": "dfs",
+      "amorti": "amorti",
+      "amorper": "amorper",
+      "amorti1": "amorti1",
+      "valrest": "valrest",
+      "datcalc": "datcalc",
+      "datfam": "datfam",
+      "duree2": "duree2",
+      "dfs2": "dfs2",
+      "dup": "dup",
+      "durjour": "durjour",
+      "durmois": "durmois",
+      "durjrestacour": "durjrestacour",
+      "amortjreeval": "amortjreeval",
+      "nbjrecoul": "nbjrecoul",
+      "durecoul": "durecoul",
+      "durjreeval": "durjreeval",
+      "amorti2": "amorti2",
+      "amorper2": "amorper2",
+      "amorti12": "amorti12",
+      "valrest2": "valrest2",
+      "datcalc2": "datcalc2",
+      "datfam2": "datfam2",
+      "cumamort2": "cumamort2",
+      "cumamorttotal": "cumamorttotal",
       "cpteBenef": "CpteBenef",
       "immoamort": "Immoamort",
       "regul": "Regul",
@@ -58,23 +82,26 @@
       "contrat": "Contrat",
       "taxe": "Taxe",
       "ancCompte": "Compte",
-      "operateurSaisi": "OperateurSaisi",
-      "etat": "Etat",
-      "motifRejet": "MotifRejet",
-      "nummodif": "nummodif",
+      "oper": "OperateurSaisi",
       "item": "Item",
       "comptabilise": "Comptabilise",
       "ImmoRattache": "Rattachement",
       "numinv": "Numinv",
       "codevalo": "Codevalo",
       "ancienlocal": "Ancien Code",
-      "numAvance": "NumAvance",
+      "vo_a_reev": "vo_a_reev",
+      "mnt_amorti_a_reev": "mnt_amorti_a_reev",
+      "date_last_reev": "date_last_reev",
+      "num_last_reev": "num_last_reev",
+      "coef_last_reev": "coef_last_reev",
+      "vo_debut": "vo_debut",
+      "amort_jour": "amort_jour",
       "blocnotes": "Blocnotes",
-      "SSMA_TimeStamp": "SSMA_TimeStamp",
       "numSubv": "Subventionnée",
       "tauxSubv": "Prorata Subventionné",
-      "patente": "Patente",
-      "impot": "Impot"
+      "taux_patente": "Patente",
+      "taux_impot": "Impot",
+      "adPhoto": "adPhoto"
     }
   }
 }
