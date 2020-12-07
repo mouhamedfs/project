@@ -208,6 +208,18 @@ export const PrepaImmoUpdate = (props: IPrepaImmoUpdateProps) => {
                 </Label>
                 <AvField id="prepaImmo-tauxSubv" type="number" name="tauxSubv" />
               </AvGroup>
+              <AvGroup>
+                <Label id="etatLabel" for="prepaImmo-etat">
+                  <Translate contentKey="projectReactSprApp.prepaImmo.etat">etat</Translate>
+                </Label>
+                <AvField id="prepaImmo-etat" type="text"  name="etat" />
+              </AvGroup>
+              <AvGroup>
+                <Label id="motifRejetSubvLabel" for="prepaImmo-motifRejet">
+                  <Translate contentKey="projectReactSprApp.prepaImmo.motifRejet">motifRejet</Translate>
+                </Label>
+                <AvField id="prepaImmo-motifRejet" type="text"  name="motifRejet" />
+              </AvGroup>
                </Col>
                <Col md="5">
                   <Label><strong>Infos commande/facture</strong></Label>

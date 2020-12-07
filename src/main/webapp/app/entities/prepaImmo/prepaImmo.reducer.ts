@@ -22,6 +22,7 @@ const initialState = {
   entity: defaultValue,
   updating: false,
   updateSuccess: false,
+  totalItems: 0,
 };
 
 export type PrepaImmoState = Readonly<typeof initialState>;
@@ -64,6 +65,7 @@ export default (state: PrepaImmoState = initialState, action): PrepaImmoState =>
         ...state,
         loading: false,
         entities: action.payload.data,
+        totalItems: parseInt(action.payload.headers['x-total-count'], 1),
       };
     case SUCCESS(ACTION_TYPES.FETCH_PREPAIMMO):
       return {

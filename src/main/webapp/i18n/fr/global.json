@@ -105,7 +105,9 @@
       "open": "Ouvrir",
       "save": "Valider",
       "view": "Voir",
-      "reset": "Effacer Tout"
+      "reset": "Effacer Tout",
+      "rejet": "Rejeter",
+      "quitter": "Quitter"
     },
     "detail": {
       "field": "Champs",

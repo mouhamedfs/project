@@ -6,7 +6,7 @@ import { AvFeedback, AvForm, AvGroup, AvInput, AvField } from 'availity-reactstr
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IRootState } from 'app/shared/reducers';
 import { getEntities } from './prepaImmo.reducer';
-import { ITEMS_PER_PAGE } from 'app/shared/util/pagination.constants';
+import { ITEMS_PER_PAGES } from 'app/shared/util/pagination.constants';
 import { IPrepaImmo } from 'app/shared/model/prepaImmo.model';
 import { overridePaginationStateWithQueryParams } from 'app/shared/util/entity-utils';
 import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
@@ -17,7 +17,7 @@ export interface IPrepaImmoProps extends StateProps, DispatchProps, RouteCompone
 
 export const PrepaImmo = (props: IPrepaImmoProps) => {
   const [pagination, setPagination] = useState(
-    overridePaginationStateWithQueryParams(getSortState(props.location, ITEMS_PER_PAGE), props.location.search)
+    overridePaginationStateWithQueryParams(getSortState(props.location, ITEMS_PER_PAGES), props.location.search)
   );
 
   useEffect(() => {
@@ -55,8 +55,7 @@ export const PrepaImmo = (props: IPrepaImmoProps) => {
       ...pagination,
       activePage: currentPage,
     });
-
-    const { prepaImmoList, match} = props;
+    const { prepaImmoList,match,totalItems} = props;
   return (
     <div>
       <Row className="justify-content-start">
@@ -72,7 +71,7 @@ export const PrepaImmo = (props: IPrepaImmoProps) => {
       <Row className="justify-content-start">
         <Col md="12">
           {prepaImmoList.map((prepaImmo, i) => (
-            <AvForm  key={`entity-${i}`}>
+            <AvForm key={`entity-${i}`}>
                 <AvGroup>
                   <Label for="prepaImmo-numero">
                     <Translate contentKey="global.field.id">Numero</Translate>
@@ -210,6 +209,20 @@ export const PrepaImmo = (props: IPrepaImmoProps) => {
                 </Label>
                 <AvField id="prepaImmo-tauxSubv" type="number" value={prepaImmo.tauxSubv} name="tauxSubv" />
               </AvGroup>
+              <Badge variant="danger">
+                <AvGroup>
+                <Label id="etatLabel" for="prepaImmo-etat">
+                  <Translate contentKey="projectReactSprApp.prepaImmo.etat">etat</Translate>
+                </Label>
+                <AvField  id="prepaImmo-etat" type="text" value={prepaImmo.etat} name="etat" />
+              </AvGroup>
+              </Badge>
+              <AvGroup>
+                <Label id="motifRejetSubvLabel" for="prepaImmo-motifRejet">
+                  <Translate contentKey="projectReactSprApp.prepaImmo.motifRejet">motifRejet</Translate>
+                </Label>
+                <AvField id="prepaImmo-motifRejet" type="text" value={prepaImmo.motifRejet} name="motifRejet" />
+              </AvGroup>
                </Col>
                <Col md="5">
                   <Label><strong>Infos commande/facture</strong></Label>
@@ -296,13 +309,6 @@ export const PrepaImmo = (props: IPrepaImmoProps) => {
                   &nbsp;
               <Row className="justify-content-end">
                 <Col md="5">
-              <Button tag={Link} id="cancel-save" to="/prepaImmo" replace color="info">
-                <FontAwesomeIcon icon="arrow-left" />
-                &nbsp;
-                <span className="d-none d-md-inline">
-                  <Translate contentKey="entity.action.back">Back</Translate>
-                </span>
-              </Button>
               &nbsp;
               <Button color="primary" id="save-entity" type="submit">
                 <FontAwesomeIcon icon="save" />
@@ -310,18 +316,59 @@ export const PrepaImmo = (props: IPrepaImmoProps) => {
                 <Translate contentKey="entity.action.save">Save</Translate>
               </Button>
                 &nbsp;
+                <Button  tag={Link} to={`${match.url}/${prepaImmo.numero}/edit`} color="success" type="submit">
+                <FontAwesomeIcon icon="pencil-alt" />
+                &nbsp;
+                 <Translate contentKey="entity.action.edit">Edit</Translate>
+              </Button>
+                &nbsp;
+                <Button tag={Link} to={`${match.url}/${prepaImmo.numero}/delete`} color="danger" type="submit">
+                <FontAwesomeIcon icon="trash" />{' '}
+                &nbsp;
+                <Translate contentKey="entity.action.delete">Delete</Translate>
+              </Button>
+                &nbsp;
+                <Button color="warning" type="submit">
+                <FontAwesomeIcon icon="times" />{' '}
+                &nbsp;
+                <Translate contentKey="entity.action.rejet">rejet</Translate>
+              </Button>
+              &nbsp;
+              <Button tag={Link} id="cancel-save" to="/" replace color="info">
+                &nbsp;
+                <span className="d-none d-md-inline">
+                  <Translate contentKey="entity.action.quitter">Back</Translate>
+                </span>
+              </Button>
               </Col></Row>
             </AvForm>
-          )}
-        </Col>
+          ))}
+      </Col>
       </Row>
+      {props.totalItems ? (
+        <div className={prepaImmoList && prepaImmoList.length > 0 ? '' : 'd-none'}>
+          <Row className="justify-content-center">
+            <JhiItemCount page={pagination.activePage} total={totalItems} itemsPerPage={pagination.itemsPerPage} i18nEnabled />
+          </Row>
+          <Row className="justify-content-center">
+            <JhiPagination
+              activePage={pagination.activePage}
+              onSelect={handlePagination}
+              maxButtons={5}
+              itemsPerPage={pagination.itemsPerPage}
+              totalItems={props.totalItems}
+            />
+          </Row>
+        </div>
+      ) : (
+        ''
+      )}
     </div>
   );
 };
-
-
 const mapStateToProps = ({ prepaImmo }: IRootState) => ({
-  prepaImmoList: prepaImmo.entities
+  prepaImmoList: prepaImmo.entities,
+   totalItems: prepaImmo.totalItems,
 });
 
 const mapDispatchToProps = { getEntities};
