@@ -11,7 +11,9 @@
       "updated": "L'Immobilisation avec l'identifiant {{ param }} a été mis à jour",
       "deleted": "L'Immobilisation avec l'identifiant {{ param }} a été supprimé",
       "delete": {
-        "question": "Etes-vous certain de vouloir supprimer cette Immobilisation {{ numero }} ?"
+        "question": "Etes-vous certain de vouloir supprimer cette Immobilisation {{ numero }} ?",
+        "indiquation": "Indiquer le motif du refus",
+        "refus": "Refus de l'immobilisation"
       },
       "detail": {
         "title": "Préparation Immobilisation"

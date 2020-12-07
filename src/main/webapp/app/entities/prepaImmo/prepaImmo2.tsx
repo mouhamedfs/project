@@ -12,6 +12,8 @@ import { overridePaginationStateWithQueryParams } from 'app/shared/util/entity-u
 import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
 import { mapIdList } from 'app/shared/util/entity-utils';
 import { Translate, translate, ICrudGetAction, ICrudGetAllAction, ICrudPutAction,TextFormat, JhiPagination, JhiItemCount, getSortState } from 'react-jhipster';
+import { AUTHORITIES } from 'app/config/constants';
+import { hasAnyAuthority } from 'app/shared/auth/private-route';
 
 export interface IPrepaImmoProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
 
@@ -56,13 +58,20 @@ export const PrepaImmo = (props: IPrepaImmoProps) => {
       activePage: currentPage,
     });
     const { prepaImmoList,match,totalItems} = props;
+    const isEnable = true;
+   
   return (
     <div>
+      <h2 id="prepaImmo-heading">
+        <Translate contentKey="projectReactSprApp.prepaImmo.home.title">prepaImmo</Translate>
+        <Link to={`${match.url}/new`}  className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
+          <FontAwesomeIcon icon="plus" />
+          &nbsp;
+          <Translate  contentKey="projectReactSprApp.prepaImmo.home.createLabel">Create new Immo</Translate>
+        </Link>
+      </h2>
       <Row className="justify-content-start">
         <Col md="8">
-          <h2 id="projectReactSprApp.prepaImmo.home.createOrEditLabel">
-            <Translate contentKey="projectReactSprApp.prepaImmo.home.createOrEditLabel">Create or edit a PrepaImmo</Translate>
-          </h2>
           <br />
         <h3><strong>SAISIE ACQUISITION</strong></h3>
         </Col>
@@ -71,7 +80,7 @@ export const PrepaImmo = (props: IPrepaImmoProps) => {
       <Row className="justify-content-start">
         <Col md="12">
           {prepaImmoList.map((prepaImmo, i) => (
-            <AvForm key={`entity-${i}`}>
+            <AvForm key={`entity-${i}` }>
                 <AvGroup>
                   <Label for="prepaImmo-numero">
                     <Translate contentKey="global.field.id">Numero</Translate>
@@ -209,14 +218,12 @@ export const PrepaImmo = (props: IPrepaImmoProps) => {
                 </Label>
                 <AvField id="prepaImmo-tauxSubv" type="number" value={prepaImmo.tauxSubv} name="tauxSubv" />
               </AvGroup>
-              <Badge variant="danger">
-                <AvGroup>
+                <AvGroup className={prepaImmo.etat === 'R' && 'M' ?'badge badge-danger':'badge badge-success'}>
                 <Label id="etatLabel" for="prepaImmo-etat">
                   <Translate contentKey="projectReactSprApp.prepaImmo.etat">etat</Translate>
                 </Label>
-                <AvField  id="prepaImmo-etat" type="text" value={prepaImmo.etat} name="etat" />
+                <AvField  id="prepaImmo-etat" type="text"  value={prepaImmo.etat} name="etat" />
               </AvGroup>
-              </Badge>
               <AvGroup>
                 <Label id="motifRejetSubvLabel" for="prepaImmo-motifRejet">
                   <Translate contentKey="projectReactSprApp.prepaImmo.motifRejet">motifRejet</Translate>
@@ -310,25 +317,25 @@ export const PrepaImmo = (props: IPrepaImmoProps) => {
               <Row className="justify-content-end">
                 <Col md="5">
               &nbsp;
-              <Button color="primary" id="save-entity" type="submit">
+                <Button tag={Link} color="primary" id="save-entity"  type="submit">
                 <FontAwesomeIcon icon="save" />
                 &nbsp;
                 <Translate contentKey="entity.action.save">Save</Translate>
               </Button>
                 &nbsp;
-                <Button  tag={Link} to={`${match.url}/${prepaImmo.numero}/edit`} color="success" type="submit">
+                <Button tag={Link} to={`${match.url}/${prepaImmo.numero}/edit`} color="success" type="submit">
                 <FontAwesomeIcon icon="pencil-alt" />
                 &nbsp;
                  <Translate contentKey="entity.action.edit">Edit</Translate>
               </Button>
                 &nbsp;
-                <Button tag={Link} to={`${match.url}/${prepaImmo.numero}/delete`} color="danger" type="submit">
+                <Button  tag={Link} to={`${match.url}/${prepaImmo.numero}/delete`} color="danger" type="submit">
                 <FontAwesomeIcon icon="trash" />{' '}
                 &nbsp;
                 <Translate contentKey="entity.action.delete">Delete</Translate>
               </Button>
                 &nbsp;
-                <Button color="warning" type="submit">
+               <Button  tag={Link} to={`${match.url}/${prepaImmo.numero}/edit2`} color="warning" type="submit">
                 <FontAwesomeIcon icon="times" />{' '}
                 &nbsp;
                 <Translate contentKey="entity.action.rejet">rejet</Translate>

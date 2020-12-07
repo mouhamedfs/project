@@ -17,6 +17,10 @@ export const PrepaImmoDetail = (props: IPrepaImmoDetailProps) => {
     props.getEntity(props.match.params.numero);
   }, []);
 
+  const handleClose = () => {
+    props.history.push('/prepaImmo');
+  };
+  
   const { prepaImmoEntity } = props;
   return (
     <Row>

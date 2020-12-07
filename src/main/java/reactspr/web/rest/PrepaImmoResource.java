@@ -1,12 +1,16 @@
 package reactspr.web.rest;
+
 import reactspr.domain.PrepaImmo;
+import reactspr.domain.Immobilisation;
 import reactspr.repository.PrepaImmoRepository;
+import reactspr.repository.ImmobilisationRepository;
 import reactspr.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -39,6 +43,9 @@ public class PrepaImmoResource {
         this.prepaImmoRepository = prepaImmoRepository;
     }
 
+    
+
+   
     /**
      * {@code POST  /prepaImmo} : Create a new Immo.
      *
@@ -60,7 +67,6 @@ public class PrepaImmoResource {
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getNumero().toString()))
             .body(result);
     }
-
     /**
      * {@code PUT  /Immo} : Updates an existing Immo.
      *
