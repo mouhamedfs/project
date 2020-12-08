@@ -317,11 +317,13 @@ export const PrepaImmo = (props: IPrepaImmoProps) => {
               <Row className="justify-content-end">
                 <Col md="5">
               &nbsp;
-                <Button tag={Link} color="primary" id="save-entity"  type="submit">
-                <FontAwesomeIcon icon="save" />
-                &nbsp;
+               {prepaImmo.etat !=='M' ? <Button tag={Link} color="primary" id="save-entity"  type="submit" disabled>
+                <FontAwesomeIcon icon="save" />  &nbsp;
                 <Translate contentKey="entity.action.save">Save</Translate>
-              </Button>
+              </Button> : <Button tag={Link} to={`${match.url}/${prepaImmo.numero}/valid`} color="primary" id="save-entity"  type="submit">
+                <FontAwesomeIcon icon="save" />  &nbsp;
+                <Translate contentKey="entity.action.save">Save</Translate>
+              </Button>}
                 &nbsp;
                 <Button tag={Link} to={`${match.url}/${prepaImmo.numero}/edit`} color="success" type="submit">
                 <FontAwesomeIcon icon="pencil-alt" />
