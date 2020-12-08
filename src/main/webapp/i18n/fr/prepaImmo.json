@@ -12,8 +12,10 @@
       "deleted": "L'Immobilisation avec l'identifiant {{ param }} a été supprimé",
       "delete": {
         "question": "Etes-vous certain de vouloir supprimer cette Immobilisation {{ numero }} ?",
+        "quest": "Voulez-vous vraiment valider cette Immobilisation ?",
         "indiquation": "Indiquer le motif du refus",
-        "refus": "Refus de l'immobilisation"
+        "refus": "Refus de l'immobilisation",
+        "valid": "Validation de l'immobilisation"
       },
       "detail": {
         "title": "Préparation Immobilisation"

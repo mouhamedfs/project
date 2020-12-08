@@ -59,9 +59,10 @@ export const PrepaImmoValidDialogProps = (props: IPrepaImmoValidDialogProps) => 
   return (
       <Modal isOpen toggle={handleClose}>
       <ModalHeader toggle={handleClose}>
-        <Translate contentKey="projectReactSprApp.prepaImmo.delete.refus">Confirm refus operation</Translate>
+        <Translate contentKey="projectReactSprApp.prepaImmo.delete.valid">Confirm refus operation</Translate>
       </ModalHeader>
-      <ModalBody id="projectReactSprApp.prepaImmo.delete.indiquation">
+      <ModalBody id="projectReactSprApp.prepaImmo.delete.quest">
+        <Translate contentKey="projectReactSprApp.prepaImmo.delete.quest">Confirm refus operation</Translate>
       </ModalBody>
       <br />
       <Row className="justify-content-start">
@@ -81,107 +82,114 @@ export const PrepaImmoValidDialogProps = (props: IPrepaImmoValidDialogProps) => 
               <AvGroup>
                   <AvInput hidden id="prepaImmo-immo" type="text" className="form-control" value={prepaImmoEntity.numero} name="immo" required readOnly />
                 </AvGroup>
-              <Row className="justify-content-center">
-                <Col md="10">
               <AvGroup>
-                <Label id="libimmoLabel" for="prepaImmo-libimmo">
-                  <Translate contentKey="projectReactSprApp.Immobilisation.libimmo">Libellé</Translate>
-                </Label>
-                <AvField id="Immobilisation-libimmo" type="text" name="libimmo" />
-              </AvGroup>
-              </Col>
-              </Row>
-              <div className="group-box">
-                <Row className="justify-content-start">
-                <Col md="8">
-                  <Label><strong>Infos Nature</strong></Label>
-              <AvGroup>
-                <Label id="genreLabel" for="Immobilisation-genre">
-                  <Translate contentKey="projectReactSprApp.Immobilisation.genre">genre</Translate>
-                </Label>
-                <AvField id="Immobilisation-genre" type="text" name="genre" />
+                <AvField hidden id="Immobilisation-libimmo" type="text" name="libimmo" />
               </AvGroup>
               <AvGroup>
-                <Label id="typeLabel" for="Immobilisation-type">
-                  <Translate contentKey="projectReactSprApp.Immobilisation.type">type</Translate>
-                </Label>
-                <AvField id="Immobilisation-type" type="text" name="type" />
-              </AvGroup>
-              </Col></Row>
-              <Row className="justify-content-start">
-                <Col md="6">
-              <AvGroup>
-                <Label id="cptimmoLabel" for="Immobilisation-cptimmo">
-                  <Translate contentKey="projectReactSprApp.Immobilisation.cptimmo">cptimmo</Translate>
-                </Label>
-                <AvField id="Immobilisation-cptimmo" type="text" name="cptimmo" />
+                <AvField hidden id="Immobilisation-genre" type="text" name="genre" />
               </AvGroup>
               <AvGroup>
-                <Label id="cptamortLabel" for="Immobilisation-cptamort">
-                  <Translate contentKey="projectReactSprApp.Immobilisation.cptamort">cptamort</Translate>
-                </Label>
-                <AvField id="Immobilisation-cptamort" type="text" name="cptamort" />
+                <AvField hidden id="Immobilisation-type" type="text" name="type" />
               </AvGroup>
               <AvGroup>
-                <Label id="cptdotLabel" for="Immobilisation-cptdot">
-                  <Translate contentKey="projectReactSprApp.Immobilisation.cptdot">cptdot</Translate>
-                </Label>
-                <AvField id="Immobilisation-cptdot" type="text" name="cptdot" />
+                <AvField hidden id="Immobilisation-cptimmo" type="text" name="cptimmo" />
               </AvGroup>
               <AvGroup>
-                <Label id="tauxLabel" for="Immobilisation-taux">
-                  <Translate contentKey="projectReactSprApp.Immobilisation.taux">taux</Translate>
-                </Label>
-                <AvField id="Immobilisation-taux" type="number" name="taux" />
-              </AvGroup>
-              </Col>
-              <Col md="4">
-              <AvGroup>
-                <Label id="itemLabel" for="Immobilisation-item">
-                  <Translate contentKey="projectReactSprApp.Immobilisation.item">item</Translate>
-                </Label>
-                <AvField id="Immobilisation-item" type="text" name="item" size="20" />
+                <AvField hidden id="Immobilisation-cptamort" type="text" name="cptamort" />
               </AvGroup>
               <AvGroup>
-                <Label id="patenteLabel" for="Immobilisation-taux_patente">
-                  <Translate contentKey="projectReactSprApp.Immobilisation.taux_patente">patente</Translate>
-                </Label>
-                <AvField id="Immobilisation-taux_patente" type="text" name="taux_patente"/>
+                <AvField hidden id="Immobilisation-cptdot" type="text" name="cptdot" />
               </AvGroup>
               <AvGroup>
-                <Label id="impotLabel" for="Immobilisation-taux_impot">
-                  <Translate contentKey="projectReactSprApp.Immobilisation.taux_impot">taux_impot</Translate>
-                </Label>
-                <AvField id="Immobilisation-taux_impot" type="text"  name="impot" />
-              </AvGroup>
-              </Col>
-              </Row>
-              </div>
-              <br />
-              <div className="group-box">
-              <Label><strong>Localisation</strong></Label>
-                <Row className="justify-content-start">
-                <Col md="6">
-              <AvGroup>
-                <Label id="marqueLabel" for="Immobilisation-marque">
-                  <Translate contentKey="projectReactSprApp.Immobilisation.marque">marque</Translate>
-                </Label>
-                <AvField id="Immobilisation-marque" type="text" name="marque" />P
+                <AvField hidden id="Immobilisation-taux" type="number" name="taux" />
               </AvGroup>
               <AvGroup>
-                <Label id="localLabel" for="Immobilisation-local">
-                  <Translate contentKey="projectReactSprApp.Immobilisation.local">local</Translate>
-                </Label>
-                <AvField id="Immobilisation-local" type="text" name="local" />
+                <AvField hidden id="Immobilisation-item" type="text" name="item" size="20" />
+              </AvGroup>
+              <AvGroup>
+                <AvField hidden id="Immobilisation-taux_patente" type="text" name="taux_patente"/>
+              </AvGroup>
+              <AvGroup>
+                <AvField  hidden id="Immobilisation-taux_impot" type="text"  name="impot" />
+              </AvGroup>
+              <AvGroup>
+                <AvField hidden id="Immobilisation-item" type="text" name="item" size="20" />
+              </AvGroup>
+              <AvGroup>
+                <AvField hidden id="Immobilisation-taux_patente" type="text" name="taux_patente"/>
+              </AvGroup>
+              <AvGroup>
+                <AvField hidden id="Immobilisation-taux_impot" type="text"  name="impot" />
+              </AvGroup>
+              <AvGroup>
+                <AvField hidden id="Immobilisation-marque" type="text" name="marque" />
+              </AvGroup>
+              <AvGroup>
+                <AvField hidden id="Immobilisation-local" type="text" name="local" />
+              </AvGroup>
+              <AvGroup>
+                <AvField hidden id="Immobilisation-reference" type="text" name="reference" />
+              </AvGroup>
+              <AvGroup>
+                <AvField hidden id="Immobilisation-ancienlocal" type="text" name="ancienlocal" />
+              </AvGroup>
+              <AvGroup>
+                <AvField hidden id="Immobilisation-ImmoRattache" type="number" name="ImmoRattache" />
+              </AvGroup>
+              <AvGroup>
+                <AvField hidden id="Immobilisation-numSubv" type="number" name="numSubv" />
+              </AvGroup>
+              <AvGroup>
+                <AvField hidden id="Immobilisation-tauxSubv" type="number" name="tauxSubv" />
+              </AvGroup>
+                  <AvGroup>
+                <AvField hidden id="Immobilisation-numBonComm" type="text" name="numBonComm" />
+              </AvGroup>
+              <AvGroup>
+                <AvField hidden id="Immobilisation-type" type="date" name="dateBonComm" />
+              </AvGroup>
+              <AvGroup>
+                <AvField hidden id="Immobilisation-fourn" type="text" name="fourn" />
+              </AvGroup>
+              <AvGroup>
+                <AvField hidden id="Immobilisation-bonLiv" type="text" name="bonLiv" />
+              </AvGroup>
+              <AvGroup>
+                <AvField hidden id="Immobilisation-dateBonLiv" type="date" name="dateBonLiv" />
+              </AvGroup>
+               <AvGroup>
+                <AvField hidden id="Immobilisation-numfact" type="text" name="numfact" />
+              </AvGroup>
+              <AvGroup>
+                <AvField hidden id="Immobilisation-dfact" type="date" name="dfact" />
+              </AvGroup>
+              <AvGroup>
+                <AvField hidden id="Immobilisation-mnttaxe" type="number" name="mnttaxe" />
+              </AvGroup>
+               <AvGroup hidden><AvField hidden type="select" name="ancCompte" label="Compte" >
+                  <option>3310205860</option>
+                  <option>2543453453</option>
+                  <option>45345354353</option>
+                  <option>4</option>
+                  <option>5</option>
+                  </AvField></AvGroup>
+               <AvGroup hidden>
+                 <AvField hidden type="select" name="comptabilise" label="A comptabiliser" >
+                  <option>1</option>
+                  </AvField></AvGroup>
+                  <AvGroup>
+                <AvField hidden id="Immobilisation-ddac" type="date" name="ddac" />
+              </AvGroup>
+              <AvGroup>
+                <AvField hidden id="Immobilisation-dms" type="date" name="dms" />
+              </AvGroup>
+              <AvGroup>
+                <AvField hidden id="Immobilisation-marque" type="text" name="marque" />
+              </AvGroup>
+              <AvGroup>
+                <AvField hidden id="Immobilisation-local" type="text" name="local" />
               </AvGroup>
                  <ModalFooter>
-              <Button tag={Link} id="cancel-save" to="/prepaImmo" replace color="info">
-                <FontAwesomeIcon icon="arrow-left" />
-                &nbsp;
-                <span className="d-none d-md-inline">
-                  <Translate contentKey="entity.action.back">Back</Translate>
-                </span>
-              </Button>
               &nbsp;
               <Button color="primary" id="save-entity" type="submit"  disabled={updating}>
                 <FontAwesomeIcon icon="save" />
@@ -190,9 +198,7 @@ export const PrepaImmoValidDialogProps = (props: IPrepaImmoValidDialogProps) => 
               </Button>
                 &nbsp;
                 </ModalFooter> 
-                </Col></Row>
-                </div>
-              </AvForm>
+                 </AvForm>
                )}
                </Col>
               </Row>
