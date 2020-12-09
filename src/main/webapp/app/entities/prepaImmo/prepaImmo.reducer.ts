@@ -65,7 +65,7 @@ export default (state: PrepaImmoState = initialState, action): PrepaImmoState =>
         ...state,
         loading: false,
         entities: action.payload.data,
-        totalItems: parseInt(action.payload.headers['x-total-count'], 1),
+        totalItems: parseInt(action.payload.headers['x-total-count'], 10),
       };
     case SUCCESS(ACTION_TYPES.FETCH_PREPAIMMO):
       return {
@@ -108,7 +108,6 @@ export const getEntities: ICrudGetAllAction<IPrepaImmo> = (page, size, sort) => 
     payload: axios.get<IPrepaImmo>(requestUrl),
   };
 };
-
 export const getEntity: ICrudGetAction<IPrepaImmo> = numero => {
   const requestUrl = `${apiUrl}/${numero}`;
   return {

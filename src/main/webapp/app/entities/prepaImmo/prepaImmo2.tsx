@@ -6,7 +6,7 @@ import { AvFeedback, AvForm, AvGroup, AvInput, AvField } from 'availity-reactstr
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IRootState } from 'app/shared/reducers';
 import { getEntities } from './prepaImmo.reducer';
-import { ITEMS_PER_PAGES } from 'app/shared/util/pagination.constants';
+import { ITEMS_PER_PAGE } from 'app/shared/util/pagination.constants';
 import { IPrepaImmo } from 'app/shared/model/prepaImmo.model';
 import { overridePaginationStateWithQueryParams } from 'app/shared/util/entity-utils';
 import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
@@ -15,11 +15,11 @@ import { Translate, translate, ICrudGetAction, ICrudGetAllAction, ICrudPutAction
 import { AUTHORITIES } from 'app/config/constants';
 import { hasAnyAuthority } from 'app/shared/auth/private-route';
 
-export interface IPrepaImmoProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
+export interface IPrepaImmoProps extends StateProps, DispatchProps, RouteComponentProps<{}> {}
 
 export const PrepaImmo = (props: IPrepaImmoProps) => {
   const [pagination, setPagination] = useState(
-    overridePaginationStateWithQueryParams(getSortState(props.location, ITEMS_PER_PAGES), props.location.search)
+    overridePaginationStateWithQueryParams(getSortState(props.location, ITEMS_PER_PAGE), props.location.search)
   );
 
   useEffect(() => {
@@ -58,7 +58,6 @@ export const PrepaImmo = (props: IPrepaImmoProps) => {
       activePage: currentPage,
     });
     const { prepaImmoList,match,totalItems} = props;
-    const isEnable = true;
    
   return (
     <div>
@@ -80,8 +79,8 @@ export const PrepaImmo = (props: IPrepaImmoProps) => {
       <Row className="justify-content-start">
         <Col md="12">
           {prepaImmoList.map((prepaImmo, i) => (
-            <AvForm key={`entity-${i}` }>
-                <AvGroup>
+            <AvForm key={`entity-${i}`}  onClick={sort('numero')}>
+                <AvGroup >
                   <Label for="prepaImmo-numero">
                     <Translate contentKey="global.field.id">Numero</Translate>
                   </Label>
@@ -89,7 +88,7 @@ export const PrepaImmo = (props: IPrepaImmoProps) => {
                 </AvGroup>
               <Row className="justify-content-center">
                 <Col md="10">
-              <AvGroup>
+              <AvGroup className="hand" onClick={sort('libimmo')}>
                 <Label id="libimmoLabel" for="prepaImmo-libimmo">
                   <Translate contentKey="projectReactSprApp.prepaImmo.libimmo">Libellé</Translate>
                 </Label>
@@ -375,9 +374,9 @@ export const PrepaImmo = (props: IPrepaImmoProps) => {
     </div>
   );
 };
-const mapStateToProps = ({ prepaImmo }: IRootState) => ({
-  prepaImmoList: prepaImmo.entities,
-   totalItems: prepaImmo.totalItems,
+const mapStateToProps = (storeState: IRootState) => ({
+  prepaImmoList: storeState.prepaImmo.entities,
+   totalItems: storeState.prepaImmo.totalItems,
 });
 
 const mapDispatchToProps = { getEntities};
