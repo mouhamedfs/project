@@ -1,16 +1,16 @@
 package reactspr.web.rest;
 
 import reactspr.domain.PrepaImmo;
-import reactspr.domain.Immobilisation;
+import reactspr.domain.AuditEntity;
 import reactspr.repository.PrepaImmoRepository;
-import reactspr.repository.ImmobilisationRepository;
+import reactspr.security.SecurityUtils;
+import reactspr.service.AuditEntityService;
 import reactspr.web.rest.errors.BadRequestAlertException;
 
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,13 +35,19 @@ public class PrepaImmoResource {
 
     private static final String ENTITY_NAME = "prepaImmo";
 
+    private AuditEntity auditEntity;
+
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
     private final PrepaImmoRepository prepaImmoRepository;
 
-    public PrepaImmoResource(PrepaImmoRepository prepaImmoRepository) {
+    private final AuditEntityService auditEntityService;
+
+    public PrepaImmoResource(PrepaImmoRepository prepaImmoRepository,
+    AuditEntityService auditEntityService) {
         this.prepaImmoRepository = prepaImmoRepository;
+        this.auditEntityService = auditEntityService;
     }
 
     
@@ -63,6 +70,12 @@ public class PrepaImmoResource {
             throw new BadRequestAlertException("A new Immo cannot already have an ID", ENTITY_NAME, "idexists");
         }
         PrepaImmo result = prepaImmoRepository.save(prepaImmo);
+        AuditEntity au = new AuditEntity();
+        au.setActionDate(new Date(0));
+        au.setPrincipal(SecurityUtils.getcurrent_user());
+        au.setActionTable(ENTITY_NAME);
+        au.setActionType("Valider");
+        au = auditEntityService.ajouter(au);
         return ResponseEntity.created(new URI("/api/prepaImmo/" + result.getNumero()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getNumero().toString()))
             .body(result);

@@ -39,6 +39,24 @@ public final class SecurityUtils {
         return null;
     }
 
+    public static String getcurrent_user() {
+
+        String username = null;
+        try {
+            Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            if (principal instanceof UserDetails) {
+                UserDetails user = (UserDetails) principal;
+                username = user.getUsername();
+
+            } else {
+                username = principal.toString();
+            }
+        } catch (Exception e) {
+            return "anonymousUser";
+        }
+        return username;
+    }
+
 
     /**
      * Get the JWT of the current user.
