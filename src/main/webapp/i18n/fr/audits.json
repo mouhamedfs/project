@@ -17,7 +17,9 @@
         "principal": "Utilisateur",
         "date": "Date",
         "status": "Status",
-        "data": "Autres données"
+        "action": "Action",
+        "data": "Autres données",
+        "table": "Table"
       },
       "data": {
         "remoteAddress": "Adresse Distante :"

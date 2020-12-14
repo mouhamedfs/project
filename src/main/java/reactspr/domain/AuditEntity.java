@@ -25,12 +25,11 @@ public class AuditEntity implements Serializable {
     @Column(name = "audit_id")
     private Long id;
 
-    @NotNull
-    @Column(nullable = false)
-    private String principal; 
+    @Column(name = "principal")
+    private String principal;
 
     @Column(name = "action_date")
-    private Date actionDate;
+    private Instant actionDate;
 
     @Column(name = "action_type")
     private String actionType;
@@ -58,11 +57,11 @@ public class AuditEntity implements Serializable {
         this.principal = principal;
     }
 
-    public Date getActionDate() {
+    public Instant getActionDate() {
         return actionDate;
     }
 
-    public void setActionDate(Date actionDate) {
+    public void setActionDate(Instant actionDate) {
         this.actionDate = actionDate;
     }
 

@@ -1,6 +1,10 @@
 package reactspr.web.rest;
+
+import reactspr.domain.AuditEntity;
 import reactspr.domain.Immobilisation;
 import reactspr.repository.ImmobilisationRepository;
+import reactspr.security.SecurityUtils;
+import reactspr.service.AuditEntityService;
 import reactspr.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -29,13 +34,19 @@ public class ImmobilisationResource {
 
     private static final String ENTITY_NAME = "Immobilisation";
 
+    private AuditEntity auditEntity;
+    Instant instant = Instant.now();
+
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
 
     private final ImmobilisationRepository immobilisationRepository ;
+    private final AuditEntityService auditEntityService;
 
-    public ImmobilisationResource(ImmobilisationRepository immobilisationRepository) {
+    public ImmobilisationResource(ImmobilisationRepository immobilisationRepository,
+            AuditEntityService auditEntityService) {
         this.immobilisationRepository = immobilisationRepository;
+        this.auditEntityService = auditEntityService;
     }
 
     /**
@@ -54,7 +65,15 @@ public class ImmobilisationResource {
         if (immobilisation.getImmo() != null) {
             throw new BadRequestAlertException("A new Immo cannot already have an ID", ENTITY_NAME, "idexists");
         }
+        
         Immobilisation result = immobilisationRepository.save(immobilisation);
+        AuditEntity au = new AuditEntity();
+        au.setId(null);
+        au.setActionDate(instant);
+        au.setPrincipal(SecurityUtils.getcurrent_user());
+        au.setActionTable(ENTITY_NAME);
+        au.setActionType("Valider");
+        au = auditEntityService.ajouter(au);
         return ResponseEntity.created(new URI("/api/immo/" + result.getImmo()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getImmo().toString()))
             .body(result);
@@ -79,6 +98,13 @@ public class ImmobilisationResource {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
         Immobilisation result = immobilisationRepository.save(immobilisation);
+        AuditEntity au = new AuditEntity();
+        au.setId(null);
+        au.setActionDate(instant);
+        au.setPrincipal(SecurityUtils.getcurrent_user());
+        au.setActionTable(ENTITY_NAME);
+        au.setActionType("Modifier");
+        au = auditEntityService.ajouter(au);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, 
                         immobilisation.getImmo().toString()))
@@ -122,6 +148,13 @@ public class ImmobilisationResource {
     public ResponseEntity<Void> deleteImmo(@PathVariable Long immo) {
         log.debug("REST request to delete Immobilisation : {}", immo);
         immobilisationRepository.deleteById(immo);
+        AuditEntity au = new AuditEntity();
+        au.setId(null);
+        au.setActionDate(instant);
+        au.setPrincipal(SecurityUtils.getcurrent_user());
+        au.setActionTable(ENTITY_NAME);
+        au.setActionType("Supprimer");
+        au = auditEntityService.ajouter(au);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, 
                 immo.toString())).build();
     }

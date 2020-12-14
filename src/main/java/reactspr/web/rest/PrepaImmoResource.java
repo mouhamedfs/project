@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.Date;
+import java.time.Instant;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,6 +38,7 @@ public class PrepaImmoResource {
     private static final String ENTITY_NAME = "prepaImmo";
 
     private AuditEntity auditEntity;
+    Instant instant = Instant.now();
 
     @Value("${jhipster.clientApp.name}")
     private String applicationName;
@@ -71,7 +74,8 @@ public class PrepaImmoResource {
         }
         PrepaImmo result = prepaImmoRepository.save(prepaImmo);
         AuditEntity au = new AuditEntity();
-        au.setActionDate(new Date(0));
+        au.setId(null);
+        au.setActionDate(instant);
         au.setPrincipal(SecurityUtils.getcurrent_user());
         au.setActionTable(ENTITY_NAME);
         au.setActionType("Valider");
@@ -99,6 +103,13 @@ public class PrepaImmoResource {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
         PrepaImmo result = prepaImmoRepository.save(prepaImmo);
+        AuditEntity au = new AuditEntity();
+        au.setId(null);
+        au.setActionDate(instant);
+        au.setPrincipal(SecurityUtils.getcurrent_user());
+        au.setActionTable(ENTITY_NAME);
+        au.setActionType("Modifier");
+        au = auditEntityService.ajouter(au);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, 
                         prepaImmo.getNumero().toString()))
@@ -111,7 +122,7 @@ public class PrepaImmoResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list
      *         of personnes in body.
      */
-     @GetMapping("/prepaImmo")
+    @GetMapping("/prepaImmo")
     public List<PrepaImmo> getAllPrepaImmo() {
         log.debug("REST request to get all PrepaImmo");
         return prepaImmoRepository.findAll();
@@ -142,6 +153,13 @@ public class PrepaImmoResource {
     public ResponseEntity<Void> deletePrepaImmo(@PathVariable Long numero) {
         log.debug("REST request to delete Immo : {}", numero);
         prepaImmoRepository.deleteById(numero);
+        AuditEntity au = new AuditEntity();
+        au.setId(null);
+        au.setActionDate(instant);
+        au.setPrincipal(SecurityUtils.getcurrent_user());
+        au.setActionTable(ENTITY_NAME);
+        au.setActionType("Supprimer");
+        au = auditEntityService.ajouter(au);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, 
                 numero.toString())).build();
     }

@@ -7,6 +7,7 @@ import Health from './health/health';
 import Metrics from './metrics/metrics';
 import Configuration from './configuration/configuration';
 import Audits from './audits/audits';
+import AuditsEntity from './auditsEntity/auditsEntity';
 import Docs from './docs/docs';
 
 const Routes = ({ match }) => (
@@ -17,6 +18,7 @@ const Routes = ({ match }) => (
     <ErrorBoundaryRoute exact path={`${match.url}/docs`} component={Docs} />
     <ErrorBoundaryRoute exact path={`${match.url}/configuration`} component={Configuration} />
     <ErrorBoundaryRoute exact path={`${match.url}/audits`} component={Audits} />
+    <ErrorBoundaryRoute exact path={`${match.url}/auditsentity`} component={AuditsEntity} />
     <ErrorBoundaryRoute exact path={`${match.url}/logs`} component={Logs} />
   </div>
 );

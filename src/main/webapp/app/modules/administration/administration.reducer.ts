@@ -11,6 +11,7 @@ export const ACTION_TYPES = {
   FETCH_CONFIGURATIONS: 'administration/FETCH_CONFIGURATIONS',
   FETCH_ENV: 'administration/FETCH_ENV',
   FETCH_AUDITS: 'administration/FETCH_AUDITS',
+  FETCH_AUDITSENTITY: 'administration/FETCH_AUDITSENTITY',
 };
 
 const initialState = {
@@ -27,6 +28,7 @@ const initialState = {
     env: {} as any,
   },
   audits: [] as any[],
+  auditsEntity: [] as any[],
   totalItems: 0,
 };
 
@@ -42,6 +44,7 @@ export default (state: AdministrationState = initialState, action): Administrati
     case REQUEST(ACTION_TYPES.FETCH_CONFIGURATIONS):
     case REQUEST(ACTION_TYPES.FETCH_ENV):
     case REQUEST(ACTION_TYPES.FETCH_AUDITS):
+    case REQUEST(ACTION_TYPES.FETCH_AUDITSENTITY):
     case REQUEST(ACTION_TYPES.FETCH_HEALTH):
       return {
         ...state,
@@ -54,6 +57,7 @@ export default (state: AdministrationState = initialState, action): Administrati
     case FAILURE(ACTION_TYPES.FETCH_CONFIGURATIONS):
     case FAILURE(ACTION_TYPES.FETCH_ENV):
     case FAILURE(ACTION_TYPES.FETCH_AUDITS):
+    case FAILURE(ACTION_TYPES.FETCH_AUDITSENTITY):
     case FAILURE(ACTION_TYPES.FETCH_HEALTH):
       return {
         ...state,
@@ -104,6 +108,12 @@ export default (state: AdministrationState = initialState, action): Administrati
         loading: false,
         audits: action.payload.data,
         totalItems: parseInt(action.payload.headers['x-total-count'], 10),
+      };
+    case SUCCESS(ACTION_TYPES.FETCH_AUDITSENTITY):
+      return {
+        ...state,
+        loading: false,
+        auditsEntity: action.payload.data,
       };
     case SUCCESS(ACTION_TYPES.FETCH_HEALTH):
       return {
@@ -169,6 +179,13 @@ export const getAudits = (page, size, sort, fromDate, toDate) => {
   }
   return {
     type: ACTION_TYPES.FETCH_AUDITS,
+    payload: axios.get(requestUrl),
+  };
+};
+export const getAuditsEntity = (page, size, sort) => {
+  const requestUrl = `management/auditsentity${sort ? `?page=${page}&size=${size}&sort=${sort}` : ''}`;
+  return {
+    type: ACTION_TYPES.FETCH_AUDITSENTITY,
     payload: axios.get(requestUrl),
   };
 };

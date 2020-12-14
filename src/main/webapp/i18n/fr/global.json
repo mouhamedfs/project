@@ -32,6 +32,7 @@
         "configuration": "Configuration",
         "logs": "Logs",
         "audits": "Audits",
+        "auditsEntity": "Pistes D'Audits",
         "apidocs": "API",
         "database": "Base de données",
         "jhipster-needle-menu-add-admin-element": "JHipster will add additional menu entries here (do not translate!)"
