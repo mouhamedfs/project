@@ -15,7 +15,7 @@ import { Translate, translate, ICrudGetAction, ICrudGetAllAction, ICrudPutAction
 import { AUTHORITIES } from 'app/config/constants';
 import { hasAnyAuthority } from 'app/shared/auth/private-route';
 
-export interface IPrepaImmoProps extends StateProps, DispatchProps, RouteComponentProps<{}> {}
+export interface IPrepaImmoProps extends StateProps, DispatchProps, RouteComponentProps<{}> {numero:string}
 
 export const PrepaImmo = (props: IPrepaImmoProps) => {
   const [pagination, setPagination] = useState(
@@ -72,14 +72,14 @@ export const PrepaImmo = (props: IPrepaImmoProps) => {
       <Row className="justify-content-start">
         <Col md="8">
           <br />
-        <h3><strong>SAISIE ACQUISITION</strong></h3>
+        <h3><strong>SAISIE ACQUISITION </strong></h3>
         </Col>
       </Row>
       <br />
-      <Row className="justify-content-start">
+      <Row className="justify-content-start" onClick={sort('numero')}>
         <Col md="12">
           {prepaImmoList.map((prepaImmo, i) => (
-            <AvForm key={`entity-${i}`}  onClick={sort('numero')}>
+            <AvForm key={`entity-${i}`} >
                 <AvGroup >
                   <Label for="prepaImmo-numero">
                     <Translate contentKey="global.field.id">Numero</Translate>

@@ -212,7 +212,7 @@ export const PrepaImmoUpdate = (props: IPrepaImmoUpdateProps) => {
                 <Label id="etatLabel" for="prepaImmo-etat">
                   <Translate contentKey="projectReactSprApp.prepaImmo.etat">etat</Translate>
                 </Label>
-                <AvField id="prepaImmo-etat" type="text"  name="etat" />
+                <AvField id="prepaImmo-etat" type="text"  name="etat" value={isNew ? '':'M'} />
               </AvGroup>
               <AvGroup>
                 <Label id="motifRejetSubvLabel" for="prepaImmo-motifRejet">

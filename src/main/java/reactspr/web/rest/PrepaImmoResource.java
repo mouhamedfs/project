@@ -5,9 +5,13 @@ import reactspr.domain.AuditEntity;
 import reactspr.repository.PrepaImmoRepository;
 import reactspr.security.SecurityUtils;
 import reactspr.service.AuditEntityService;
+import reactspr.service.PrepaImmoService;
 import reactspr.web.rest.errors.BadRequestAlertException;
 
+import java.util.Arrays;
+import java.util.Collections;
 import io.github.jhipster.web.util.HeaderUtil;
+import io.github.jhipster.web.util.PaginationUtil;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +20,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.Date;
@@ -33,11 +42,13 @@ import java.util.Optional;
 @Transactional
 public class PrepaImmoResource {
 
+    private static final List<String> ALLOWED_ORDERED_PROPERTIES = Collections
+            .unmodifiableList(Arrays.asList("immo", "libimmo", "genre", "marque"));
+
     private final Logger log = LoggerFactory.getLogger(PrepaImmoResource.class);
 
     private static final String ENTITY_NAME = "prepaImmo";
 
-    private AuditEntity auditEntity;
     Instant instant = Instant.now();
 
     @Value("${jhipster.clientApp.name}")
@@ -47,11 +58,16 @@ public class PrepaImmoResource {
 
     private final AuditEntityService auditEntityService;
 
-    public PrepaImmoResource(PrepaImmoRepository prepaImmoRepository,
-    AuditEntityService auditEntityService) {
+    private final PrepaImmoService prepaImmoService ; 
+
+    public PrepaImmoResource(PrepaImmoRepository prepaImmoRepository, AuditEntityService auditEntityService,
+            PrepaImmoService prepaImmoService) {
         this.prepaImmoRepository = prepaImmoRepository;
         this.auditEntityService = auditEntityService;
+        this.prepaImmoService = prepaImmoService;
     }
+
+    
 
     
 
@@ -122,12 +138,19 @@ public class PrepaImmoResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list
      *         of personnes in body.
      */
+    /*
     @GetMapping("/prepaImmo")
-    public List<PrepaImmo> getAllPrepaImmo() {
-        log.debug("REST request to get all PrepaImmo");
-        return prepaImmoRepository.findAll();
+    public ResponseEntity<Page<PrepaImmo>> getAll(Pageable pageable) {
+        return new ResponseEntity<>(prepaImmoService.getAllManagedPage(pageable),HttpStatus.OK);
     }
 
+    */
+    
+    @GetMapping("/prepaImmo")
+    public List<PrepaImmo> getAll() {
+        log.debug("REST request to get all Immobilisation");
+        return prepaImmoRepository.findAll();
+    }
     /**
      * {@code GET  /prepaImmo/:numero} : get the "numero" Immo.
      *

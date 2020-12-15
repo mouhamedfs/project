@@ -22,11 +22,6 @@ export const Immobilisation = (props: IImmoProps) => {
     <div>
       <h2 id="Immobilisation-heading">
         <Translate contentKey="projectReactSprApp.Immobilisation.home.title">Immobilisation</Translate>
-        <Link to={`${match.url}/new`}  className="btn btn-primary float-right jh-create-entity" id="jh-create-entity">
-          <FontAwesomeIcon icon="plus" />
-          &nbsp;
-          <Translate  contentKey="projectReactSprApp.Immobilisation.home.createLabel">Immobilisation</Translate>
-        </Link>
       </h2>
       <div className="table-responsive">
         {immobilisationList && immobilisationList.length > 0 ? (

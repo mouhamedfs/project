@@ -58,14 +58,13 @@ public class ImmobilisationResource {
      *         if the Immobilisation has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @PreAuthorize("hasAnyAuthority('ROLE_USER','ROLE_ADMIN','ROLE_PARAM')")
     @PostMapping("/immo")
     public ResponseEntity<Immobilisation> createImmo(@RequestBody Immobilisation immobilisation) throws URISyntaxException {
         log.debug("REST request to save Immo : {}", immobilisation);
         if (immobilisation.getImmo() != null) {
             throw new BadRequestAlertException("A new Immo cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        
+            
         Immobilisation result = immobilisationRepository.save(immobilisation);
         AuditEntity au = new AuditEntity();
         au.setId(null);
@@ -117,7 +116,7 @@ public class ImmobilisationResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list
      *         of /immobilisation in body.
      */
-     @GetMapping("/immo")
+    @GetMapping("/immo")
     public List<Immobilisation> getAllImmo() {
         log.debug("REST request to get all Immobilisation");
         return immobilisationRepository.findAll();

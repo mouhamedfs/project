@@ -13,12 +13,12 @@ import PrivateRoute from 'app/shared/auth/private-route';
 const Routes = ({ match }) => (
   <>
     <Switch>
-      <PrivateRoute path={`${match.url}/new`} component={ImmobilisationUpdate} hasAnyAuthorities={[AUTHORITIES.ADMIN, AUTHORITIES.USER,AUTHORITIES.PARAM]} />
-      <PrivateRoute  path={`${match.url}/:immo/edit`} component={ImmobilisationUpdate} hasAnyAuthorities={[AUTHORITIES.ADMIN, AUTHORITIES.USER,AUTHORITIES.MANAGER]} />
-      <PrivateRoute  path={`${match.url}/:immo`} component={ImmobilisationDetail} />
-      <PrivateRoute path={match.url} component={Immobilisation} />
-      <PrivateRoute  path={`${match.url}/:immo/delete`} component={ImmobilisationDeleteDialog}  hasAnyAuthorities={[AUTHORITIES.ADMIN, AUTHORITIES.USER,AUTHORITIES.MANAGER]} />
+      <ErrorBoundaryRoute exact path={`${match.url}/new`} component={ImmobilisationUpdate}  />
+      <ErrorBoundaryRoute exact  path={`${match.url}/:immo/edit`} component={ImmobilisationUpdate}/>
+      <ErrorBoundaryRoute exact  path={`${match.url}/:immo`} component={ImmobilisationDetail} />
+      <ErrorBoundaryRoute path={match.url} component={Immobilisation} />
     </Switch>
+    <ErrorBoundaryRoute exact  path={`${match.url}/:immo/delete`} component={ImmobilisationDeleteDialog}/>
   </>
 );
 
