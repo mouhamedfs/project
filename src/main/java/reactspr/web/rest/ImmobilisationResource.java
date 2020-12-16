@@ -64,7 +64,6 @@ public class ImmobilisationResource {
         if (immobilisation.getImmo() != null) {
             throw new BadRequestAlertException("A new Immo cannot already have an ID", ENTITY_NAME, "idexists");
         }
-            
         Immobilisation result = immobilisationRepository.save(immobilisation);
         AuditEntity au = new AuditEntity();
         au.setId(null);
@@ -101,8 +100,8 @@ public class ImmobilisationResource {
         au.setId(null);
         au.setActionDate(instant);
         au.setPrincipal(SecurityUtils.getcurrent_user());
-        au.setActionTable(ENTITY_NAME);
-        au.setActionType("Modifier");
+        au.setActionTable(ENTITY_NAME);                 
+     au.setActionType("Valider");
         au = auditEntityService.ajouter(au);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, 

@@ -18,10 +18,10 @@ const Routes = ({ match }) => (
     <Switch>
       <PrivateRoute path={`${match.url}/new`} component={PrepaImmoUpdate} hasAnyAuthorities={[AUTHORITIES.ADMIN, AUTHORITIES.USER,AUTHORITIES.PARAM]} />
       <PrivateRoute path={`${match.url}/:numero/edit`} component={PrepaImmoUpdate} hasAnyAuthorities={[AUTHORITIES.ADMIN, AUTHORITIES.USER,AUTHORITIES.MANAGER]} />
-      <PrivateRoute path={`${match.url}/:numero/edit2`} component={PrepaImmoUpdateDialogProps} hasAnyAuthorities={[AUTHORITIES.ADMIN, AUTHORITIES.USER,AUTHORITIES.MANAGER]} />
+      <PrivateRoute path={`${match.url}/:numero/edit2`} component={PrepaImmoUpdateDialogProps} hasAnyAuthorities={[AUTHORITIES.ADMIN, AUTHORITIES.USER,AUTHORITIES.PARAM]} />
       <PrivateRoute path={`${match.url}/:numero/valid`} component={PrepaImmoValidDialogProps} hasAnyAuthorities={[AUTHORITIES.ADMIN, AUTHORITIES.USER,AUTHORITIES.PARAM]} />
       <ErrorBoundaryRoute exact path={`${match.url}/:numero`} component={PrepaImmoDetail} />
-      <PrivateRoute path={`${match.url}/:numero/delete`} component={PrepaImmoDeleteDialog} hasAnyAuthorities={[AUTHORITIES.ADMIN, AUTHORITIES.USER,AUTHORITIES.MANAGER]} />
+      <PrivateRoute path={`${match.url}/:numero/delete`} component={PrepaImmoDeleteDialog} hasAnyAuthorities={[AUTHORITIES.ADMIN, AUTHORITIES.USER,AUTHORITIES.MANAGER,AUTHORITIES.PARAM]} />
       <ErrorBoundaryRoute path={match.url} component={PrepaImmo} />
     </Switch>
     

@@ -13,7 +13,7 @@ public class PrepaImmoService {
 		this.prepaImmoRepository = prepaImmoRepository;
 	}
  
-    @Transactional(readOnly = true)
+    @Transactional
     public Page<PrepaImmo> getAllManagedPage(Pageable pageable) {
         return prepaImmoRepository.findAll(pageable);
     }

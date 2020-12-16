@@ -49,10 +49,8 @@ export const PrepaImmoValidDialogProps = (props: IPrepaImmoValidDialogProps) => 
         ...values,
       };
 
-      if (isNew) {
+      if (!isNew) {
         props.createEntity(entity);
-      } else {
-        props.updateEntity(entity);
       }
     }
   };
@@ -80,7 +78,7 @@ export const PrepaImmoValidDialogProps = (props: IPrepaImmoValidDialogProps) => 
                 </AvGroup>
               ) : null}
               <AvGroup>
-                  <AvInput hidden id="prepaImmo-immo" type="text" className="form-control" value={prepaImmoEntity.numero} name="immo" required readOnly />
+                  <AvInput hidden id="prepaImmo-immo" type="text" className="form-control" value={null} name="immo"/>
                 </AvGroup>
               <AvGroup>
                 <AvField hidden id="Immobilisation-libimmo" type="text" name="libimmo" />

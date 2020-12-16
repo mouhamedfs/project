@@ -42,9 +42,6 @@ import java.util.Optional;
 @Transactional
 public class PrepaImmoResource {
 
-    private static final List<String> ALLOWED_ORDERED_PROPERTIES = Collections
-            .unmodifiableList(Arrays.asList("immo", "libimmo", "genre", "marque"));
-
     private final Logger log = LoggerFactory.getLogger(PrepaImmoResource.class);
 
     private static final String ENTITY_NAME = "prepaImmo";
@@ -56,6 +53,7 @@ public class PrepaImmoResource {
 
     private final PrepaImmoRepository prepaImmoRepository;
 
+   
     private final AuditEntityService auditEntityService;
 
     private final PrepaImmoService prepaImmoService ; 
@@ -113,12 +111,12 @@ public class PrepaImmoResource {
      */
     @PreAuthorize("hasAnyAuthority('ROLE_USER','ROLE_ADMIN','ROLE_MANAGER')")
     @PutMapping("/prepaImmo")
-    public ResponseEntity<PrepaImmo> updatePrepaImmo(@RequestBody PrepaImmo prepaImmo) throws URISyntaxException {
-        log.debug("REST request to update an Immo : {}", prepaImmo);
-        if (prepaImmo.getNumero() == null) {
+    public ResponseEntity<PrepaImmo> updatePrepaImmo(@RequestBody PrepaImmo immo) throws URISyntaxException {
+        log.debug("REST request to update an Immo : {}", immo);
+        if (immo.getNumero() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
-        PrepaImmo result = prepaImmoRepository.save(prepaImmo);
+        PrepaImmo result = prepaImmoRepository.save(immo);
         AuditEntity au = new AuditEntity();
         au.setId(null);
         au.setActionDate(instant);
@@ -128,7 +126,7 @@ public class PrepaImmoResource {
         au = auditEntityService.ajouter(au);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, 
-                        prepaImmo.getNumero().toString()))
+                        immo.getNumero().toString()))
             .body(result);
     }
 
@@ -138,19 +136,24 @@ public class PrepaImmoResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list
      *         of personnes in body.
      */
-    /*
     @GetMapping("/prepaImmo")
-    public ResponseEntity<Page<PrepaImmo>> getAll(Pageable pageable) {
-        return new ResponseEntity<>(prepaImmoService.getAllManagedPage(pageable),HttpStatus.OK);
+    public ResponseEntity<List<PrepaImmo>> getAll(Pageable pageable) {
+        Page<PrepaImmo> page = prepaImmoService.getAllManagedPage(pageable);
+        HttpHeaders headers = PaginationUtil
+                .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
-    */
     
+    
+    /*
     @GetMapping("/prepaImmo")
     public List<PrepaImmo> getAll() {
         log.debug("REST request to get all Immobilisation");
         return prepaImmoRepository.findAll();
     }
+
+    */
     /**
      * {@code GET  /prepaImmo/:numero} : get the "numero" Immo.
      *

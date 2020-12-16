@@ -23,8 +23,8 @@ export const PrepaImmo = (props: IPrepaImmoProps) => {
   );
 
   useEffect(() => {
-    props.getEntities(pagination.activePage - 1, pagination.itemsPerPage, `${pagination.sort},${pagination.order}`);
-    const endURL = `?page=${pagination.activePage}&sort=${pagination.sort},${pagination.order}`;
+    props.getEntities(pagination.activePage - 1, pagination.itemsPerPage, `numero,${pagination.order}`);
+    const endURL = `?page=${pagination.activePage}&sort=numero,${pagination.order}`;
     if (props.location.search !== endURL) {
       props.history.push(`${props.location.pathname}${endURL}`);
     }
@@ -39,7 +39,7 @@ export const PrepaImmo = (props: IPrepaImmoProps) => {
       setPagination({
         ...pagination,
         activePage: +page,
-        sort: sortSplit[0],
+        sort:'numero',
         order: sortSplit[1],
       });
     }
@@ -49,7 +49,7 @@ export const PrepaImmo = (props: IPrepaImmoProps) => {
     setPagination({
       ...pagination,
       order: pagination.order === 'asc' ? 'desc' : 'asc',
-      sort: p,
+      sort: 'numero',
     });
 
   const handlePagination = currentPage =>
@@ -69,6 +69,24 @@ export const PrepaImmo = (props: IPrepaImmoProps) => {
           <Translate  contentKey="projectReactSprApp.prepaImmo.home.createLabel">Create new Immo</Translate>
         </Link>
       </h2>
+       {props.totalItems ? (
+        <div className={prepaImmoList && prepaImmoList.length > 0 ? '' : 'd-none'}>
+          <Row className="justify-content-center">
+            <JhiItemCount page={pagination.activePage} total={totalItems} itemsPerPage={pagination.itemsPerPage} i18nEnabled />
+          </Row>
+          <Row className="justify-content-center">
+            <JhiPagination
+              activePage={pagination.activePage}
+              onSelect={handlePagination}
+              maxButtons={5}
+              itemsPerPage={pagination.itemsPerPage}
+              totalItems={props.totalItems}
+            />
+          </Row>
+        </div>
+      ) : (
+        ''
+      )}
       <Row className="justify-content-start">
         <Col md="8">
           <br />
@@ -353,24 +371,6 @@ export const PrepaImmo = (props: IPrepaImmoProps) => {
           ))}
       </Col>
       </Row>
-      {props.totalItems ? (
-        <div className={prepaImmoList && prepaImmoList.length > 0 ? '' : 'd-none'}>
-          <Row className="justify-content-center">
-            <JhiItemCount page={pagination.activePage} total={totalItems} itemsPerPage={pagination.itemsPerPage} i18nEnabled />
-          </Row>
-          <Row className="justify-content-center">
-            <JhiPagination
-              activePage={pagination.activePage}
-              onSelect={handlePagination}
-              maxButtons={5}
-              itemsPerPage={pagination.itemsPerPage}
-              totalItems={props.totalItems}
-            />
-          </Row>
-        </div>
-      ) : (
-        ''
-      )}
     </div>
   );
 };

@@ -13,5 +13,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PrepaImmoRepository extends JpaRepository<PrepaImmo, Long> {
 
-    //Page<PrepaImmo> findAll(Pageable pageable);
+    Page<PrepaImmo> findAll(Pageable pageable);
 }
