@@ -22,6 +22,7 @@ const initialState = {
   entity: defaultValue,
   updating: false,
   updateSuccess: false,
+  totalItems: 0,
 };
 
 export type ImmoState = Readonly<typeof initialState>;
@@ -64,6 +65,7 @@ export default (state: ImmoState = initialState, action): ImmoState => {
         ...state,
         loading: false,
         entities: action.payload.data,
+        totalItems: parseInt(action.payload.headers['x-total-count'], 10),
       };
     case SUCCESS(ACTION_TYPES.FETCH_IMMO):
       return {
@@ -99,10 +101,13 @@ const apiUrl = 'api/immo';
 
 // Actions
 
-export const getEntities: ICrudGetAllAction<IImmo> = (page, size, sort) => ({
-  type: ACTION_TYPES.FETCH_IMMO_LIST,
-  payload: axios.get<IImmo>(`${apiUrl}?cacheBuster=${new Date().getTime()}`),
-});
+export const getEntities: ICrudGetAllAction<IImmo> = (page, size, sort) => {
+  const requestUrl = `${apiUrl}${sort ? `?page=${page}&size=${size}&sort=${sort}` : ''}`;
+  return {
+    type: ACTION_TYPES.FETCH_IMMO_LIST,
+    payload: axios.get<IImmo>(requestUrl),
+  };
+};
 
 export const getEntity: ICrudGetAction<IImmo> = immo => {
   const requestUrl = `${apiUrl}/${immo}`;

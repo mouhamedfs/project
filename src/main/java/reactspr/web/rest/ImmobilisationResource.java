@@ -5,6 +5,7 @@ import reactspr.domain.Immobilisation;
 import reactspr.repository.ImmobilisationRepository;
 import reactspr.security.SecurityUtils;
 import reactspr.service.AuditEntityService;
+import reactspr.service.ImmobilisationsService;
 import reactspr.web.rest.errors.BadRequestAlertException;
 import io.github.jhipster.web.util.HeaderUtil;
 import io.github.jhipster.web.util.ResponseUtil;
@@ -15,7 +16,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import io.github.jhipster.web.util.PaginationUtil;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.Instant;
@@ -33,8 +39,6 @@ public class ImmobilisationResource {
     private final Logger log = LoggerFactory.getLogger(ImmobilisationResource.class);
 
     private static final String ENTITY_NAME = "Immobilisation";
-
-    private AuditEntity auditEntity;
     Instant instant = Instant.now();
 
     @Value("${jhipster.clientApp.name}")
@@ -42,11 +46,13 @@ public class ImmobilisationResource {
 
     private final ImmobilisationRepository immobilisationRepository ;
     private final AuditEntityService auditEntityService;
+    private final ImmobilisationsService immobilisationsService ;
 
     public ImmobilisationResource(ImmobilisationRepository immobilisationRepository,
-            AuditEntityService auditEntityService) {
+            AuditEntityService auditEntityService, ImmobilisationsService immobilisationsService) {
         this.immobilisationRepository = immobilisationRepository;
         this.auditEntityService = auditEntityService;
+        this.immobilisationsService = immobilisationsService;
     }
 
     /**
@@ -116,9 +122,11 @@ public class ImmobilisationResource {
      *         of /immobilisation in body.
      */
     @GetMapping("/immo")
-    public List<Immobilisation> getAllImmo() {
-        log.debug("REST request to get all Immobilisation");
-        return immobilisationRepository.findAll();
+    public ResponseEntity<List<Immobilisation>> getAll(Pageable pageable) {
+        Page<Immobilisation> page = immobilisationsService.getAll(pageable);
+        HttpHeaders headers = PaginationUtil
+                .generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
     /**

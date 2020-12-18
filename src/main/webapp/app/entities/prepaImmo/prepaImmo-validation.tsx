@@ -48,9 +48,12 @@ export const PrepaImmoValidDialogProps = (props: IPrepaImmoValidDialogProps) => 
         ...immobilisationEntity,
         ...values,
       };
-
+       let n = prepaImmoEntity.nbre;
       if (!isNew) {
-        props.createEntity(entity);
+         while(n!==0) {
+           props.createEntity(entity);
+          n-=1;
+          }
       }
     }
   };
@@ -164,6 +167,7 @@ export const PrepaImmoValidDialogProps = (props: IPrepaImmoValidDialogProps) => 
               <AvGroup>
                 <AvField hidden id="Immobilisation-mnttaxe" type="number" name="mnttaxe" />
               </AvGroup>
+              <AvField id="prepaImmo-nbre" type="number" value={prepaImmoEntity.nbre} name="nbre"/>
                <AvGroup hidden><AvField hidden type="select" name="ancCompte" label="Compte" >
                   <option>3310205860</option>
                   <option>2543453453</option>

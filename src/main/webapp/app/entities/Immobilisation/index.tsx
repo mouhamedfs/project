@@ -3,7 +3,7 @@ import { Switch } from 'react-router-dom';
 
 import ErrorBoundaryRoute from 'app/shared/error/error-boundary-route';
 
-import Immobilisation from './immobilisation';
+import Immobilisation from './Immobilisation';
 import ImmobilisationDetail from './Immobilisation-detail';
 import ImmobilisationUpdate from './Immobilisation-update';
 import ImmobilisationDeleteDialog from './Immobilisation-delete-dialog';
