@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';
 import { Input, Row, Table } from 'reactstrap';
+import { CSVLink, CSVDownload } from 'react-csv';
 import { Translate, TextFormat, JhiPagination, JhiItemCount, getSortState, IPaginationBaseState } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -91,11 +92,39 @@ export const AuditsPage = (props: IAuditsPageProps) => {
     props.getAudits(pagination.activePage - 1, pagination.itemsPerPage, `${pagination.sort},${pagination.order}`, fromDate, toDate);
   };
 
+  function printData() {
+    const divToPrint = document.getElementById('printTable');
+    const newWin = window.open('');
+    newWin.document.write(divToPrint.outerHTML);
+    newWin.print();
+    newWin.close();
+  }
+  const splitt = () => {
+    return true;
+  };
   const { audits, totalItems } = props;
 
   return (
     <div>
-      <h2 id="audits-page-heading">Audits</h2>
+      <div className="table_button">
+        <h2 id="audits-page-heading">Audits</h2>
+        <br />
+        <button className="btn btn-success btn-lg" id="print" onClick={printData}>
+          Imprimer
+        </button>
+        &nbsp; &nbsp;
+        <button className="btn btn-warning btn-lg">
+          <CSVLink data={props.audits} filename="audits.csv">
+            Exporter en CSV
+          </CSVLink>
+        </button>
+        &nbsp; &nbsp;
+        <button className="btn btn-danger btn-lg" id="failure" onClick={splitt}>
+          Connexion Erronée
+        </button>
+      </div>
+      <br />
+      <br />
       <span>
         <Translate contentKey="audits.filter.from">from</Translate>
       </span>
@@ -105,20 +134,17 @@ export const AuditsPage = (props: IAuditsPageProps) => {
       </span>
       <Input type="date" value={toDate} onChange={onChangeToDate} name="toDate" id="toDate" />
       {audits && audits.length > 0 ? (
-        <Table striped responsive>
+        <Table striped responsive id="printTable">
           <thead>
             <tr>
               <th onClick={sort('auditEventDate')}>
                 <Translate contentKey="audits.table.header.date">Date</Translate>
-                <FontAwesomeIcon icon="sort" />
               </th>
               <th onClick={sort('principal')}>
                 <Translate contentKey="audits.table.header.principal">User</Translate>
-                <FontAwesomeIcon icon="sort" />
               </th>
               <th onClick={sort('auditEventType')}>
                 <Translate contentKey="audits.table.header.status">State</Translate>
-                <FontAwesomeIcon icon="sort" />
               </th>
               <th>
                 <Translate contentKey="audits.table.header.data">Extra data</Translate>

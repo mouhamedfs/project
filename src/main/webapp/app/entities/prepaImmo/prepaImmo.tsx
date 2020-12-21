@@ -6,7 +6,7 @@ import { AvFeedback, AvForm, AvGroup, AvInput, AvField } from 'availity-reactstr
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IRootState } from 'app/shared/reducers';
 import { getEntities } from './prepaImmo.reducer';
-import { ITEMS_PER_PAGE } from 'app/shared/util/pagination.constants';
+import { ITEMS_PER_PAGES } from 'app/shared/util/pagination.constants';
 import { IPrepaImmo } from 'app/shared/model/prepaImmo.model';
 import { overridePaginationStateWithQueryParams } from 'app/shared/util/entity-utils';
 import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
@@ -19,7 +19,7 @@ export interface IPrepaImmoProps extends StateProps, DispatchProps, RouteCompone
 
 export const PrepaImmo = (props: IPrepaImmoProps) => {
   const [pagination, setPagination] = useState(
-    overridePaginationStateWithQueryParams(getSortState(props.location, ITEMS_PER_PAGE), props.location.search)
+    overridePaginationStateWithQueryParams(getSortState(props.location, ITEMS_PER_PAGES), props.location.search)
   );
 
   useEffect(() => {

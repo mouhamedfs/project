@@ -6,7 +6,7 @@ import { AvFeedback, AvForm, AvGroup, AvInput, AvField } from 'availity-reactstr
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IRootState } from 'app/shared/reducers';
 import { getEntities } from './Immobilisation.reducer';
-import { ITEMS_PER_PAGE } from 'app/shared/util/pagination.constants';
+import { ITEMS_PER_PAGES } from 'app/shared/util/pagination.constants';
 import { IImmo } from 'app/shared/model/immobilisation.model';
 import { overridePaginationStateWithQueryParams } from 'app/shared/util/entity-utils';
 import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
@@ -19,7 +19,7 @@ export interface IImmoProps extends StateProps, DispatchProps, RouteComponentPro
 
 export const Immobilisation = (props: IImmoProps) => {
   const [pagination, setPagination] = useState(
-    overridePaginationStateWithQueryParams(getSortState(props.location, ITEMS_PER_PAGE), props.location.search)
+    overridePaginationStateWithQueryParams(getSortState(props.location, ITEMS_PER_PAGES), props.location.search)
   );
 
   useEffect(() => {

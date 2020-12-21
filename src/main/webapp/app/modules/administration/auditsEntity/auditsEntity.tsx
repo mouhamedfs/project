@@ -4,6 +4,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import { Input, Row, Table } from 'reactstrap';
 import { Translate, TextFormat, JhiPagination, JhiItemCount, getSortState, IPaginationBaseState } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { CSVLink, CSVDownload } from 'react-csv';
 
 import { APP_TIMESTAMP_FORMAT } from 'app/config/constants';
 import { ITEMS_PER_PAGE } from 'app/shared/util/pagination.constants';
@@ -41,26 +42,44 @@ export const AuditsEntityPage = (props: IAuditsEntityPageProps) => {
     props.getAuditsEntity(pagination.activePage - 1, pagination.itemsPerPage, `${pagination.sort},${pagination.order}`);
   };
 
-  const { auditsEntity} = props;
+  function printData() {
+    const divToPrint = document.getElementById('printTable');
+    const newWin = window.open('');
+    newWin.document.write(divToPrint.outerHTML);
+    newWin.print();
+    newWin.close();
+  }
+
+  const { auditsEntity } = props;
 
   return (
     <div>
       <h2 id="audits-page-heading">Audits</h2>
+      <div className="table_button">
+        <h2 id="audits-page-heading">Audits</h2>
+        <br />
+        <button className="btn btn-success btn-lg" id="print" onClick={printData}>
+          Imprimer
+        </button>
+        &nbsp; &nbsp;
+        <button className="btn btn-warning btn-lg">
+          <CSVLink data={auditsEntity} filename="audits-table.csv">
+            Exporter en CSV
+          </CSVLink>
+        </button>
+      </div>
       {auditsEntity && auditsEntity.length > 0 ? (
-        <Table striped responsive>
+        <Table striped responsive id="printTable">
           <thead>
             <tr>
               <th>
                 <Translate contentKey="audits.table.header.date">Date</Translate>
-                <FontAwesomeIcon icon="sort" />
               </th>
               <th>
                 <Translate contentKey="audits.table.header.principal">User</Translate>
-                <FontAwesomeIcon icon="sort" />
               </th>
               <th>
                 <Translate contentKey="audits.table.header.action">Type</Translate>
-                <FontAwesomeIcon icon="sort" />
               </th>
               <th>
                 <Translate contentKey="audits.table.header.table">Table</Translate>
@@ -73,9 +92,7 @@ export const AuditsEntityPage = (props: IAuditsEntityPageProps) => {
                 <td>{<TextFormat value={audits.actionDate} type="date" format={APP_TIMESTAMP_FORMAT} />}</td>
                 <td>{audits.principal}</td>
                 <td>{audits.actionType}</td>
-                <td>
-                  {audits.actionTable}
-                </td>
+                <td>{audits.actionTable}</td>
               </tr>
             ))}
           </tbody>
