@@ -99,10 +99,14 @@ export const AuditsPage = (props: IAuditsPageProps) => {
     newWin.print();
     newWin.close();
   }
-  const splitt = () => {
-    return true;
-  };
   const { audits, totalItems } = props;
+
+  const splitt = () => {
+    const fail = document.getElementById('failure');
+    const succ = document.getElementById('success');
+
+    succ.style.display = 'none';
+  };
 
   return (
     <div>
@@ -119,8 +123,8 @@ export const AuditsPage = (props: IAuditsPageProps) => {
           </CSVLink>
         </button>
         &nbsp; &nbsp;
-        <button className="btn btn-danger btn-lg" id="failure" onClick={splitt}>
-          Connexion Erronée
+        <button className="btn btn-danger btn-lg" id="fail" onClick={splitt}>
+          Connexions Erronée
         </button>
       </div>
       <br />
@@ -151,16 +155,37 @@ export const AuditsPage = (props: IAuditsPageProps) => {
               </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="failure">
             {audits.map((audit, i) => (
               <tr key={`audit-${i}`}>
-                <td>{<TextFormat value={audit.timestamp} type="date" format={APP_TIMESTAMP_FORMAT} />}</td>
-                <td>{audit.principal}</td>
-                <td>{audit.type}</td>
-                <td>
-                  {audit.data ? audit.data.message : null}
-                  {audit.data ? audit.data.remoteAddress : null}
-                </td>
+                {audit.type === 'AUTHENTICATION_FAILURE' ? (
+                  <>
+                    <td>{<TextFormat value={audit.timestamp} type="date" format={APP_TIMESTAMP_FORMAT} />}</td>
+                    <td>{audit.principal}</td>
+                    <td>{audit.type}</td>
+                    <td>
+                      {audit.data ? audit.data.message : null}
+                      {audit.data ? audit.data.remoteAddress : null}
+                    </td>
+                  </>
+                ) : null}
+              </tr>
+            ))}
+          </tbody>
+          <tbody id="success">
+            {audits.map((audit, i) => (
+              <tr key={`audit-${i}`}>
+                {audit.type === 'AUTHENTICATION_SUCCESS' ? (
+                  <>
+                    <td>{<TextFormat value={audit.timestamp} type="date" format={APP_TIMESTAMP_FORMAT} />}</td>
+                    <td>{audit.principal}</td>
+                    <td>{audit.type}</td>
+                    <td>
+                      {audit.data ? audit.data.message : null}
+                      {audit.data ? audit.data.remoteAddress : null}
+                    </td>
+                  </>
+                ) : null}
               </tr>
             ))}
           </tbody>
