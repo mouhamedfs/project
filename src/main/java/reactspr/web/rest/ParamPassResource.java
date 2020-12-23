@@ -1,4 +1,5 @@
 package reactspr.web.rest;
+
 import reactspr.domain.ParamPass;
 import reactspr.repository.ParamPassRepository;
 import reactspr.web.rest.errors.BadRequestAlertException;
@@ -9,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,27 +45,27 @@ public class ParamPassResource {
      *
      */
     @PostMapping("/paramPass")
-    public ResponseEntity<ParamPass> createJob(@RequestBody ParamPass paramPass) throws URISyntaxException {
+    public ResponseEntity<ParamPass> createParam(@RequestBody ParamPass paramPass) throws URISyntaxException {
         log.debug("REST request to save paramPass : {}", paramPass);
-        if (paramPass.getNumParam() != null) {
+        if (paramPass.getNumNumbers() != null) {
             throw new BadRequestAlertException("A new Param cannot already have an ID", ENTITY_NAME, "idexists");
         }
         ParamPass result = paramPassRepository.save(paramPass);
-        return ResponseEntity.created(new URI("/api/paramPass/" + result.getNumParam()))
-            .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getNumParam().toString()))
+        return ResponseEntity.created(new URI("/api/paramPass/" + result.getNumNumbers()))
+            .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getNumNumbers().toString()))
             .body(result);
     }
 
     @PutMapping("/paramPass")
-    public ResponseEntity<ParamPass> updateJob(@RequestBody ParamPass paramPass) throws URISyntaxException {
+    public ResponseEntity<ParamPass> updateParam(@RequestBody ParamPass paramPass) throws URISyntaxException {
         log.debug("REST request to update paramPass : {}", paramPass);
-        if (paramPass.getNumParam() == null) {
+        if (paramPass.getNumNumbers() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
         }
         ParamPass result = paramPassRepository.save(paramPass);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, 
-                        paramPass.getNumParam().toString()))
+                        paramPass.getNumNumbers().toString()))
             .body(result);
     }
 
@@ -74,19 +76,19 @@ public class ParamPassResource {
     }
 
 
-    @GetMapping("/paramPass/{numParam}")
-    public ResponseEntity<ParamPass> getParam(@PathVariable Long numParam) {
-        log.debug("REST request to get Job : {}", numParam);
-        Optional<ParamPass> paramPass = paramPassRepository.findById(numParam);
+    @GetMapping("/paramPass/{numNumbers}")
+    public ResponseEntity<ParamPass> getParam(@PathVariable Long numNumbers) {
+        log.debug("REST request to get Job : {}", numNumbers);
+        Optional<ParamPass> paramPass = paramPassRepository.findById(numNumbers);
         return ResponseUtil.wrapOrNotFound(paramPass);
     }
 
-    @DeleteMapping("/paramPass/{numParam}")
-    public ResponseEntity<Void> deleteParam(@PathVariable Long numParam) {
-        log.debug("REST request to delete Param : {}", numParam);
-        paramPassRepository.deleteById(numParam);
+    @DeleteMapping("/paramPass/{numNumbers}")
+    public ResponseEntity<Void> deleteParam(@PathVariable Long numNumbers) {
+        log.debug("REST request to delete Param : {}", numNumbers);
+        paramPassRepository.deleteById(numNumbers);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, 
-                numParam.toString())).build();
+                numNumbers.toString())).build();
     }
     
 }

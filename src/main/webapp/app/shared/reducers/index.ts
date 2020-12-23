@@ -26,6 +26,7 @@ import departement, {
 } from 'app/entities/departement/departement.reducer';
 
 import authority, { AuthorityState } from 'app/entities/authority/authority.reducer';
+import paramPass, { ParamPassState } from 'app/entities/paramPass/paramPass.reducer';
 /* jhipster-needle-add-reducer-import - JHipster will add reducer here */
 
 import prepaImmo, { PrepaImmoState } from 'app/entities/prepaImmo/prepaImmo.reducer';
@@ -47,6 +48,7 @@ export interface IRootState {
   readonly authority: AuthorityState;
   readonly prepaImmo: PrepaImmoState;
   readonly immobilisation: ImmoState;
+  readonly paramPass: ParamPassState;
   /* jhipster-needle-add-reducer-type - JHipster will add reducer type here */
   readonly loadingBar: any;
 }
@@ -68,6 +70,7 @@ const rootReducer = combineReducers<IRootState>({
   authority,
   prepaImmo,
   immobilisation,
+  paramPass,
   /* jhipster-needle-add-reducer-combine - JHipster will add reducer here */
   loadingBar,
 });

@@ -1,0 +1,31 @@
+{
+  "projectReactSprApp": {
+    "paramPass": {
+      "home": {
+        "title": "Politique de mot de passe",
+        "createLabel": "Nouvelle Politique de mot de passe",
+        "createOrEditLabel": "Modifier les paramètres",
+        "notFound": "Aucun Paramètre trouvé"
+      },
+      "created": "Un nouveau Paramètre a été ajouté avec l'identifiant {{ param }}",
+      "updated": "Le Paramètre avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Paramètre avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Paramètre {{ id }} ?"
+      },
+      "detail": {
+        "title": "Politique de mot de passe"
+      },
+      "numNumbers": "Nombres",
+      "numUpper": "Nombre de Majuscule",
+      "numSpecial": "Nombre de caractères spéciaux",
+      "dateDef": "Date de définitions",
+      "minLength": "Taille minimale du mot de passe",
+      "libelleParam": "Libelle du Paramètre",
+      "freqModif": "frequence de Modification",
+      "nbreJourActiv": "Nombre de Jours Actif",
+      "nbrePasseAnt": "Nombre de Mot de passe Antérieur",
+      "nbJourAvModif": "Nombre de Jours avant Modification"
+    }
+  }
+}

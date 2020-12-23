@@ -12,6 +12,7 @@
         "departement": "Departement",
         "prepaImmo": "Preparation Immobilisation",
         "immobilisation": "Immobilisation",
+        "paramPass": "Paramètrage du mot de passe",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

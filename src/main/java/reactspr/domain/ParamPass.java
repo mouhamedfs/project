@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.sql.Date;
 
 @Entity
-@Table(name = "T_PARAMPASSS")
+@Table(name = "T_PARAMPASS")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 
 public class ParamPass implements Serializable {
@@ -17,12 +17,9 @@ public class ParamPass implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
-    private Long numParam;
+    private Long numNumbers;
 
-    @Column(name = "num_numbers")
-    private String numNumbers;
-
-    @Column(name = "num_Upper")
+    @Column(name = "num_upper")
     private Integer numUpper;
 
     @Column(name = "num_special")
@@ -49,23 +46,24 @@ public class ParamPass implements Serializable {
     @Column(name = "nb_jour_av_modif")
     private Integer nbJourAvModif;
 
+    
+    @Override
+    public String toString() {
+        return "ParamPass [dateDef=" + dateDef + ", freqModif=" + freqModif + ", libelleParam=" + libelleParam
+                + ", minLength=" + minLength + ", nbJourAvModif=" + nbJourAvModif + ", nbreJourActiv=" + nbreJourActiv
+                + ", nbrePasseAnt=" + nbrePasseAnt + ", numNumbers=" + numNumbers + ", numSpecial=" + numSpecial
+                + ", numUpper=" + numUpper + "]";
+    }
+
     public static long getSerialversionuid() {
         return serialVersionUID;
     }
 
-    public Long getNumParam() {
-        return numParam;
-    }
-
-    public void setNumParam(Long numParam) {
-        this.numParam = numParam;
-    }
-
-    public String getNumNumbers() {
+    public Long getNumNumbers() {
         return numNumbers;
     }
 
-    public void setNumNumbers(String numNumbers) {
+    public void setNumNumbers(Long numNumbers) {
         this.numNumbers = numNumbers;
     }
 
@@ -140,26 +138,7 @@ public class ParamPass implements Serializable {
     public void setNbJourAvModif(Integer nbJourAvModif) {
         this.nbJourAvModif = nbJourAvModif;
     }
-
-    @Override
-    public String toString() {
-        return "ParamPass [dateDef=" + dateDef + ", freqModif=" + freqModif + ", libelleParam=" + libelleParam
-                + ", minLength=" + minLength + ", nbJourAvModif=" + nbJourAvModif + ", nbreJourActiv=" + nbreJourActiv
-                + ", nbrePasseAnt=" + nbrePasseAnt + ", numNumbers=" + numNumbers + ", numParam=" + numParam
-                + ", numSpecial=" + numSpecial + ", numUpper=" + numUpper + "]";
-    }
-
     
-
-
-    
-    
-
-
-
-
-
-
     
     
 }
