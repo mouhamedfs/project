@@ -5,7 +5,7 @@ import { Button, Row, Col, Label, } from 'reactstrap';
 import { AvFeedback, AvForm, AvGroup, AvInput, AvField } from 'availity-reactstrap-validation';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IRootState } from 'app/shared/reducers';
-import { getEntities } from './Immobilisation.reducer';
+import { getEntities } from './Immo.reducer';
 import { ITEMS_PER_PAGES } from 'app/shared/util/pagination.constants';
 import { IImmo } from 'app/shared/model/immobilisation.model';
 import { overridePaginationStateWithQueryParams } from 'app/shared/util/entity-utils';

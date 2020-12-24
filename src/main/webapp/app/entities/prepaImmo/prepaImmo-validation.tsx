@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IRootState } from 'app/shared/reducers';
 
 import { getEntity,deleteEntity} from './prepaImmo.reducer';
-import { updateEntity, createEntity, reset } from 'app/entities/Immobilisation/Immobilisation.reducer';
+import { updateEntity, createEntity, reset } from 'app/entities/Immobilisation/Immo.reducer';
 import { IPrepaImmo } from 'app/shared/model/prepaImmo.model';
 import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
 import { mapIdList } from 'app/shared/util/entity-utils';

@@ -3,10 +3,10 @@ import { Switch } from 'react-router-dom';
 
 import ErrorBoundaryRoute from 'app/shared/error/error-boundary-route';
 
-import Immobilisation from './Immobilisation';
-import ImmobilisationDetail from './Immobilisation-detail';
-import ImmobilisationUpdate from './Immobilisation-update';
-import ImmobilisationDeleteDialog from './Immobilisation-delete-dialog';
+import Immobilisation from './Immo';
+import ImmobilisationDetail from './Immo-detail';
+import ImmobilisationUpdate from './Immo-update';
+import ImmobilisationDeleteDialog from './Immo-delete-dialog';
 import { AUTHORITIES } from 'app/config/constants';
 import PrivateRoute from 'app/shared/auth/private-route';
 

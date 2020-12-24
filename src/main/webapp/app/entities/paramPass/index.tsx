@@ -3,10 +3,10 @@ import { Switch } from 'react-router-dom';
 
 import ErrorBoundaryRoute from 'app/shared/error/error-boundary-route';
 
-import ParamPass from './paramPass';
-import ParamPassDetail from './paramPass-detail';
-import ParamPassUpdate from './paramPass-update';
-import ParamPassDeleteDialog from './paramPass-delete-dialog';
+import ParamPass from './param';
+import ParamPassDetail from './param-detail';
+import ParamPassUpdate from './param-update';
+import ParamPassDeleteDialog from './param-delete-dialog';
 
 const Routes = ({ match }) => (
   <>

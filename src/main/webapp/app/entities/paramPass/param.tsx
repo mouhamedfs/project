@@ -6,7 +6,7 @@ import { Translate, ICrudGetAllAction } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { IRootState } from 'app/shared/reducers';
-import { getEntities } from './paramPass.reducer';
+import { getEntities } from './param.reducer';
 import { IParamPass } from 'app/shared/model/paramPass.model';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 
@@ -67,37 +67,37 @@ export const ParamPass = (props: IParamPassProps) => {
               </tr>
             </thead>
             <tbody>
-              {paramPassList.map((paramPass, i) => (
+              {paramPassList.map((param, i) => (
                 <tr key={`entity-${i}`}>
                   <td>
-                    <Button tag={Link} to={`${match.url}/${paramPass.numNumbers}`} color="link" size="sm">
-                      {paramPass.numNumbers}
+                    <Button tag={Link} to={`${match.url}/${param.numNumbers}`} color="link" size="sm">
+                      {param.numNumbers}
                     </Button>
                   </td>
-                  <td>{paramPass.numUpper}</td>
-                  <td>{paramPass.numSpecial}</td>
-                  <td>{paramPass.dateDef}</td>
-                  <td>{paramPass.minLength}</td>
-                  <td>{paramPass.libelleParam}</td>
-                  <td>{paramPass.freqModif}</td>
-                  <td>{paramPass.nbreJourActiv}</td>
-                  <td>{paramPass.nbrePasseAnt}</td>
-                  <td>{paramPass.nbJourAvModif}</td>
+                  <td>{param.numUpper}</td>
+                  <td>{param.numSpecial}</td>
+                  <td>{param.dateDef}</td>
+                  <td>{param.minLength}</td>
+                  <td>{param.libelleParam}</td>
+                  <td>{param.freqModif}</td>
+                  <td>{param.nbreJourActiv}</td>
+                  <td>{param.nbrePasseAnt}</td>
+                  <td>{param.nbJourAvModif}</td>
                   <td className="text-right">
                     <div className="btn-group flex-btn-group-container">
-                      <Button tag={Link} to={`${match.url}/${paramPass.numNumbers}`} color="info" size="sm">
+                      <Button tag={Link} to={`${match.url}/${param.numNumbers}`} color="info" size="sm">
                         <FontAwesomeIcon icon="eye" />{' '}
                         <span className="d-none d-md-inline">
                           <Translate contentKey="entity.action.view">View</Translate>
                         </span>
                       </Button>
-                      <Button tag={Link} to={`${match.url}/${paramPass.numNumbers}/edit`} color="primary" size="sm">
+                      <Button tag={Link} to={`${match.url}/${param.numNumbers}/edit`} color="primary" size="sm">
                         <FontAwesomeIcon icon="pencil-alt" />{' '}
                         <span className="d-none d-md-inline">
                           <Translate contentKey="entity.action.edit">Edit</Translate>
                         </span>
                       </Button>
-                      <Button tag={Link} to={`${match.url}/${paramPass.numNumbers}/delete`} color="danger" size="sm">
+                      <Button tag={Link} to={`${match.url}/${param.numNumbers}/delete`} color="danger" size="sm">
                         <FontAwesomeIcon icon="trash" />{' '}
                         <span className="d-none d-md-inline">
                           <Translate contentKey="entity.action.delete">Delete</Translate>
@@ -121,9 +121,9 @@ export const ParamPass = (props: IParamPassProps) => {
   );
 };
 
-const mapStateToProps = ({ paramPass }: IRootState) => ({
-  paramPassList: paramPass.entities,
-  loading: paramPass.loading,
+const mapStateToProps = ({ param }: IRootState) => ({
+  paramPassList: param.entities,
+  loading: param.loading,
 });
 
 const mapDispatchToProps = {

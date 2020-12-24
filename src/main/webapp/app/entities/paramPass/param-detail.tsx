@@ -6,7 +6,7 @@ import { Translate, ICrudGetAction } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { IRootState } from 'app/shared/reducers';
-import { getEntity } from './paramPass.reducer';
+import { getEntity } from './param.reducer';
 import { IParamPass, defaultValue } from 'app/shared/model/paramPass.model';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 
@@ -98,8 +98,8 @@ export const ParamPassDetail = (props: IParamPassDetailProps) => {
   );
 };
 
-const mapStateToProps = ({ paramPass }: IRootState) => ({
-  paramPassEntity: paramPass.entity,
+const mapStateToProps = ({ param }: IRootState) => ({
+  paramPassEntity: param.entity,
 });
 
 const mapDispatchToProps = { getEntity };

@@ -7,7 +7,7 @@ import { Translate, translate, ICrudGetAction, ICrudGetAllAction, ICrudPutAction
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IRootState } from 'app/shared/reducers';
 
-import { getEntity, updateEntity, createEntity, reset } from './paramPass.reducer';
+import { getEntity, updateEntity, createEntity, reset } from './param.reducer';
 import { IParamPass } from 'app/shared/model/paramPass.model';
 import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
 import { mapIdList } from 'app/shared/util/entity-utils';
@@ -62,7 +62,7 @@ export const ParamPassUpdate = (props: IParamPassUpdateProps) => {
         </Col>
       </Row>
       <Row className="justify-content-center">
-        <Col md="8">
+        <Col md="5">
           {loading ? (
             <p>Loading...</p>
           ) : (
@@ -151,10 +151,10 @@ export const ParamPassUpdate = (props: IParamPassUpdateProps) => {
 };
 
 const mapStateToProps = (storeState: IRootState) => ({
-  paramPassEntity: storeState.paramPass.entity,
-  loading: storeState.paramPass.loading,
-  updating: storeState.paramPass.updating,
-  updateSuccess: storeState.paramPass.updateSuccess,
+  paramPassEntity: storeState.param.entity,
+  loading: storeState.param.loading,
+  updating: storeState.param.updating,
+  updateSuccess: storeState.param.updateSuccess,
 });
 
 const mapDispatchToProps = {

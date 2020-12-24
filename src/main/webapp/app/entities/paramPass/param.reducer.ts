@@ -22,11 +22,11 @@ const initialState = {
   updateSuccess: false,
 };
 
-export type ParamPassState = Readonly<typeof initialState>;
+export type ParamState = Readonly<typeof initialState>;
 
 // Reducer
 
-export default (state: ParamPassState = initialState, action): ParamPassState => {
+export default (state: ParamState = initialState, action): ParamState => {
   switch (action.type) {
     case REQUEST(ACTION_TYPES.FETCH_PARAMPASS_LIST):
     case REQUEST(ACTION_TYPES.FETCH_PARAMPASS):

@@ -152,7 +152,7 @@ public class PrepaImmoResource {
     /**
      * {@code GET  /prepaImmo/:numero} : get the "numero" Immo.
      *
-     * @param id the id of the prepaImmo to retrieve.
+     * @param numero the numero of the prepaImmo to retrieve.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
      *         the prepaImmo, or with status {@code 404 (Not Found)}.
      */

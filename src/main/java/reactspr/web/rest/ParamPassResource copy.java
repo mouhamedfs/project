@@ -10,7 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,6 +43,15 @@ public class ParamPassResource {
      * {@code POST  /paramPass} : Create a new paramPass.
      *
      */
+    /**
+     * {@code POST  /paramPass} : Create a new paramPass.
+     *
+     * @param paramPass the Immo to create.
+     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with
+     *         body the new paramPass, or with status {@code 400 (Bad Request)} if
+     *         the paramPass has already an ID.
+     * @throws URISyntaxException if the Location URI syntax is incorrect.
+     */
     @PostMapping("/paramPass")
     public ResponseEntity<ParamPass> createParam(@RequestBody ParamPass paramPass) throws URISyntaxException {
         log.debug("REST request to save paramPass : {}", paramPass);
@@ -55,6 +63,18 @@ public class ParamPassResource {
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getNumNumbers().toString()))
             .body(result);
     }
+    
+    /**
+     * {@code PUT  /paramPass} : Updates an existing paramPass.
+     *
+     * @param paramPass the paramPass to update.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
+     *         the updated paramPass, or with status {@code 400 (Bad Request)} if
+     *         the paramPass is not valid, or with status
+     *         {@code 500 (Internal Server Error)} if the paramPass couldn't be
+     *         updated.
+     * @throws URISyntaxException if the Location URI syntax is incorrect.
+     */
 
     @PutMapping("/paramPass")
     public ResponseEntity<ParamPass> updateParam(@RequestBody ParamPass paramPass) throws URISyntaxException {
@@ -68,7 +88,13 @@ public class ParamPassResource {
                         paramPass.getNumNumbers().toString()))
             .body(result);
     }
-
+    
+    /**
+     * {@code GET  /paramPass} : get all the paramPass.
+     *
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list
+     *         of paramPass in body.
+     */
     @GetMapping("/paramPass")
     public List<ParamPass> getAllParam() {
         log.debug("REST request to get all ParamPass");
@@ -76,6 +102,13 @@ public class ParamPassResource {
     }
 
 
+    /**
+     * {@code GET  /paramPass/:numNumbers} : get the "numNumbers" paramPass.
+     *
+     * @param numNumbers the numero of the paramPass to retrieve.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
+     *         the paramPass, or with status {@code 404 (Not Found)}.
+     */
     @GetMapping("/paramPass/{numNumbers}")
     public ResponseEntity<ParamPass> getParam(@PathVariable Long numNumbers) {
         log.debug("REST request to get Job : {}", numNumbers);
@@ -83,6 +116,12 @@ public class ParamPassResource {
         return ResponseUtil.wrapOrNotFound(paramPass);
     }
 
+    /**
+     * {@code DELETE  /paramPass/:numNumbers} : delete the "numNumbers" paramPass.
+     *
+     * @param numNumbers the numNumbers of the paramPass to delete.
+     * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
+     */
     @DeleteMapping("/paramPass/{numNumbers}")
     public ResponseEntity<Void> deleteParam(@PathVariable Long numNumbers) {
         log.debug("REST request to delete Param : {}", numNumbers);

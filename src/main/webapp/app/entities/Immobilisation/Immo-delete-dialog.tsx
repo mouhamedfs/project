@@ -5,19 +5,19 @@ import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from 'reactstrap';
 import { Translate, ICrudGetAction, ICrudDeleteAction } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { IParamPass } from 'app/shared/model/paramPass.model';
+import { IImmo } from 'app/shared/model/immobilisation.model';
 import { IRootState } from 'app/shared/reducers';
-import { getEntity, deleteEntity } from './paramPass.reducer';
+import { getEntity, deleteEntity } from './Immo.reducer';
 
-export interface IParamPassDeleteDialogProps extends StateProps, DispatchProps, RouteComponentProps<{ numNumbers: string }> {}
+export interface IImmoDeleteDialogProps extends StateProps, DispatchProps, RouteComponentProps<{ immo: string }> {}
 
-export const ParamPassDeleteDialog = (props: IParamPassDeleteDialogProps) => {
+export const ImmoDeleteDialog = (props: IImmoDeleteDialogProps) => {
   useEffect(() => {
-    props.getEntity(props.match.params.numNumbers);
+    props.getEntity(props.match.params.immo);
   }, []);
 
   const handleClose = () => {
-    props.history.push('/paramPass');
+    props.history.push('/immo');
   };
 
   useEffect(() => {
@@ -27,18 +27,18 @@ export const ParamPassDeleteDialog = (props: IParamPassDeleteDialogProps) => {
   }, [props.updateSuccess]);
 
   const confirmDelete = () => {
-    props.deleteEntity(props.paramPassEntity.numNumbers);
+    props.deleteEntity(props.immobilisationEntity.immo);
   };
 
-  const { paramPassEntity } = props;
+  const { immobilisationEntity } = props;
   return (
     <Modal isOpen toggle={handleClose}>
       <ModalHeader toggle={handleClose}>
         <Translate contentKey="entity.delete.title">Confirm delete operation</Translate>
       </ModalHeader>
-      <ModalBody id="projectReactSprApp.personne.delete.question">
-        <Translate contentKey="projectReactSprApp.paramPass.delete.question" interpolate={{ numNumbers: paramPassEntity.numNumbers }}>
-          Are you sure you want to delete this Param?
+      <ModalBody id="projectReactSprApp.Immobilisation.delete.question">
+        <Translate contentKey="projectReactSprApp.Immobilisation.delete.question" interpolate={{ immo: immobilisationEntity.immo }}>
+          Are you sure you want to delete this Immobilisation?
         </Translate>
       </ModalBody>
       <ModalFooter>
@@ -47,7 +47,7 @@ export const ParamPassDeleteDialog = (props: IParamPassDeleteDialogProps) => {
           &nbsp;
           <Translate contentKey="entity.action.cancel">Cancel</Translate>
         </Button>
-        <Button id="jhi-confirm-delete-personne" color="danger" onClick={confirmDelete}>
+        <Button id="jhi-confirm-delete-prepaImmo" color="danger" onClick={confirmDelete}>
           <FontAwesomeIcon icon="trash" />
           &nbsp;
           <Translate contentKey="entity.action.delete">Delete</Translate>
@@ -57,9 +57,9 @@ export const ParamPassDeleteDialog = (props: IParamPassDeleteDialogProps) => {
   );
 };
 
-const mapStateToProps = ({ paramPass }: IRootState) => ({
-  paramPassEntity: paramPass.entity,
-  updateSuccess: paramPass.updateSuccess,
+const mapStateToProps = ({ immobilisation }: IRootState) => ({
+  immobilisationEntity: immobilisation.entity,
+  updateSuccess: immobilisation.updateSuccess,
 });
 
 const mapDispatchToProps = { getEntity, deleteEntity };
@@ -67,4 +67,4 @@ const mapDispatchToProps = { getEntity, deleteEntity };
 type StateProps = ReturnType<typeof mapStateToProps>;
 type DispatchProps = typeof mapDispatchToProps;
 
-export default connect(mapStateToProps, mapDispatchToProps)(ParamPassDeleteDialog);
+export default connect(mapStateToProps, mapDispatchToProps)(ImmoDeleteDialog);

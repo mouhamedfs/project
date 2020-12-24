@@ -5,7 +5,7 @@ import { Button, Row, Col } from 'reactstrap';
 import { Translate, ICrudGetAction } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IRootState } from 'app/shared/reducers';
-import { getEntity } from './Immobilisation.reducer';
+import { getEntity } from './Immo.reducer';
 import { IImmo } from 'app/shared/model/immobilisation.model';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 
