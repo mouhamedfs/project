@@ -1,0 +1,34 @@
+{
+  "projectReactSprApp": {
+    "sousFamille": {
+      "home": {
+        "title": "Sous Famille",
+        "createLabel": "Nouvelle Sous Famille",
+        "createOrEditLabel": "Modifier les Sous Famille",
+        "notFound": "Aucun Sous Famille trouvé"
+      },
+      "created": "Un nouvelle Sous Famille a été ajouté avec l'identifiant {{ param }}",
+      "updated": "La Sous Famille avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "La Sous Famille avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer la Sous Famille {{ id }} ?"
+      },
+      "detail": {
+        "title": "Sous Famille"
+      },
+      "csfam": "Csfam",
+      "libsfam": "Libellé",
+      "cfam": "Cfam",
+      "cptimmo": "Compte Immobilisation",
+      "cptamort": "Compte Amortissement",
+      "cptdot": "Compte Dotation",
+      "taux": "Taux",
+      "item": "Item",
+      "inventaire": "Inventaire",
+      "tauxValLocPatente": "tauxValLocPatente",
+      "tauxValLocImpot": "tauxValLocImpot",
+      "tauxImpot": "taux Impot",
+      "tauxPatente": "taux Patente"
+    }
+  }
+}

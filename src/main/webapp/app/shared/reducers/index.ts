@@ -31,6 +31,8 @@ import authority, { AuthorityState } from 'app/entities/authority/authority.redu
 import prepaImmo, { PrepaImmoState } from 'app/entities/prepaImmo/prepaImmo.reducer';
 import immobilisation, { ImmoState } from 'app/entities/Immobilisation/Immo.reducer';
 import param, { ParamState } from 'app/entities/paramPass/param.reducer';
+import sousFamille, { SousFamilleState } from 'app/entities/sousFamille/sousfamille.reducer';
+import famille, { FamilleState } from 'app/entities/famille/famille.reducer';
 export interface IRootState {
   readonly authentication: AuthenticationState;
   readonly locale: LocaleState;
@@ -49,6 +51,8 @@ export interface IRootState {
   readonly prepaImmo: PrepaImmoState;
   readonly immobilisation: ImmoState;
   readonly param: ParamState;
+  readonly sousFamille: SousFamilleState;
+  readonly famille: FamilleState;
   /* jhipster-needle-add-reducer-type - JHipster will add reducer type here */
   readonly loadingBar: any;
 }
@@ -71,6 +75,8 @@ const rootReducer = combineReducers<IRootState>({
   prepaImmo,
   immobilisation,
   param,
+  sousFamille,
+  famille,
   /* jhipster-needle-add-reducer-combine - JHipster will add reducer here */
   loadingBar,
 });

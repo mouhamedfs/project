@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 import reactspr.domain.Famille;
 
 /**
- * Spring Data repository for the SousFamille entity.
+ * Spring Data repository for the Famille entity.
  */
 @Repository
 public interface FamilleRepository extends JpaRepository<Famille, String> {

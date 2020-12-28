@@ -1,0 +1,24 @@
+{
+  "projectReactSprApp": {
+    "Famille": {
+      "home": {
+        "title": "Famille",
+        "createLabel": "Nouvelle Famille",
+        "createOrEditLabel": "Modifier les  Famille",
+        "notFound": "Aucun  Famille trouvé"
+      },
+      "created": "Un nouvelle  Famille a été ajouté avec l'identifiant {{ param }}",
+      "updated": "La  Famille avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "La  Famille avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer la  Famille {{ id }} ?"
+      },
+      "detail": {
+        "title": " Famille"
+      },
+      "cfam": "Cfam",
+      "libfam": "Libellé",
+      "cptcolfour": "Cptcolfour"
+    }
+  }
+}

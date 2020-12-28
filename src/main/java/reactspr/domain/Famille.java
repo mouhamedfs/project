@@ -8,6 +8,8 @@ import javax.persistence.Table;
 import javax.persistence.Column;
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * An famille
@@ -19,9 +21,10 @@ public class Famille implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @NotNull
+    @Size(max = 50)
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
-    @SequenceGenerator(name = "sequenceGenerator")
+    @Column(length = 50)
     private String cfam;
 
     @Column(name = "libfam")

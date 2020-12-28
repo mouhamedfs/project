@@ -11,6 +11,8 @@ import Authority from './authority';
 import PrepaImmo from './prepaImmo';
 import Immobilisation from './immobilisation';
 import ParamPass from './paramPass';
+import SousFamille from './sousfamille';
+import Famille from './famille';
 /* jhipster-needle-add-route-import - JHipster will add routes here */
 
 const Routes = ({ match }) => (
@@ -24,6 +26,8 @@ const Routes = ({ match }) => (
       <ErrorBoundaryRoute path={`${match.url}prepaImmo`} component={PrepaImmo} />
       <ErrorBoundaryRoute path={`${match.url}immo`} component={Immobilisation} />
       <ErrorBoundaryRoute path={`${match.url}paramPass`} component={ParamPass} />
+      <ErrorBoundaryRoute path={`${match.url}ssfamille`} component={SousFamille} />
+      <ErrorBoundaryRoute path={`${match.url}famille`} component={Famille} />
       {/* jhipster-needle-add-route-path - JHipster will add routes here */}
     </Switch>
   </div>
