@@ -72,7 +72,7 @@ export const SousFamilleUpdate = (props: ISousFamilleUpdateProps) => {
                   <Label for="Immo-immo">
                     <Translate contentKey="global.field.id">Immo</Translate>
                   </Label>
-                  <AvInput id=" sousFamille- sousFamille" type="text" className="form-control" name="csfam" required readOnly />
+                  <AvInput id="sousFamille" type="text" className="form-control" name="csfam" required readOnly />
                 </AvGroup>
               ) : null}
               <Row className="justify-content-center">
@@ -106,6 +106,12 @@ export const SousFamilleUpdate = (props: ISousFamilleUpdateProps) => {
                       <Translate contentKey="projectReactSprApp.sousFamille.cptdot">cptdot</Translate>
                     </Label>
                     <AvField id="sousFamille-cptdot" type="text" name="cptdot" />
+                  </AvGroup>
+                  <AvGroup>
+                    <Label id="intitcptLabel" for="sousFamille-intitcpt">
+                      <Translate contentKey="projectReactSprApp.sousFamille.intitcpt">intitcpt</Translate>
+                    </Label>
+                    <AvField id="sousFamille-intitcpt" type="text" name="intitcpt" />
                   </AvGroup>
                   <AvGroup>
                     <Label id="tauxLabel" for="sousFamille-taux">

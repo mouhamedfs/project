@@ -52,6 +52,9 @@ export const SousFamille = (props: ISousFamilleProps) => {
                   <Translate contentKey="projectReactSprApp.sousFamille.cptdot">cptdot</Translate>
                 </th>
                 <th>
+                  <Translate contentKey="projectReactSprApp.sousFamille.intitcpt">intitcpt</Translate>
+                </th>
+                <th>
                   <Translate contentKey="projectReactSprApp.sousFamille.taux">taux</Translate>
                 </th>
                 <th>
@@ -88,6 +91,7 @@ export const SousFamille = (props: ISousFamilleProps) => {
                   <td>{sousFamille.cptimmo}</td>
                   <td>{sousFamille.cptamort}</td>
                   <td>{sousFamille.cptdot}</td>
+                  <td>{sousFamille.intitcpt}</td>
                   <td>{sousFamille.taux}</td>
                   <td>{sousFamille.item}</td>
                   <td>{sousFamille.tauxValLocPatente}</td>

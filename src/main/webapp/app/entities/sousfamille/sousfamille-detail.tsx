@@ -74,6 +74,14 @@ export const SousFamilleDetail = (props: ISousFamilleDetailProps) => {
         </dl>
         <dl className="jh-entity-details">
           <dt>
+            <span id="intitcpt">
+              <Translate contentKey="projectReactSprApp.sousFamille.intitcpt">intitcpt</Translate>
+            </span>
+          </dt>
+          <dd>{sousFamilleEntity.intitcpt}</dd>
+        </dl>
+        <dl className="jh-entity-details">
+          <dt>
             <span id="taux">
               <Translate contentKey="projectReactSprApp.sousFamille.taux">taux</Translate>
             </span>

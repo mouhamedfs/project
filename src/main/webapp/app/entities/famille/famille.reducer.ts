@@ -105,6 +105,11 @@ export const getEntities: ICrudGetAllAction<IFamille> = (page, size, sort) => ({
   payload: axios.get<IFamille>(`${apiUrl}?cacheBuster=${new Date().getTime()}`),
 });
 
+export const getFamille: ICrudGetAllAction<IFamille> = (page, size, sort) => ({
+  type: ACTION_TYPES.FETCH_FAMILLE_LIST,
+  payload: axios.get<IFamille>(`${apiUrl}?cacheBuster=${new Date().getTime()}`),
+});
+
 export const getEntity: ICrudGetAction<IFamille> = cfam => {
   const requestUrl = `${apiUrl}/${cfam}`;
   return {

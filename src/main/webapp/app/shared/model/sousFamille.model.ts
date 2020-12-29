@@ -5,6 +5,7 @@ export interface ISousFamille {
   cptimmo?: string;
   cptamort?: string;
   cptdot?: string;
+  intitcpt?: string;
   taux?: number;
   duree?: number;
   item?: string;

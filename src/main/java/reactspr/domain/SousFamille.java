@@ -2,9 +2,13 @@ package reactspr.domain;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.persistence.Column;
 import java.io.Serializable;
 import javax.persistence.*;
@@ -19,9 +23,10 @@ public class SousFamille implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @NotNull
+    @Size(max = 50)
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
-    @SequenceGenerator(name = "sequenceGenerator")
+    @Column(length = 50)
     private String csfam;
 
     @Column(name = "libsfam")
@@ -38,6 +43,10 @@ public class SousFamille implements Serializable {
 
     @Column(name = "cptdot")
     private String cptdot;
+
+    @Column(name = "intitcpt")
+    private String intitcpt;
+    
 
     @Column(name = "taux")
     private Float taux;
