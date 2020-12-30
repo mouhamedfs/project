@@ -118,6 +118,14 @@ export const getEntity: ICrudGetAction<IFamille> = cfam => {
   };
 };
 
+export const getUniqueFamille: ICrudGetAction<IFamille> = cfam => {
+  const requestUrl = `${apiUrl}/${cfam}`;
+  return {
+    type: ACTION_TYPES.FETCH_FAMILLE,
+    payload: axios.get<IFamille>(requestUrl),
+  };
+};
+
 export const createEntity: ICrudPutAction<IFamille> = entity => async dispatch => {
   const result = await dispatch({
     type: ACTION_TYPES.CREATE__FAMILLE,

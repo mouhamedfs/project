@@ -6,8 +6,8 @@ import { AvFeedback, AvForm, AvGroup, AvInput, AvField } from 'availity-reactstr
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IRootState } from 'app/shared/reducers';
 import { getEntities } from './prepaImmo.reducer';
-import { get } from 'app/entities/sousfamille/sousfamille.reducer';
-import { getFamille } from 'app/entities/famille/famille.reducer';
+import { get, getEntity } from 'app/entities/sousfamille/sousfamille.reducer';
+import { getFamille, getUniqueFamille } from 'app/entities/famille/famille.reducer';
 import { ITEMS_PER_PAGES } from 'app/shared/util/pagination.constants';
 import { IPrepaImmo } from 'app/shared/model/prepaImmo.model';
 import { overridePaginationStateWithQueryParams } from 'app/shared/util/entity-utils';
@@ -26,15 +26,32 @@ import {
 } from 'react-jhipster';
 import { AUTHORITIES } from 'app/config/constants';
 import { hasAnyAuthority } from 'app/shared/auth/private-route';
+import value from '*.json';
+import { defaults } from 'lodash';
 
 export interface IPrepaImmoProps extends StateProps, DispatchProps, RouteComponentProps<{}> {
   numero: string;
+  csfam: string;
 }
 
 export const PrepaImmo = (props: IPrepaImmoProps) => {
   const [pagination, setPagination] = useState(
     overridePaginationStateWithQueryParams(getSortState(props.location, ITEMS_PER_PAGES), props.location.search)
   );
+
+  const [element, setElement] = useState('');
+
+  const handleChange = e => {
+    if (e.target.value !== '') {
+      props.getEntity(e.target.value);
+    }
+  };
+
+  const handleChangeFamille = e => {
+    if (e.target.value !== '') {
+      props.getUniqueFamille(e.target.value);
+    }
+  };
 
   useEffect(() => {
     props.get();
@@ -68,13 +85,14 @@ export const PrepaImmo = (props: IPrepaImmoProps) => {
       sort: 'numero',
     });
 
-  const handlePagination = currentPage =>
-    setPagination({
+  function handlePagination(currentPage) {
+    return setPagination({
       ...pagination,
       activePage: currentPage,
     });
-  const { prepaImmoList, familleList, sousFamilleList, match, totalItems } = props;
+  }
 
+  const { prepaImmoList, familleEntity, sousFamilleEntity, familleList, sousFamilleList, match, totalItems } = props;
   return (
     <div>
       <h2 id="prepaImmo-heading">
@@ -147,31 +165,33 @@ export const PrepaImmo = (props: IPrepaImmoProps) => {
                       <strong>Infos Nature</strong>
                     </Label>
                     <Row className="justify-content-start">
-                      <Col md="4">
+                      <Col md="8">
                         <AvGroup>
-                          <AvField type="select" name="famille" label="famille">
+                          <AvField type="select" name="famille" onChange={handleChangeFamille} label="famille">
+                            <option></option>
                             {familleList.map(famille => (
                               <>
-                                <option key={`entity-${i}`}>{famille.libfam}</option>
+                                <option key={famille.cfam}>{famille.cfam}</option>
                               </>
                             ))}
                           </AvField>
-                          <AvField id="prepaImmo-genre" value={prepaImmo.genre} type="text" name="genre" />
+                          <AvField id="prepaImmo-genre" value={familleEntity.libfam} type="text" name="genre" />
                         </AvGroup>
                       </Col>
                     </Row>
                     <AvGroup>
-                      <AvField type="select" name="Libellé ss famille" label="Libellé ss famille">
+                      <AvField type="select" id="sel" name="Libellé ss famille" label="Sous famille" onChange={handleChange}>
                         {sousFamilleList.map(sousFamille => (
                           <>
-                            <option key={sousFamille.csfam}>{sousFamille.libsfam}</option>
+                            <option key={sousFamille.csfam}>{sousFamille.csfam}</option>
                           </>
                         ))}
+                        <option></option>
                       </AvField>
                       <Label id="typeLabel" for="prepaImmo-type">
                         <Translate contentKey="projectReactSprApp.prepaImmo.type">type</Translate>
                       </Label>
-                      <AvField id="prepaImmo-type" value={prepaImmo.type} type="text" name="type" />
+                      <AvField id="prepaImmo-type" value={sousFamilleEntity.libsfam} type="text" name="type" />
                     </AvGroup>
                   </Col>
                 </Row>
@@ -181,25 +201,25 @@ export const PrepaImmo = (props: IPrepaImmoProps) => {
                       <Label id="cptimmoLabel" for="prepaImmo-cptimmo">
                         <Translate contentKey="projectReactSprApp.prepaImmo.cptimmo">cptimmo</Translate>
                       </Label>
-                      <AvField id="prepaImmo-cptimmo" value={prepaImmo.cptimmo} type="text" name="cptimmo" />
+                      <AvField id="prepaImmo-cptimmo" value={sousFamilleEntity.cptimmo} type="text" name="cptimmo" />
                     </AvGroup>
                     <AvGroup>
                       <Label id="cptamortLabel" for="prepaImmo-cptamort">
                         <Translate contentKey="projectReactSprApp.prepaImmo.cptamort">cptamort</Translate>
                       </Label>
-                      <AvField id="prepaImmo-cptamort" value={prepaImmo.cptamort} type="text" name="cptamort" />
+                      <AvField id="prepaImmo-cptamort" value={sousFamilleEntity.cptamort} type="text" name="cptamort" />
                     </AvGroup>
                     <AvGroup>
                       <Label id="cptdotLabel" for="prepaImmo-cptdot">
                         <Translate contentKey="projectReactSprApp.prepaImmo.cptdot">cptdot</Translate>
                       </Label>
-                      <AvField id="prepaImmo-cptdot" type="text" value={prepaImmo.cptdot} name="cptdot" />
+                      <AvField id="prepaImmo-cptdot" type="text" value={sousFamilleEntity.cptdot} name="cptdot" />
                     </AvGroup>
                     <AvGroup>
                       <Label id="tauxLabel" for="prepaImmo-taux">
                         <Translate contentKey="projectReactSprApp.prepaImmo.taux">taux</Translate>
                       </Label>
-                      <AvField id="prepaImmo-taux" value={prepaImmo.taux} type="number" name="taux" />
+                      <AvField id="prepaImmo-taux" value={sousFamilleEntity.taux} type="number" name="taux" />
                     </AvGroup>
                   </Col>
                   <Col md="4">
@@ -207,19 +227,19 @@ export const PrepaImmo = (props: IPrepaImmoProps) => {
                       <Label id="itemLabel" for="prepaImmo-item">
                         <Translate contentKey="projectReactSprApp.prepaImmo.item">item</Translate>
                       </Label>
-                      <AvField id="prepaImmo-item" type="text" value={prepaImmo.item} name="item" size="20" />
+                      <AvField id="prepaImmo-item" type="text" value={sousFamilleEntity.item} name="item" size="20" />
                     </AvGroup>
                     <AvGroup>
                       <Label id="patenteLabel" for="prepaImmo-patente">
                         <Translate contentKey="projectReactSprApp.prepaImmo.patente">patente</Translate>
                       </Label>
-                      <AvField id="prepaImmo-patente" type="text" value="0,00%" name="patente" />
+                      <AvField id="prepaImmo-patente" type="text" value={sousFamilleEntity.tauxImpot} name="patente" />
                     </AvGroup>
                     <AvGroup>
                       <Label id="impotLabel" for="prepaImmo-impot">
                         <Translate contentKey="projectReactSprApp.prepaImmo.impot">impot</Translate>
                       </Label>
-                      <AvField id="prepaImmo-impot" type="text" value="0,00%" name="impot" />
+                      <AvField id="prepaImmo-impot" type="text" value={sousFamilleEntity.tauxPatente} name="impot" />
                     </AvGroup>
                   </Col>
                 </Row>
@@ -235,7 +255,7 @@ export const PrepaImmo = (props: IPrepaImmoProps) => {
                       <Label id="marqueLabel" for="prepaImmo-marque">
                         <Translate contentKey="projectReactSprApp.prepaImmo.marque">marque</Translate>
                       </Label>
-                      <AvField id="prepaImmo-marque" type="text" value={prepaImmo.marque} name="marque" />P
+                      <AvField id="prepaImmo-marque" type="text" value={prepaImmo.marque} name="marque" />
                     </AvGroup>
                     <AvGroup>
                       <Label id="localLabel" for="prepaImmo-local">
@@ -432,11 +452,13 @@ export const PrepaImmo = (props: IPrepaImmoProps) => {
 const mapStateToProps = (storeState: IRootState) => ({
   prepaImmoList: storeState.prepaImmo.entities,
   sousFamilleList: storeState.sousFamille.entities,
+  sousFamilleEntity: storeState.sousFamille.entity,
+  familleEntity: storeState.famille.entity,
   familleList: storeState.famille.entities,
   totalItems: storeState.prepaImmo.totalItems,
 });
 
-const mapDispatchToProps = { getEntities, get, getFamille };
+const mapDispatchToProps = { getEntities, get, getFamille, getEntity, getUniqueFamille };
 
 type StateProps = ReturnType<typeof mapStateToProps>;
 type DispatchProps = typeof mapDispatchToProps;
