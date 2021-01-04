@@ -33,6 +33,9 @@ import immobilisation, { ImmoState } from 'app/entities/Immobilisation/Immo.redu
 import param, { ParamState } from 'app/entities/paramPass/param.reducer';
 import sousFamille, { SousFamilleState } from 'app/entities/sousFamille/sousfamille.reducer';
 import famille, { FamilleState } from 'app/entities/famille/famille.reducer';
+import agence, { AgenceState } from 'app/entities/agence/agence.reducer';
+import localisation, { LocalisationState } from 'app/entities/localisation/localisation.reducer';
+import site, { SiteState } from 'app/entities/site/site.reducer';
 export interface IRootState {
   readonly authentication: AuthenticationState;
   readonly locale: LocaleState;
@@ -53,6 +56,9 @@ export interface IRootState {
   readonly param: ParamState;
   readonly sousFamille: SousFamilleState;
   readonly famille: FamilleState;
+  readonly agence: AgenceState;
+  readonly localisation: LocalisationState;
+  readonly site: SiteState;
   /* jhipster-needle-add-reducer-type - JHipster will add reducer type here */
   readonly loadingBar: any;
 }
@@ -77,6 +83,9 @@ const rootReducer = combineReducers<IRootState>({
   param,
   sousFamille,
   famille,
+  agence,
+  localisation,
+  site,
   /* jhipster-needle-add-reducer-combine - JHipster will add reducer here */
   loadingBar,
 });

@@ -8,6 +8,8 @@ import { IRootState } from 'app/shared/reducers';
 import { getEntities } from './prepaImmo.reducer';
 import { get, getEntity } from 'app/entities/sousfamille/sousfamille.reducer';
 import { getFamille, getUniqueFamille } from 'app/entities/famille/famille.reducer';
+import { getLocalisations, getUniqueLocalisation } from 'app/entities/localisation/localisation.reducer';
+import { getSite, getUniqueSite } from 'app/entities/site/site.reducer';
 import { ITEMS_PER_PAGES } from 'app/shared/util/pagination.constants';
 import { IPrepaImmo } from 'app/shared/model/prepaImmo.model';
 import { overridePaginationStateWithQueryParams } from 'app/shared/util/entity-utils';
@@ -53,9 +55,23 @@ export const PrepaImmo = (props: IPrepaImmoProps) => {
     }
   };
 
+  const handleChangeLocalisation = e => {
+    if (e.target.value !== '') {
+      props.getUniqueLocalisation(e.target.value);
+    }
+  };
+
+  const handleChangeSite = e => {
+    if (e.target.value !== '') {
+      props.getUniqueSite(e.target.value);
+    }
+  };
+
   useEffect(() => {
     props.get();
     props.getFamille();
+    props.getLocalisations();
+    props.getSite();
     props.getEntities(pagination.activePage - 1, pagination.itemsPerPage, `numero,${pagination.order}`);
     const endURL = `?page=${pagination.activePage}&sort=numero,${pagination.order}`;
     if (props.location.search !== endURL) {
@@ -92,7 +108,19 @@ export const PrepaImmo = (props: IPrepaImmoProps) => {
     });
   }
 
-  const { prepaImmoList, familleEntity, sousFamilleEntity, familleList, sousFamilleList, match, totalItems } = props;
+  const {
+    prepaImmoList,
+    familleEntity,
+    localisationList,
+    localisationEntity,
+    siteList,
+    siteEntity,
+    sousFamilleEntity,
+    familleList,
+    sousFamilleList,
+    match,
+    totalItems,
+  } = props;
   return (
     <div>
       <h2 id="prepaImmo-heading">
@@ -252,16 +280,32 @@ export const PrepaImmo = (props: IPrepaImmoProps) => {
                 <Row className="justify-content-start">
                   <Col md="6">
                     <AvGroup>
+                      <AvField type="select" name="Agence/Site" onChange={handleChangeSite} label="Agence/Site">
+                        <option></option>
+                        {siteList.map(site => (
+                          <>
+                            <option key={site.codesite}>{site.codesite}</option>
+                          </>
+                        ))}
+                      </AvField>
                       <Label id="marqueLabel" for="prepaImmo-marque">
                         <Translate contentKey="projectReactSprApp.prepaImmo.marque">marque</Translate>
                       </Label>
-                      <AvField id="prepaImmo-marque" type="text" value={prepaImmo.marque} name="marque" />
+                      <AvField id="prepaImmo-marque" type="text" value={siteEntity.intSite} name="marque" />
                     </AvGroup>
                     <AvGroup>
+                      <AvField type="select" name="Local" onChange={handleChangeLocalisation} label="Local">
+                        <option></option>
+                        {localisationList.map(localisation => (
+                          <>
+                            <option key={localisation.codeLocal}>{localisation.codeLocal}</option>
+                          </>
+                        ))}
+                      </AvField>
                       <Label id="localLabel" for="prepaImmo-local">
                         <Translate contentKey="projectReactSprApp.prepaImmo.local">local</Translate>
                       </Label>
-                      <AvField id="prepaImmo-local" type="text" value={prepaImmo.local} name="local" />
+                      <AvField id="prepaImmo-local" type="text" value={localisationEntity.intLocal} name="local" />
                     </AvGroup>
                   </Col>
                 </Row>
@@ -455,10 +499,14 @@ const mapStateToProps = (storeState: IRootState) => ({
   sousFamilleEntity: storeState.sousFamille.entity,
   familleEntity: storeState.famille.entity,
   familleList: storeState.famille.entities,
+  siteEntity: storeState.site.entity,
+  siteList: storeState.site.entities,
+  localisationEntity: storeState.localisation.entity,
+  localisationList: storeState.localisation.entities,
   totalItems: storeState.prepaImmo.totalItems,
 });
 
-const mapDispatchToProps = { getEntities, get, getFamille, getEntity, getUniqueFamille };
+const mapDispatchToProps = { getEntities, get, getFamille,getUniqueSite,getSite, getEntity, getUniqueFamille, getLocalisations, getUniqueLocalisation };
 
 type StateProps = ReturnType<typeof mapStateToProps>;
 type DispatchProps = typeof mapDispatchToProps;

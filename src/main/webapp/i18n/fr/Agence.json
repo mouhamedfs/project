@@ -1,0 +1,24 @@
+{
+  "projectReactSprApp": {
+    "Agence": {
+      "home": {
+        "title": "Agence",
+        "createLabel": "Nouvelle Agence",
+        "createOrEditLabel": "Modifier les  Agence",
+        "notFound": "Aucune Agence trouvé"
+      },
+      "created": "Une nouvelle  Agence a été ajouté avec l'identifiant {{ param }}",
+      "updated": "L'Agence avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "L'Agence avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer L'Agence {{ id }} ?"
+      },
+      "detail": {
+        "title": " Agence"
+      },
+      "age": "Agence",
+      "libage": "Libellé",
+      "csite": "Site"
+    }
+  }
+}

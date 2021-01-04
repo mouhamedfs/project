@@ -1,0 +1,26 @@
+{
+  "projectReactSprApp": {
+    "Localisation": {
+      "home": {
+        "title": "Localisation",
+        "createLabel": "Nouvelle Localisation",
+        "createOrEditLabel": "Modifier les  Localisation",
+        "notFound": "Aucune Localisation trouvé"
+      },
+      "created": "Une nouvelle  Localisation a été ajouté avec l'identifiant {{ param }}",
+      "updated": "La Localisation avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "La Localisation avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer La Localisation {{ id }} ?"
+      },
+      "detail": {
+        "title": " Localisation"
+      },
+      "codeLocal": "code Localisation",
+      "age": "Agence",
+      "intLocal": "Intitulée Local",
+      "codeSite": "code Site ",
+      "codeService": "code Service"
+    }
+  }
+}

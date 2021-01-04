@@ -1,0 +1,24 @@
+{
+  "projectReactSprApp": {
+    "Site": {
+      "home": {
+        "title": "Site",
+        "createLabel": "Nouvelle Site",
+        "createOrEditLabel": "Modifier les  Site",
+        "notFound": "Aucun Site trouvé"
+      },
+      "created": "Un nouveau  Site a été ajouté avec l'identifiant {{ param }}",
+      "updated": "Le Site avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Site avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer Le Site {{ id }} ?"
+      },
+      "detail": {
+        "title": " Site"
+      },
+      "codesite": "code Site",
+      "intSite": "Intitulée Site",
+      "codeGuichet": "Code Guichet"
+    }
+  }
+}

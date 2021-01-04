@@ -15,6 +15,9 @@
         "paramPass": "Mot de passe",
         "sousFamille": "Sous Famille",
         "Famille": "Famille",
+        "Agence": "Agence",
+        "Localisation": "Localisation",
+        "Site": "Site",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
