@@ -18,6 +18,8 @@
         "Agence": "Agence",
         "Localisation": "Localisation",
         "Site": "Site",
+        "Direction": "Direction",
+        "Service": "Service",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

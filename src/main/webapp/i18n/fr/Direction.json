@@ -1,0 +1,24 @@
+{
+  "projectReactSprApp": {
+    "Direction": {
+      "home": {
+        "title": "Direction",
+        "createLabel": "Nouvelle Direction",
+        "createOrEditLabel": "Modifier les  Direction",
+        "notFound": "Aucun  Direction trouvé"
+      },
+      "created": "Un nouvelle  Direction a été ajouté avec l'identifiant {{ param }}",
+      "updated": "La  Direction avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "La  Direction avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer la  Direction {{ id }} ?"
+      },
+      "detail": {
+        "title": " Direction"
+      },
+      "cdir": "Direction",
+      "intdir": "Libellé Direction",
+      "type": "Type"
+    }
+  }
+}

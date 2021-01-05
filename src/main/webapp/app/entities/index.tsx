@@ -16,6 +16,8 @@ import Famille from './famille';
 import Agence from './agence';
 import Localisation from './localisation';
 import Site from './site';
+import Direction from './direction';
+import Service from './service';
 /* jhipster-needle-add-route-import - JHipster will add routes here */
 
 const Routes = ({ match }) => (
@@ -34,6 +36,8 @@ const Routes = ({ match }) => (
       <ErrorBoundaryRoute path={`${match.url}agence`} component={Agence} />
       <ErrorBoundaryRoute path={`${match.url}localisation`} component={Localisation} />
       <ErrorBoundaryRoute path={`${match.url}site`} component={Site} />
+      <ErrorBoundaryRoute path={`${match.url}direction`} component={Direction} />
+      <ErrorBoundaryRoute path={`${match.url}service`} component={Service} />
       {/* jhipster-needle-add-route-path - JHipster will add routes here */}
     </Switch>
   </div>

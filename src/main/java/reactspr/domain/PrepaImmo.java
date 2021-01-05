@@ -29,7 +29,7 @@ public class PrepaImmo implements Serializable {
     private String genre;
 
     @Column(name = "marque")
-    private Integer marque;
+    private String marque;
 
     @Column(name = "type")
     private String type;
@@ -218,11 +218,11 @@ public class PrepaImmo implements Serializable {
         this.genre = genre;
     }
 
-    public Integer getMarque() {
+    public String getMarque() {
         return marque;
     }
 
-    public void setMarque(Integer marque) {
+    public void setMarque(String marque) {
         this.marque = marque;
     }
 
