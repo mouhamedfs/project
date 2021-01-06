@@ -87,7 +87,7 @@ public class PrepaImmoResource {
         au.setActionDate(instant);
         au.setPrincipal(SecurityUtils.getcurrent_user());
         au.setActionTable(ENTITY_NAME);
-        au.setActionType("Valider");
+        au.setActionType("Validation dans la table " + ENTITY_NAME + " avec l'identifiant " + result.getNumero());
         au = auditEntityService.ajouter(au);
         return ResponseEntity.created(new URI("/api/prepaImmo/" + result.getNumero()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getNumero().toString()))
@@ -117,7 +117,7 @@ public class PrepaImmoResource {
         au.setActionDate(instant);
         au.setPrincipal(SecurityUtils.getcurrent_user());
         au.setActionTable(ENTITY_NAME);
-        au.setActionType("Modifier");
+        au.setActionType("Modification dans la table "+ ENTITY_NAME +" avec l'identifiant " + immo.getNumero());
         au = auditEntityService.ajouter(au);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, 
@@ -179,9 +179,8 @@ public class PrepaImmoResource {
         au.setActionDate(instant);
         au.setPrincipal(SecurityUtils.getcurrent_user());
         au.setActionTable(ENTITY_NAME);
-        au.setActionType("Supprimer");
+        au.setActionType("Suppression dans la table "+ ENTITY_NAME +" avec l'identifiant " + numero);
         au = auditEntityService.ajouter(au);
-        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, 
-                numero.toString())).build();
+        return null;
     }
 }

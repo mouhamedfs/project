@@ -6,7 +6,6 @@ import { AvFeedback, AvForm, AvGroup, AvInput, AvField } from 'availity-reactstr
 import { Translate, translate, ICrudGetAction, ICrudGetAllAction, ICrudPutAction } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IRootState } from 'app/shared/reducers';
-
 import { getEntity, updateEntity, createEntity, reset } from './prepaImmo.reducer';
 import { get, getUniqueSousFamille } from 'app/entities/sousfamille/sousfamille.reducer';
 import { getFamille, getUniqueFamille } from 'app/entities/famille/famille.reducer';
@@ -50,37 +49,50 @@ export const PrepaImmoUpdate = (props: IPrepaImmoUpdateProps) => {
 
   const handleChange = e => {
     if (e.target.value !== '') {
-      props.getUniqueSousFamille(e.target.value);
+      props.getUniqueSousFamille(e.target.value[0] + e.target.value[1]);
     }
   };
 
   const handleChangeFamille = e => {
     if (e.target.value !== '') {
-      props.getUniqueFamille(e.target.value);
+      props.getUniqueFamille(e.target.value[0] + e.target.value[1]);
     }
   };
 
   const handleChangeLocalisation = e => {
     if (e.target.value !== '') {
-      props.getUniqueLocalisation(e.target.value);
+      props.getUniqueLocalisation(
+        e.target.value[0] +
+          e.target.value[1] +
+          e.target.value[2] +
+          e.target.value[3] +
+          e.target.value[4] +
+          e.target.value[5] +
+          e.target.value[6] +
+          e.target.value[7] +
+          e.target.value[8] +
+          e.target.value[9]
+      );
     }
   };
 
   const handleChangeDirection = e => {
     if (e.target.value !== '') {
-      props.getUniqueDirection(e.target.value);
+      props.getUniqueDirection(e.target.value[0] + e.target.value[1]);
     }
   };
 
   const handleChangeService = e => {
     if (e.target.value !== '') {
-      props.getUniqueService(e.target.value);
+      // eslint-disable-next-line no-console
+      console.log(e.target.value);
+      props.getUniqueService(e.target.value[0] + e.target.value[1] + e.target.value[2] + e.target.value[3] + e.target.value[4]);
     }
   };
 
   const handleChangeSite = e => {
     if (e.target.value !== '') {
-      props.getUniqueSite(e.target.value);
+      props.getUniqueSite(e.target.value[0] + e.target.value[1] + e.target.value[2]);
     }
   };
 
@@ -174,7 +186,9 @@ export const PrepaImmoUpdate = (props: IPrepaImmoUpdateProps) => {
                         <option></option>
                         {familleList.map(famille => (
                           <>
-                            <option key={famille.cfam}>{famille.cfam}</option>
+                            <option key={famille.cfam}>
+                              {famille.cfam} {famille.libfam}{' '}
+                            </option>
                           </>
                         ))}
                       </AvField>
@@ -183,7 +197,9 @@ export const PrepaImmoUpdate = (props: IPrepaImmoUpdateProps) => {
                     <AvField type="select" id="sel" name="Libellé ss famille" label="Sous famille" onChange={handleChange}>
                       {sousFamilleList.map(sousFamille => (
                         <>
-                          <option key={sousFamille.csfam}>{sousFamille.csfam}</option>
+                          <option key={sousFamille.csfam}>
+                            {sousFamille.csfam} {sousFamille.libsfam}
+                          </option>
                         </>
                       ))}
                       <option></option>
@@ -232,13 +248,13 @@ export const PrepaImmoUpdate = (props: IPrepaImmoUpdateProps) => {
                       <Label id="patenteLabel" for="prepaImmo-patente">
                         <Translate contentKey="projectReactSprApp.prepaImmo.patente">patente</Translate>
                       </Label>
-                      <AvField id="prepaImmo-patente" type="text" value={sousFamilleEntity.tauxImpot} name="patente" />
+                      <AvField id="prepaImmo-patente" type="text" value={sousFamilleEntity.tauxImpot} name="taux2" />
                     </AvGroup>
                     <AvGroup>
                       <Label id="impotLabel" for="prepaImmo-impot">
                         <Translate contentKey="projectReactSprApp.prepaImmo.impot">impot</Translate>
                       </Label>
-                      <AvField id="prepaImmo-impot" type="text" value={sousFamilleEntity.tauxPatente} name="impot" />
+                      <AvField id="prepaImmo-impot" type="text" value={sousFamilleEntity.tauxPatente} name="duree2" />
                     </AvGroup>
                   </Col>
                 </Row>
@@ -255,7 +271,9 @@ export const PrepaImmoUpdate = (props: IPrepaImmoUpdateProps) => {
                         <option></option>
                         {siteList.map(site => (
                           <>
-                            <option key={site.codesite}>{site.codesite}</option>
+                            <option key={site.codesite}>
+                              {site.codesite} {site.intSite}
+                            </option>
                           </>
                         ))}
                       </AvField>
@@ -268,7 +286,9 @@ export const PrepaImmoUpdate = (props: IPrepaImmoUpdateProps) => {
                           <option></option>
                           {setFilterLocalisation.map(localisation => (
                             <>
-                              <option key={localisation.codeLocal}>{localisation.codeLocal}</option>
+                              <option key={localisation.codeLocal}>
+                                {localisation.codeLocal} {localisation.intLocal}
+                              </option>
                             </>
                           ))}
                         </AvField>
@@ -293,7 +313,9 @@ export const PrepaImmoUpdate = (props: IPrepaImmoUpdateProps) => {
                         <option></option>
                         {directionList.map(direction => (
                           <>
-                            <option key={direction.cdir}>{direction.cdir}</option>
+                            <option key={direction.cdir}>
+                              {direction.cdir} {direction.intdir}
+                            </option>
                           </>
                         ))}
                       </AvField>
@@ -304,7 +326,9 @@ export const PrepaImmoUpdate = (props: IPrepaImmoUpdateProps) => {
                         <option></option>
                         {setFilter.map(service => (
                           <>
-                            <option key={service.cserv}>{service.cserv}</option>
+                            <option key={service.cserv}>
+                              {service.cserv} {service.intserv}
+                            </option>
                           </>
                         ))}
                       </AvField>

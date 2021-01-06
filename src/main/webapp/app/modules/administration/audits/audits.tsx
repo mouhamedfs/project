@@ -111,7 +111,7 @@ export const AuditsPage = (props: IAuditsPageProps) => {
   return (
     <div>
       <div className="table_button">
-        <h2 id="audits-page-heading">Audits</h2>
+        <h2 id="audits-page-heading">Historiques de connexions</h2>
         <br />
         <button className="btn btn-success btn-lg" id="print" onClick={printData}>
           Imprimer

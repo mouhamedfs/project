@@ -11,7 +11,7 @@ import java.sql.Date;
  * PrepaImmo.
  */
 @Entity
-@Table(name = "T_PREPAIMMOS")
+@Table(name = "T_PREPAIMMO")
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class PrepaImmo implements Serializable {
 
@@ -86,10 +86,10 @@ public class PrepaImmo implements Serializable {
     private Integer age;
 
     @Column(name = "cdir")
-    private Integer cdir;
+    private String cdir;
 
     @Column(name = "cserv")
-    private Integer cserv;
+    private String cserv;
 
     @Column(name = "local")
     private String local;
@@ -370,19 +370,19 @@ public class PrepaImmo implements Serializable {
         this.age = age;
     }
 
-    public Integer getCdir() {
+    public String getCdir() {
         return cdir;
     }
 
-    public void setCdir(Integer cdir) {
+    public void setCdir(String cdir) {
         this.cdir = cdir;
     }
 
-    public Integer getCserv() {
+    public String getCserv() {
         return cserv;
     }
 
-    public void setCserv(Integer cserv) {
+    public void setCserv(String cserv) {
         this.cserv = cserv;
     }
 

@@ -76,7 +76,7 @@ public class ImmobilisationResource {
         au.setActionDate(instant);
         au.setPrincipal(SecurityUtils.getcurrent_user());
         au.setActionTable(ENTITY_NAME);
-        au.setActionType("Valider");
+        au.setActionType("Validation dans la table " + ENTITY_NAME + " avec l'identifiant " + result.getImmo());
         au = auditEntityService.ajouter(au);
         return ResponseEntity.created(new URI("/api/immo/" + result.getImmo()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getImmo().toString()))
@@ -107,7 +107,7 @@ public class ImmobilisationResource {
         au.setActionDate(instant);
         au.setPrincipal(SecurityUtils.getcurrent_user());
         au.setActionTable(ENTITY_NAME);                 
-     au.setActionType("Valider");
+        au.setActionType("Modification dans la table " + ENTITY_NAME + " avec l'identifiant " + result.getImmo());
         au = auditEntityService.ajouter(au);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, 
@@ -159,9 +159,8 @@ public class ImmobilisationResource {
         au.setActionDate(instant);
         au.setPrincipal(SecurityUtils.getcurrent_user());
         au.setActionTable(ENTITY_NAME);
-        au.setActionType("Supprimer");
+        au.setActionType("Supprimer dans la table " + ENTITY_NAME + " avec l'identifiant " + immo);
         au = auditEntityService.ajouter(au);
-        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, 
-                immo.toString())).build();
+        return null;
     }
 }
