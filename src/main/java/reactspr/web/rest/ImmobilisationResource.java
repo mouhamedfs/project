@@ -161,6 +161,8 @@ public class ImmobilisationResource {
         au.setActionTable(ENTITY_NAME);
         au.setActionType("Supprimer dans la table " + ENTITY_NAME + " avec l'identifiant " + immo);
         au = auditEntityService.ajouter(au);
-        return null;
+        return ResponseEntity.noContent()
+                .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, immo.toString()))
+                .build();
     }
 }

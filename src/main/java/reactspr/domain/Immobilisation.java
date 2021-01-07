@@ -30,7 +30,7 @@ public class Immobilisation implements Serializable {
     private String genre;
 
     @Column(name = "marque")
-    private Integer marque;
+    private String marque;
 
     @Column(name = "type")
     private String type;
@@ -87,10 +87,10 @@ public class Immobilisation implements Serializable {
     private Integer age;
 
     @Column(name = "cdir")
-    private Integer cdir;
+    private String cdir;
 
     @Column(name = "cserv")
-    private Integer cserv;
+    private String cserv;
 
     @Column(name = "local")
     private String local;
@@ -318,11 +318,11 @@ public class Immobilisation implements Serializable {
         this.genre = genre;
     }
 
-    public Integer getMarque() {
+    public String getMarque() {
         return marque;
     }
 
-    public void setMarque(Integer marque) {
+    public void setMarque(String marque) {
         this.marque = marque;
     }
 
@@ -470,19 +470,19 @@ public class Immobilisation implements Serializable {
         this.age = age;
     }
 
-    public Integer getCdir() {
+    public String getCdir() {
         return cdir;
     }
 
-    public void setCdir(Integer cdir) {
+    public void setCdir(String cdir) {
         this.cdir = cdir;
     }
 
-    public Integer getCserv() {
+    public String getCserv() {
         return cserv;
     }
 
-    public void setCserv(Integer cserv) {
+    public void setCserv(String cserv) {
         this.cserv = cserv;
     }
 

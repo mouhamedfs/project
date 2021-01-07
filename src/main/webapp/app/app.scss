@@ -318,3 +318,15 @@ http://stackoverflow.com/questions/23436430/bootstrap-3-input-group-100-width */
   padding: 30px;
   text-align: center;
 }
+
+.form-control-borderless {
+  border: none;
+}
+
+.form-control-borderless:hover,
+.form-control-borderless:active,
+.form-control-borderless:focus {
+  border: none;
+  outline: none;
+  box-shadow: none;
+}

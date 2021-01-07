@@ -21,8 +21,8 @@ export interface IImmo {
   ddac?: Date | null;
   dms?: Date | null;
   age?: number;
-  cdir?: number;
-  cserv?: number;
+  cdir?: string;
+  cserv?: string;
   local?: string;
   csfam?: string;
   cptimmo?: string;

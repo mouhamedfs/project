@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link, RouteComponentProps } from 'react-router-dom';
-import { Modal, ModalHeader, ModalBody, ModalFooter, Button,Row, Col, Label, } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody, ModalFooter, Button, Row, Col, Label } from 'reactstrap';
 import { AvFeedback, AvForm, AvGroup, AvInput, AvField } from 'availity-reactstrap-validation';
 import { Translate, translate, ICrudGetAction, ICrudGetAllAction, ICrudPutAction } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IRootState } from 'app/shared/reducers';
 
-import { getEntity,deleteEntity} from './prepaImmo.reducer';
+import { getEntity, deleteEntity } from './prepaImmo.reducer';
 import { updateEntity, createEntity, reset } from 'app/entities/Immobilisation/Immo.reducer';
 import { IPrepaImmo } from 'app/shared/model/prepaImmo.model';
 import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateTime } from 'app/shared/util/date-utils';
 import { mapIdList } from 'app/shared/util/entity-utils';
 
-export interface IPrepaImmoValidDialogProps extends StateProps, DispatchProps, RouteComponentProps<{ numero: string, immo : string }> {}
+export interface IPrepaImmoValidDialogProps extends StateProps, DispatchProps, RouteComponentProps<{ numero: string; immo: string }> {}
 
 export const PrepaImmoValidDialogProps = (props: IPrepaImmoValidDialogProps) => {
   const [isNew, setIsNew] = useState(!props.match.params || !props.match.params.numero);
 
-  const { prepaImmoEntity,immobilisationEntity, loading, updating } = props;
+  const { prepaImmoEntity, immobilisationEntity, loading, updating } = props;
 
   const handleClose = () => {
     props.history.push('/prepaImmo');
@@ -48,17 +48,17 @@ export const PrepaImmoValidDialogProps = (props: IPrepaImmoValidDialogProps) => 
         ...immobilisationEntity,
         ...values,
       };
-       let n = prepaImmoEntity.nbre;
+      let n = prepaImmoEntity.nbre;
       if (!isNew) {
-         while(n!==0) {
-           props.createEntity(entity);
-          n-=1;
-          }
+        while (n !== 0) {
+          props.createEntity(entity);
+          n -= 1;
+        }
       }
     }
   };
   return (
-      <Modal isOpen toggle={handleClose}>
+    <Modal isOpen toggle={handleClose}>
       <ModalHeader toggle={handleClose}>
         <Translate contentKey="projectReactSprApp.prepaImmo.delete.valid">Confirm refus operation</Translate>
       </ModalHeader>
@@ -81,8 +81,8 @@ export const PrepaImmoValidDialogProps = (props: IPrepaImmoValidDialogProps) => 
                 </AvGroup>
               ) : null}
               <AvGroup>
-                  <AvInput hidden id="prepaImmo-immo" type="text" className="form-control" value={null} name="immo"/>
-                </AvGroup>
+                <AvInput hidden id="prepaImmo-immo" type="text" className="form-control" value={null} name="immo" />
+              </AvGroup>
               <AvGroup>
                 <AvField hidden id="Immobilisation-libimmo" type="text" name="libimmo" />
               </AvGroup>
@@ -105,22 +105,13 @@ export const PrepaImmoValidDialogProps = (props: IPrepaImmoValidDialogProps) => 
                 <AvField hidden id="Immobilisation-taux" type="number" name="taux" />
               </AvGroup>
               <AvGroup>
-                <AvField hidden id="Immobilisation-item" type="text" name="item" size="20" />
-              </AvGroup>
-              <AvGroup>
-                <AvField hidden id="Immobilisation-taux_patente" type="text" name="taux_patente"/>
-              </AvGroup>
-              <AvGroup>
-                <AvField  hidden id="Immobilisation-taux_impot" type="text"  name="impot" />
+                <AvField hidden id="Immobilisation-taux_impot" type="text" value={prepaImmoEntity.taux2} name="taux_impot" />
               </AvGroup>
               <AvGroup>
                 <AvField hidden id="Immobilisation-item" type="text" name="item" size="20" />
               </AvGroup>
               <AvGroup>
-                <AvField hidden id="Immobilisation-taux_patente" type="text" name="taux_patente"/>
-              </AvGroup>
-              <AvGroup>
-                <AvField hidden id="Immobilisation-taux_impot" type="text"  name="impot" />
+                <AvField hidden id="Immobilisation-taux_patente" value={prepaImmoEntity.duree2} type="text" name="taux_patente" />
               </AvGroup>
               <AvGroup>
                 <AvField hidden id="Immobilisation-marque" type="text" name="marque" />
@@ -129,13 +120,13 @@ export const PrepaImmoValidDialogProps = (props: IPrepaImmoValidDialogProps) => 
                 <AvField hidden id="Immobilisation-local" type="text" name="local" />
               </AvGroup>
               <AvGroup>
-                <AvField hidden id="Immobilisation-reference" type="text" name="reference" />
-              </AvGroup>
-              <AvGroup>
                 <AvField hidden id="Immobilisation-ancienlocal" type="text" name="ancienlocal" />
               </AvGroup>
               <AvGroup>
                 <AvField hidden id="Immobilisation-ImmoRattache" type="number" name="ImmoRattache" />
+              </AvGroup>
+              <AvGroup>
+                <AvField hidden id="Immobilisation-reference" type="text" name="reference" />
               </AvGroup>
               <AvGroup>
                 <AvField hidden id="Immobilisation-numSubv" type="number" name="numSubv" />
@@ -143,7 +134,7 @@ export const PrepaImmoValidDialogProps = (props: IPrepaImmoValidDialogProps) => 
               <AvGroup>
                 <AvField hidden id="Immobilisation-tauxSubv" type="number" name="tauxSubv" />
               </AvGroup>
-                  <AvGroup>
+              <AvGroup>
                 <AvField hidden id="Immobilisation-numBonComm" type="text" name="numBonComm" />
               </AvGroup>
               <AvGroup>
@@ -158,7 +149,7 @@ export const PrepaImmoValidDialogProps = (props: IPrepaImmoValidDialogProps) => 
               <AvGroup>
                 <AvField hidden id="Immobilisation-dateBonLiv" type="date" name="dateBonLiv" />
               </AvGroup>
-               <AvGroup>
+              <AvGroup>
                 <AvField hidden id="Immobilisation-numfact" type="text" name="numfact" />
               </AvGroup>
               <AvGroup>
@@ -167,45 +158,43 @@ export const PrepaImmoValidDialogProps = (props: IPrepaImmoValidDialogProps) => 
               <AvGroup>
                 <AvField hidden id="Immobilisation-mnttaxe" type="number" name="mnttaxe" />
               </AvGroup>
-              <AvField  hidden id="prepaImmo-nbre" type="number" value={prepaImmoEntity.nbre} name="nbre"/>
-               <AvGroup hidden><AvField hidden type="select" name="ancCompte" label="Compte" >
+              <AvField hidden id="prepaImmo-nbre" type="number" value={prepaImmoEntity.nbre} name="nbre" />
+              <AvGroup hidden>
+                <AvField hidden type="select" name="ancCompte" label="Compte">
                   <option>3310205860</option>
                   <option>2543453453</option>
                   <option>45345354353</option>
                   <option>4</option>
                   <option>5</option>
-                  </AvField></AvGroup>
-               <AvGroup hidden>
-                 <AvField hidden type="select" name="comptabilise" label="A comptabiliser" >
+                </AvField>
+              </AvGroup>
+              <AvGroup hidden>
+                <AvField type="select" name="comptabilise" label="A comptabiliser">
                   <option>1</option>
-                  </AvField></AvGroup>
-                  <AvGroup>
+                </AvField>
+              </AvGroup>
+              <AvGroup>
                 <AvField hidden id="Immobilisation-ddac" type="date" name="ddac" />
               </AvGroup>
               <AvGroup>
                 <AvField hidden id="Immobilisation-dms" type="date" name="dms" />
               </AvGroup>
-              <AvGroup>
-                <AvField hidden id="Immobilisation-marque" type="text" name="marque" />
-              </AvGroup>
-              <AvGroup>
-                <AvField hidden id="Immobilisation-local" type="text" name="local" />
-              </AvGroup>
-                 <ModalFooter>
-              &nbsp;
-              <Button color="primary" id="save-entity" type="submit"  disabled={updating}>
-                <FontAwesomeIcon icon="save" />
+              <ModalFooter>
                 &nbsp;
-                <Translate contentKey="entity.action.save">Save</Translate>
-              </Button>
+                <Button color="primary" id="save-entity" type="submit" disabled={updating}>
+                  <FontAwesomeIcon icon="save" />
+                  &nbsp;
+                  <Translate contentKey="entity.action.save">Save</Translate>
+                </Button>
                 &nbsp;
-                </ModalFooter> 
-                 </AvForm>
-               )}
-               </Col>
-              </Row>
-             </Modal>
+              </ModalFooter>
+            </AvForm>
           )}
+        </Col>
+      </Row>
+    </Modal>
+  );
+};
 const mapStateToProps = (storeState: IRootState) => ({
   prepaImmoEntity: storeState.prepaImmo.entity,
   immobilisationEntity: storeState.immobilisation.entity,

@@ -6,12 +6,6 @@ import { AvFeedback, AvForm, AvGroup, AvInput, AvField } from 'availity-reactstr
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IRootState } from 'app/shared/reducers';
 import { getEntities } from './prepaImmo.reducer';
-import { get, getEntity } from 'app/entities/sousfamille/sousfamille.reducer';
-import { getFamille, getUniqueFamille } from 'app/entities/famille/famille.reducer';
-import { getLocalisations, getUniqueLocalisation } from 'app/entities/localisation/localisation.reducer';
-import { getSite, getUniqueSite } from 'app/entities/site/site.reducer';
-import { getService, getUniqueService } from 'app/entities/service/service.reducer';
-import { getDirection, getUniqueDirection } from 'app/entities/direction/direction.reducer';
 import { ITEMS_PER_PAGES } from 'app/shared/util/pagination.constants';
 import { IPrepaImmo } from 'app/shared/model/prepaImmo.model';
 import { overridePaginationStateWithQueryParams } from 'app/shared/util/entity-utils';
@@ -43,51 +37,7 @@ export const PrepaImmo = (props: IPrepaImmoProps) => {
     overridePaginationStateWithQueryParams(getSortState(props.location, ITEMS_PER_PAGES), props.location.search)
   );
 
-  const [element, setElement] = useState('');
-
-  const handleChange = e => {
-    if (e.target.value !== '') {
-      props.getEntity(e.target.value);
-    }
-  };
-
-  const handleChangeFamille = e => {
-    if (e.target.value !== '') {
-      props.getUniqueFamille(e.target.value);
-    }
-  };
-
-  const handleChangeLocalisation = e => {
-    if (e.target.value !== '') {
-      props.getUniqueLocalisation(e.target.value);
-    }
-  };
-
-  const handleChangeDirection = e => {
-    if (e.target.value !== '') {
-      props.getUniqueDirection(e.target.value);
-    }
-  };
-
-  const handleChangeService = e => {
-    if (e.target.value !== '') {
-      props.getUniqueService(e.target.value);
-    }
-  };
-
-  const handleChangeSite = e => {
-    if (e.target.value !== '') {
-      props.getUniqueSite(e.target.value);
-    }
-  };
-
   useEffect(() => {
-    props.get();
-    props.getFamille();
-    props.getLocalisations();
-    props.getSite();
-    props.getService();
-    props.getDirection();
     props.getEntities(pagination.activePage - 1, pagination.itemsPerPage, `numero,${pagination.order}`);
     const endURL = `?page=${pagination.activePage}&sort=numero,${pagination.order}`;
     if (props.location.search !== endURL) {
@@ -126,24 +76,9 @@ export const PrepaImmo = (props: IPrepaImmoProps) => {
 
   const {
     prepaImmoList,
-    familleEntity,
-    localisationList,
-    localisationEntity,
-    serviceList,
-    serviceEntity,
-    directionList,
-    directionEntity,
-    siteList,
-    siteEntity,
-    sousFamilleEntity,
-    familleList,
-    sousFamilleList,
     match,
     totalItems,
   } = props;
-
-  let setFilter =  serviceList.filter(service => service.cdir === directionEntity.cdir );
-  let setFilterLocalisation =  localisationList.filter(localisation => localisation.age === siteEntity.codeGuichet );
   return (
     <div>
       <h2 id="prepaImmo-heading">
@@ -217,27 +152,11 @@ export const PrepaImmo = (props: IPrepaImmoProps) => {
                     <Row className="justify-content-start">
                       <Col md="8">
                         <AvGroup>
-                          <AvField type="select" name="famille" onChange={handleChangeFamille} label="famille">
-                            <option></option>
-                            {familleList.map(famille => (
-                              <>
-                                <option key={famille.cfam}>{famille.cfam}</option>
-                              </>
-                            ))}
-                          </AvField>
                           <AvField id="prepaImmo-genre" value={prepaImmo.genre} type="text" name="genre" />
                         </AvGroup>
                       </Col>
                     </Row>
                     <AvGroup>
-                      <AvField type="select" id="sel" name="Libellé ss famille" label="Sous famille" onChange={handleChange}>
-                        {sousFamilleList.map(sousFamille => (
-                          <>
-                            <option key={sousFamille.csfam}>{sousFamille.csfam}</option>
-                          </>
-                        ))}
-                        <option></option>
-                      </AvField>
                       <Label id="typeLabel" for="prepaImmo-type">
                         <Translate contentKey="projectReactSprApp.prepaImmo.type">type</Translate>
                       </Label>
@@ -283,13 +202,13 @@ export const PrepaImmo = (props: IPrepaImmoProps) => {
                       <Label id="patenteLabel" for="prepaImmo-patente">
                         <Translate contentKey="projectReactSprApp.prepaImmo.patente">patente</Translate>
                       </Label>
-                      <AvField id="prepaImmo-patente" type="text" value={sousFamilleEntity.tauxImpot} name="patente" />
+                      <AvField id="prepaImmo-patente" type="text" value={prepaImmo.taux2} name="patente" />
                     </AvGroup>
                     <AvGroup>
                       <Label id="impotLabel" for="prepaImmo-impot">
                         <Translate contentKey="projectReactSprApp.prepaImmo.impot">impot</Translate>
                       </Label>
-                      <AvField id="prepaImmo-impot" type="text" value={sousFamilleEntity.tauxPatente} name="impot" />
+                      <AvField id="prepaImmo-impot" type="text" value={prepaImmo.duree2} name="impot" />
                     </AvGroup>
                   </Col>
                 </Row>
@@ -302,28 +221,12 @@ export const PrepaImmo = (props: IPrepaImmoProps) => {
                 <Row className="justify-content-start">
                   <Col md="6">
                     <AvGroup>
-                      <AvField type="select" name="Agence/Site" onChange={handleChangeSite} label="Agence/Site">
-                        <option></option>
-                        {siteList.map(site => (
-                          <>
-                            <option key={site.codesite}>{site.codesite}</option>
-                          </>
-                        ))}
-                      </AvField>
                       <Label id="marqueLabel" for="prepaImmo-marque">
                         <Translate contentKey="projectReactSprApp.prepaImmo.marque">marque</Translate>
                       </Label>
                       <AvField id="prepaImmo-marque" type="text" value={prepaImmo.marque} name="marque" />
                     </AvGroup>
                     <AvGroup>
-                      <AvField type="select" name="Local" onChange={handleChangeLocalisation} label="Local">
-                        <option></option>
-                        {setFilterLocalisation.map(localisation => (
-                          <>
-                            <option key={localisation.codeLocal}>{localisation.codeLocal}</option>
-                          </>
-                        ))}
-                      </AvField>
                       <Label id="localLabel" for="prepaImmo-local">
                         <Translate contentKey="projectReactSprApp.prepaImmo.local">local</Translate>
                       </Label>
@@ -340,26 +243,10 @@ export const PrepaImmo = (props: IPrepaImmoProps) => {
                 <Row className="justify-content-start">
                   <Col md="6">
                     <AvGroup>
-                      <AvField type="select" name="direction" onChange={handleChangeDirection} label="Direction">
-                        <option></option>
-                        {directionList.map(direction => (
-                          <>
-                            <option key={direction.cdir}>{direction.cdir}</option>
-                          </>
-                        ))}
-                      </AvField>
-                      <AvField id="prepaImmo-reference" type="text" value={prepaImmo.cdir} name="cdir" />
+                      <AvField id="prepaImmo-cdir" type="text" value={prepaImmo.cdir} name="cdir" />
                     </AvGroup>
                     <AvGroup>
-                      <AvField type="select" name="service" onChange={handleChangeService} label="Service">
-                        <option></option>
-                        {setFilter.map(service => 
-                          <>
-                          <option key={service.cserv}>{service.cserv}</option>
-                         </>
-                         )}
-                    </AvField>
-                    <AvField id="prepaImmo-reference" type="text" value={prepaImmo.cserv} name="cserv" />
+                    <AvField id="prepaImmo-cserv" type="text" value={prepaImmo.cserv} name="cserv" />
                   </AvGroup>
                 </Col>
               </Row>
@@ -371,12 +258,6 @@ export const PrepaImmo = (props: IPrepaImmoProps) => {
                 <Row className="justify-content-start">
                   <Col md="7">
                     <AvGroup>
-                      <Label id="referenceLabel" for="prepaImmo-reference">
-                        <Translate contentKey="projectReactSprApp.prepaImmo.reference">reference</Translate>
-                      </Label>
-                      <AvField id="prepaImmo-reference" type="text" value={prepaImmo.reference} name="reference" />
-                    </AvGroup>
-                    <AvGroup>
                       <Label id="ancienlocalLabel" for="prepaImmo-ancienlocal">
                         <Translate contentKey="projectReactSprApp.prepaImmo.ancienlocal">ancienlocal</Translate>
                       </Label>
@@ -387,6 +268,12 @@ export const PrepaImmo = (props: IPrepaImmoProps) => {
                         <Translate contentKey="projectReactSprApp.prepaImmo.ImmoRattache">ImmoRattache</Translate>
                       </Label>
                       <AvField id="prepaImmo-ImmoRattache" type="number" value={prepaImmo.ImmoRattache} name="ImmoRattache" />
+                    </AvGroup>
+                    <AvGroup>
+                      <Label id="referenceLabel" for="prepaImmo-reference">
+                        <Translate contentKey="projectReactSprApp.prepaImmo.reference">reference</Translate>
+                      </Label>
+                      <AvField id="prepaImmo-reference" type="text" value={prepaImmo.reference} name="reference" />
                     </AvGroup>
                     <AvGroup>
                       <Label id="numSubvLabel" for="prepaImmo-numSubv">
@@ -498,7 +385,7 @@ export const PrepaImmo = (props: IPrepaImmoProps) => {
                     </AvGroup>
                   </Col>
                 </Row>
-              </div></>
+              </div></AvForm>
               &nbsp;
               <Row className="justify-content-end">
                 <Col md="5">
@@ -539,7 +426,7 @@ export const PrepaImmo = (props: IPrepaImmoProps) => {
                   </Button>
                 </Col>
               </Row>
-            </AvForm>
+              </>
           ))}
         </Col>
       </Row>
@@ -548,35 +435,11 @@ export const PrepaImmo = (props: IPrepaImmoProps) => {
 };
 const mapStateToProps = (storeState: IRootState) => ({
   prepaImmoList: storeState.prepaImmo.entities,
-  sousFamilleList: storeState.sousFamille.entities,
-  sousFamilleEntity: storeState.sousFamille.entity,
-  familleEntity: storeState.famille.entity,
-  familleList: storeState.famille.entities,
-  serviceEntity: storeState.service.entity,
-  serviceList: storeState.service.entities,
-  directionEntity: storeState.direction.entity,
-  directionList: storeState.direction.entities,
-  siteEntity: storeState.site.entity,
-  siteList: storeState.site.entities,
-  localisationEntity: storeState.localisation.entity,
-  localisationList: storeState.localisation.entities,
   totalItems: storeState.prepaImmo.totalItems,
 });
 
 const mapDispatchToProps = {
-  getEntities,
-  get,
-  getFamille,
-  getUniqueSite,
-  getSite,
-  getUniqueService,
-  getService,
-  getUniqueDirection,
-  getDirection,
-  getEntity,
-  getUniqueFamille,
-  getLocalisations,
-  getUniqueLocalisation,
+  getEntities
 };
 
 type StateProps = ReturnType<typeof mapStateToProps>;

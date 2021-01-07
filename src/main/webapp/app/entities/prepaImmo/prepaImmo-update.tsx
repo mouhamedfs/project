@@ -295,7 +295,7 @@ export const PrepaImmoUpdate = (props: IPrepaImmoUpdateProps) => {
                         <Label id="localLabel" for="prepaImmo-local">
                           <Translate contentKey="projectReactSprApp.prepaImmo.local">local</Translate>
                         </Label>
-                        <AvField id="prepaImmo-local" type="text" value={localisationEntity.intLocal} name="local" />
+                        <AvField id="prepaImmo-local" type="text" value={localisationEntity.codeLocal} name="local" />
                       </AvGroup>
                     </AvGroup>
                   </Col>
@@ -319,7 +319,7 @@ export const PrepaImmoUpdate = (props: IPrepaImmoUpdateProps) => {
                           </>
                         ))}
                       </AvField>
-                      <AvField id="prepaImmo-reference" type="text" value={directionEntity.intdir} name="cdir" />
+                      <AvField id="prepaImmo-cdir" type="text" value={directionEntity.intdir} name="cdir" />
                     </AvGroup>
                     <AvGroup>
                       <AvField type="select" name="service" onChange={handleChangeService} label="Service">
@@ -332,7 +332,7 @@ export const PrepaImmoUpdate = (props: IPrepaImmoUpdateProps) => {
                           </>
                         ))}
                       </AvField>
-                      <AvField id="prepaImmo-reference" type="text" value={serviceEntity.intserv} name="cserv" />
+                      <AvField id="prepaImmo-cserv" type="text" value={serviceEntity.intserv} name="cserv" />
                     </AvGroup>
                     <AvGroup>
                       <Label id="ancienlocalLabel" for="prepaImmo-ancienlocal">
@@ -345,6 +345,12 @@ export const PrepaImmoUpdate = (props: IPrepaImmoUpdateProps) => {
                         <Translate contentKey="projectReactSprApp.prepaImmo.ImmoRattache">ImmoRattache</Translate>
                       </Label>
                       <AvField id="prepaImmo-ImmoRattache" type="number" name="ImmoRattache" />
+                    </AvGroup>
+                    <AvGroup>
+                      <Label id="referenceLabel" for="prepaImmo-reference">
+                        <Translate contentKey="projectReactSprApp.prepaImmo.reference">reference</Translate>
+                      </Label>
+                      <AvField id="prepaImmo-reference" type="text" name="reference" />
                     </AvGroup>
                     <AvGroup>
                       <Label id="numSubvLabel" for="prepaImmo-numSubv">
@@ -427,7 +433,7 @@ export const PrepaImmoUpdate = (props: IPrepaImmoUpdateProps) => {
                       <Label id="nbreLabel" for="prepaImmo-nbre">
                         <Translate contentKey="projectReactSprApp.prepaImmo.nbre">nbre</Translate>
                       </Label>
-                      <AvField id="prepaImmo-nbre" type="number" name="nbre" />
+                      <AvField id="prepaImmo-nbre" type="number" value={1} name="nbre" />
                     </AvGroup>
                     <AvField type="select" name="ancCompte" label="Compte">
                       <option>3310205860</option>
