@@ -94,6 +94,14 @@ export const Immobilisation = (props: IImmoProps) => {
       ) : (
         ''
       )}
+      <Row className="justify-content-center">
+        <Col md="1">
+          <Link to={`${match.url}/recherche`} className="btn btn-info float-right jh-create-entity">
+            <FontAwesomeIcon icon="search" />
+            <h5>Rechercher</h5>{' '}
+          </Link>
+        </Col>
+      </Row>
       <Row className="justify-content-start">
         <Col md="8">
           <br />

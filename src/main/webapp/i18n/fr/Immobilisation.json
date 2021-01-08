@@ -16,11 +16,12 @@
       "detail": {
         "title": "Immobilisation"
       },
+      "immo": "immo",
       "libimmo": "Libellé immo (50 car.max)*",
       "genre": "Famille",
       "age": "Age",
       "marque": "Marque",
-      "type": "Libellé ss famille",
+      "type": "ss famille",
       "reference": "Reference",
       "nbre": "Quantite",
       "fourn": "Fournisseur",

@@ -12,14 +12,60 @@ import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 export interface IImmoProps extends StateProps, DispatchProps, RouteComponentProps<{ url: string }> {}
 
 export const ImmobilisationRecherche = (props: IImmoProps) => {
+  const [search, setSearch] = useState('');
   useEffect(() => {
     props.getEntities();
   }, []);
 
   const { immobilisationList, match, loading } = props;
+
+  const setImmo = immobilisationList.filter(
+    immobilisation =>
+      immobilisation.local === search ||
+      immobilisation.libimmo === search ||
+      immobilisation.reference === search ||
+      immobilisation.type === search ||
+      immobilisation.cptimmo === search
+  );
+
+  const handleRecherche = e => {
+    // eslint-disable-next-line no-console
+    console.log(e.target.value);
+    setSearch(e.target.value);
+  };
+
+  function myFunction() {
+    const x = document.getElementById('immo');
+    if (x.style.display === 'block') {
+      x.style.display = 'none';
+    } else {
+      x.style.display = 'block';
+    }
+  }
+
   return (
     <div>
       <h2>Rechercher une immobilisation</h2>
+      <h4 className="text-right">{new Date().toLocaleDateString()}</h4>
+      <br />
+      <div className="text-center">
+        <div className="form-check form-check-inline">
+          <input className="form-check-input" type="checkbox" id="immobilisations" onClick={myFunction} value="immo" />
+          <label className="form-check-label">immo</label>
+        </div>
+        <div className="form-check form-check-inline">
+          <input className="form-check-input" type="checkbox" id="localisations" value="localisation" />
+          <label className="form-check-label">localisation</label>
+        </div>
+        <div className="form-check form-check-inline">
+          <input className="form-check-input" type="checkbox" id="ssfamilles" value="ssfamille" />
+          <label className="form-check-label">Sous-famille</label>
+        </div>
+        <div className="form-check form-check-inline">
+          <input className="form-check-input" type="checkbox" id="references" value="references" />
+          <label className="form-check-label">Reference</label>
+        </div>
+      </div>
       <div className="container">
         <br />
         <div className="row justify-content-center">
@@ -33,13 +79,9 @@ export const ImmobilisationRecherche = (props: IImmoProps) => {
                   <input
                     className="form-control form-control-lg form-control-borderless"
                     type="search"
-                    placeholder="Search topics or keywords"
+                    placeholder="Search an immobilisation"
+                    onChange={handleRecherche}
                   />
-                </div>
-                <div className="col-auto">
-                  <button className="btn btn-lg btn-success" type="submit">
-                    Search
-                  </button>
                 </div>
               </div>
             </form>
@@ -47,13 +89,16 @@ export const ImmobilisationRecherche = (props: IImmoProps) => {
         </div>
         <br />
         <br />
+        <h4 className="text-center">
+          Resultat :{setImmo.length}/{immobilisationList.length}
+        </h4>
         <div className="table-responsive">
-          {immobilisationList && immobilisationList.length > 0 ? (
+          {setImmo && setImmo.length > 0 ? (
             <Table responsive>
               <thead>
                 <tr>
-                  <th>
-                    <Translate contentKey="global.field.id">ID</Translate>
+                  <th id="immo">
+                    <Translate contentKey="projectReactSprApp.Immobilisation.immo">ID</Translate>
                   </th>
                   <th>
                     <Translate contentKey="projectReactSprApp.Immobilisation.libimmo">libimmo</Translate>
@@ -74,9 +119,9 @@ export const ImmobilisationRecherche = (props: IImmoProps) => {
                 </tr>
               </thead>
               <tbody>
-                {immobilisationList.map((immobilisation, i) => (
-                  <tr key={`entity-${i}`}>
-                    <td>
+                {setImmo.map(immobilisation => (
+                  <tr key={immobilisation.immo}>
+                    <td id="immo">
                       <Button tag={Link} to={`${match.url}/${immobilisation.immo}`} color="link" size="sm">
                         {immobilisation.immo}
                       </Button>

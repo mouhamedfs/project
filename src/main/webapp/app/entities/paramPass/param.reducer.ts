@@ -110,6 +110,14 @@ export const getEntity: ICrudGetAction<IParamPass> = numNumbers => {
   };
 };
 
+export const getParam: ICrudGetAction<IParamPass> = numNumbers => {
+  const requestUrl = `${apiUrl}/${numNumbers}`;
+  return {
+    type: ACTION_TYPES.FETCH_PARAMPASS,
+    payload: axios.get<IParamPass>(requestUrl),
+  };
+};
+
 export const createEntity: ICrudPutAction<IParamPass> = entity => async dispatch => {
   const result = await dispatch({
     type: ACTION_TYPES.CREATE_PARAMPASS,

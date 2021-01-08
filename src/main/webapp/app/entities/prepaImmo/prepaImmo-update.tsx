@@ -47,6 +47,7 @@ export const PrepaImmoUpdate = (props: IPrepaImmoUpdateProps) => {
     props.history.push('/prepaImmo');
   };
 
+  
   const handleChange = e => {
     if (e.target.value !== '') {
       props.getUniqueSousFamille(e.target.value[0] + e.target.value[1]);
@@ -319,7 +320,7 @@ export const PrepaImmoUpdate = (props: IPrepaImmoUpdateProps) => {
                           </>
                         ))}
                       </AvField>
-                      <AvField id="prepaImmo-cdir" type="text" value={directionEntity.intdir} name="cdir" />
+                      <AvField id="prepaImmo-cdir" type="text" value={directionEntity.cdir} name="cdir" />
                     </AvGroup>
                     <AvGroup>
                       <AvField type="select" name="service" onChange={handleChangeService} label="Service">
@@ -332,7 +333,7 @@ export const PrepaImmoUpdate = (props: IPrepaImmoUpdateProps) => {
                           </>
                         ))}
                       </AvField>
-                      <AvField id="prepaImmo-cserv" type="text" value={serviceEntity.intserv} name="cserv" />
+                      <AvField id="prepaImmo-cserv" type="text" value={serviceEntity.cserv} name="cserv" />
                     </AvGroup>
                     <AvGroup>
                       <Label id="ancienlocalLabel" for="prepaImmo-ancienlocal">
