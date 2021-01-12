@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Translate, translate } from 'react-jhipster';
 import { connect } from 'react-redux';
 import { AvForm, AvField } from 'availity-reactstrap-validation';
-import { Row, Col, Button,Table } from 'reactstrap';
+import { Row, Col, Button, Table } from 'reactstrap';
 
 import { IRootState } from 'app/shared/reducers';
 import { getSession } from 'app/shared/reducers/authentication';
@@ -35,53 +35,11 @@ export const PasswordPage = (props: IUserPasswordProps) => {
   return (
     <>
       <div>
-        <Table responsive>
-          <thead>
-            <tr>
-              <th>
-                <Translate contentKey="projectReactSprApp.paramPass.numUpper">numUpper</Translate>
-              </th>
-              <th>
-                <Translate contentKey="projectReactSprApp.paramPass.numSpecial">numSpecial</Translate>
-              </th>
-              <th>
-                <Translate contentKey="projectReactSprApp.paramPass.dateDef">dateDef</Translate>
-              </th>
-              <th>
-                <Translate contentKey="projectReactSprApp.paramPass.minLength">minLength</Translate>
-              </th>
-              <th>
-                <Translate contentKey="projectReactSprApp.paramPass.libelleParam">libelleParam</Translate>
-              </th>
-              <th>
-                <Translate contentKey="projectReactSprApp.paramPass.freqModif">freqModif</Translate>
-              </th>
-              <th>
-                <Translate contentKey="projectReactSprApp.paramPass.nbreJourActiv">nbreJourActiv</Translate>
-              </th>
-              <th>
-                <Translate contentKey="projectReactSprApp.paramPass.nbrePasseAnt">nbrePasseAnt</Translate>
-              </th>
-              <th>
-                <Translate contentKey="projectReactSprApp.paramPass.nbJourAvModif">nbJourAvModif</Translate>
-              </th>
-              <th />
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>{paramPassEntity.numUpper}</td>
-              <td>{paramPassEntity.numSpecial}</td>
-              <td>{paramPassEntity.dateDef}</td>
-              <td>{paramPassEntity.minLength}</td>
-              <td>{paramPassEntity.libelleParam}</td>
-              <td>{paramPassEntity.freqModif}</td>
-              <td>{paramPassEntity.nbreJourActiv}</td>
-              <td>{paramPassEntity.nbrePasseAnt}</td>
-              <td>{paramPassEntity.nbJourAvModif}</td>
-            </tr>
-          </tbody>
-        </Table>
+        <h3>Politique de mot de passe :</h3>
+        <p>
+          Nombre de majuscule : {paramPassEntity.numUpper} &nbsp; Nombre de caractère spécial :{paramPassEntity.numSpecial}&nbsp; Taille
+          minimale :{paramPassEntity.minLength} &nbsp;
+        </p>
       </div>
       <div>
         <Row className="justify-content-center">
@@ -155,8 +113,7 @@ const mapStateToProps = ({ authentication, param }: IRootState) => ({
   isAuthenticated: authentication.isAuthenticated,
 });
 
-const mapDispatchToProps = { getSession, savePassword, reset ,getParam};
-
+const mapDispatchToProps = { getSession, savePassword, reset, getParam };
 
 type StateProps = ReturnType<typeof mapStateToProps>;
 type DispatchProps = typeof mapDispatchToProps;

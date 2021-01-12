@@ -8,7 +8,7 @@ import reactspr.repository.UserRepository;
 import reactspr.security.AuthoritiesConstants;
 import reactspr.security.SecurityUtils;
 import reactspr.service.dto.UserDTO;
-
+import reactspr.web.rest.errors.InvalidPasswordException;
 import io.github.jhipster.security.RandomUtil;
 
 import org.slf4j.Logger;
@@ -42,6 +42,9 @@ public class UserService {
     private final AuthorityRepository authorityRepository;
 
     private final CacheManager cacheManager;
+
+    private static final String specialChars = "~`[email protected]#$%^&** ()-__=+\\|[{]};:'\",<.>/?";
+    private final static String currentCharacter = "" ;
 
     public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository, CacheManager cacheManager) {
         this.userRepository = userRepository;
@@ -246,11 +249,19 @@ public class UserService {
                 String currentEncryptedPassword = user.getPassword();
                 if (!passwordEncoder.matches(currentClearTextPassword, currentEncryptedPassword)) {
                     throw new InvalidPasswordException();
-                }
-                String encryptedPassword = passwordEncoder.encode(newPassword);
-                user.setPassword(encryptedPassword);
-                this.clearUserCaches(user);
-                log.debug("Changed password for User: {}", user);
+                }   
+                    if(newPassword.matches(".*\\d+.*\\W+.*")&&newPassword.length() > 3)
+                    {
+                            String encryptedPassword = passwordEncoder.encode(newPassword);
+                            System.out.println(encryptedPassword);
+                            //user.setPassword(encryptedPassword);
+                            //this.clearUserCaches(user);
+                            //log.debug("Changed password for User: {}", user);
+                            //.matches(".*\\d+.*")
+                    }
+                    else {
+                        throw new InvalidPasswordException();
+                    }
             });
     }
 
