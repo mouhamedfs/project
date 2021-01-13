@@ -4,12 +4,14 @@ import reactspr.config.Constants;
 import reactspr.domain.Authority;
 import reactspr.domain.User;
 import reactspr.repository.AuthorityRepository;
+import reactspr.repository.ParamPassRepository;
 import reactspr.repository.UserRepository;
 import reactspr.security.AuthoritiesConstants;
 import reactspr.security.SecurityUtils;
 import reactspr.service.dto.UserDTO;
 import reactspr.web.rest.errors.InvalidPasswordException;
 import io.github.jhipster.security.RandomUtil;
+import reactspr.domain.ParamPass;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,14 +45,15 @@ public class UserService {
 
     private final CacheManager cacheManager;
 
-    private static final String specialChars = "~`[email protected]#$%^&** ()-__=+\\|[{]};:'\",<.>/?";
-    private final static String currentCharacter = "" ;
+    private final ParamPassRepository paramPass;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository, CacheManager cacheManager) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository, CacheManager cacheManager,
+            ParamPassRepository paramPass) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.authorityRepository = authorityRepository;
         this.cacheManager = cacheManager;
+        this.paramPass = paramPass;
     }
 
     public Optional<User> activateRegistration(String key) {
@@ -240,6 +243,29 @@ public class UserService {
             });
     }
 
+    private static int nbrMaj(String chaine) {
+        int compteur = 0;
+        for (int i = 0; i < chaine.length(); i++) {
+            char ch = chaine.charAt(i);
+            if (Character.isUpperCase(ch))
+                compteur++;
+        }
+        return compteur;
+    }
+
+
+    private static int nbrSpecial(String chaine) {
+        int special = 0;
+        for (int i = 0; i < chaine.length(); i++) {
+            char ch = chaine.charAt(i);
+            if (!Character.isLowerCase(ch)&& !Character.isDigit(ch)&& !Character.isUpperCase(ch) )
+                special++;
+        }
+        return special;
+    }
+
+
+
 
     @Transactional
     public void changePassword(String currentClearTextPassword, String newPassword) {
@@ -249,19 +275,27 @@ public class UserService {
                 String currentEncryptedPassword = user.getPassword();
                 if (!passwordEncoder.matches(currentClearTextPassword, currentEncryptedPassword)) {
                     throw new InvalidPasswordException();
-                }   
-                    if(newPassword.matches(".*\\d+.*\\W+.*")&&newPassword.length() > 3)
-                    {
-                            String encryptedPassword = passwordEncoder.encode(newPassword);
-                            System.out.println(encryptedPassword);
-                            //user.setPassword(encryptedPassword);
-                            //this.clearUserCaches(user);
-                            //log.debug("Changed password for User: {}", user);
-                            //.matches(".*\\d+.*")
+                }
+
+                int maj = nbrMaj(newPassword);
+                int spe = nbrSpecial(newPassword);
+
+                    ParamPass pass = paramPass.findById((long) 1).get();
+                    int numbers = pass.getNumUpper();
+                    int special = pass.getNumSpecial();
+                    int nombrePassAnt = pass.getNbrePasseAnt();
+                    int taille = pass.getMinLength();
+
+                    if(maj == numbers&&spe==special&&newPassword.length() > taille) {
+                    String encryptedPassword = passwordEncoder.encode(newPassword);
+                     user.setPassword(encryptedPassword); this.clearUserCaches(user);
+                     log.debug("Changed password for User: {}", user);
+                     pass.setNbrePasseAnt(nombrePassAnt+1);
                     }
-                    else {
-                        throw new InvalidPasswordException();
-                    }
+                     else {
+                          throw new InvalidPasswordException(); 
+                        }
+                     
             });
     }
 
