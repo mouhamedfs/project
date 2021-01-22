@@ -25,7 +25,8 @@ export const ImmobilisationRecherche = (props: IImmoProps) => {
       immobilisation.libimmo === search ||
       immobilisation.reference === search ||
       immobilisation.type === search ||
-      immobilisation.cptimmo === search
+      immobilisation.cptimmo === search ||
+      immobilisation.immo.toString() === search
   );
 
   const handleRecherche = e => {

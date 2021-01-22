@@ -351,25 +351,34 @@ export const PrepaImmoUpdate = (props: IPrepaImmoUpdateProps) => {
                       <Label id="referenceLabel" for="prepaImmo-reference">
                         <Translate contentKey="projectReactSprApp.prepaImmo.reference">reference</Translate>
                       </Label>
-                      <AvField id="prepaImmo-reference" type="text" name="reference" />
+                      <AvField id="prepaImmo-reference" value={'8239HV005'} type="text" name="reference" />
                     </AvGroup>
                     <AvGroup>
+                      <div className="form-check form-check-inline">
+                        <input className="form-check-input" type="checkbox" id="numSubv" value="option1" />
+                        <label className="form-check-label">
+                        </label>
+                      </div>
                       <Label id="numSubvLabel" for="prepaImmo-numSubv">
                         <Translate contentKey="projectReactSprApp.prepaImmo.numSubv">numSubv</Translate>
                       </Label>
                       <AvField id="prepaImmo-numSubv" type="number" name="numSubv" />
                     </AvGroup>
+                  <Row className="justify-content-start">
+                  <Col md="3">
                     <AvGroup>
                       <Label id="tauxSubvLabel" for="prepaImmo-tauxSubv">
                         <Translate contentKey="projectReactSprApp.prepaImmo.tauxSubv">tauxSubv</Translate>
                       </Label>
                       <AvField id="prepaImmo-tauxSubv" type="number" name="tauxSubv" />
                     </AvGroup>
+                    </Col>
+                    </Row>
                     <AvGroup>
                       <Label id="etatLabel" for="prepaImmo-etat">
                         <Translate contentKey="projectReactSprApp.prepaImmo.etat">etat</Translate>
                       </Label>
-                      <AvField id="prepaImmo-etat" type="text" name="etat" value={isNew ? '' : 'M'} />
+                      <AvField id="prepaImmo-etat" type="text" name="etat" value={'M'} />
                     </AvGroup>
                     <AvGroup>
                       <Label id="motifRejetSubvLabel" for="prepaImmo-motifRejet">

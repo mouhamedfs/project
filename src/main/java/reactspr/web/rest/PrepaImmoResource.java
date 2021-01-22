@@ -181,7 +181,6 @@ public class PrepaImmoResource {
         au.setActionTable(ENTITY_NAME);
         au.setActionType("Suppression dans la table "+ ENTITY_NAME +" avec l'identifiant " + numero);
         au = auditEntityService.ajouter(au);
-        return ResponseEntity.noContent()
-                .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, numero.toString())).build();
+        return null;
     }
 }
