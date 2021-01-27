@@ -1,4 +1,5 @@
 package reactspr.domain;
+package reactspr.domain;
 
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;

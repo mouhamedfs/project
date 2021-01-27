@@ -18,6 +18,8 @@ import Localisation from './localisation';
 import Site from './site';
 import Direction from './direction';
 import Service from './service';
+import Subvention from './subvention';
+import SubImmo from './subImmo';
 /* jhipster-needle-add-route-import - JHipster will add routes here */
 
 const Routes = ({ match }) => (
@@ -38,6 +40,8 @@ const Routes = ({ match }) => (
       <ErrorBoundaryRoute path={`${match.url}site`} component={Site} />
       <ErrorBoundaryRoute path={`${match.url}direction`} component={Direction} />
       <ErrorBoundaryRoute path={`${match.url}service`} component={Service} />
+      <ErrorBoundaryRoute path={`${match.url}subvention`} component={Subvention} />
+      <ErrorBoundaryRoute path={`${match.url}subImmo`} component={SubImmo} />
       {/* jhipster-needle-add-route-path - JHipster will add routes here */}
     </Switch>
   </div>

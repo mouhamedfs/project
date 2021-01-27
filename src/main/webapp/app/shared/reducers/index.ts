@@ -38,6 +38,8 @@ import localisation, { LocalisationState } from 'app/entities/localisation/local
 import site, { SiteState } from 'app/entities/site/site.reducer';
 import direction, { DirectionState } from 'app/entities/direction/direction.reducer';
 import service, { ServiceState } from 'app/entities/service/service.reducer';
+import subvention, { SubventionState } from 'app/entities/subvention/subvention.reducer';
+import subImmo, { SubImmoState } from 'app/entities/subImmo/subImmo.reducer';
 export interface IRootState {
   readonly authentication: AuthenticationState;
   readonly locale: LocaleState;
@@ -63,6 +65,8 @@ export interface IRootState {
   readonly site: SiteState;
   readonly direction: DirectionState;
   readonly service: ServiceState;
+  readonly subvention: SubventionState;
+  readonly subImmo: SubImmoState;
   /* jhipster-needle-add-reducer-type - JHipster will add reducer type here */
   readonly loadingBar: any;
 }
@@ -92,6 +96,8 @@ const rootReducer = combineReducers<IRootState>({
   site,
   direction,
   service,
+  subvention,
+  subImmo,
   /* jhipster-needle-add-reducer-combine - JHipster will add reducer here */
   loadingBar,
 });

@@ -1,0 +1,29 @@
+{
+  "projectReactSprApp": {
+    "SubImmo": {
+      "home": {
+        "title": "SubImmo",
+        "createLabel": "Créer une nouvelle SubImmo",
+        "createOrEditLabel": "Créer ou éditer une SubImmo",
+        "notFound": "Aucune SubImmo trouvé"
+      },
+      "created": "Une nouvelle SubImmo a été créé avec l'identifiant {{ param }}",
+      "updated": "La SubImmo avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "La SubImmo avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer cette SubImmo  {{ id }} ?"
+      },
+      "detail": {
+        "title": "SubImmo"
+      },
+      "numImmo": "numero Immobilisation",
+      "tauxAmort": "taux Amortissement",
+      "montant": "Montant",
+      "cptResulSub": "Compte ResulSub",
+      "cptSubRep": "Compte SubRep",
+      "tauxSubv": "Taux Subv",
+      "dateServImmo": "date Service Immobilisation",
+      "modeAmortSubv": "Mode Amortissement"
+    }
+  }
+}

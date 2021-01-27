@@ -1,0 +1,27 @@
+{
+  "projectReactSprApp": {
+    "subvention": {
+      "home": {
+        "title": "Subvention",
+        "createLabel": "Créer une nouvelle Subvention",
+        "createOrEditLabel": "Créer ou éditer une Subvention",
+        "notFound": "Aucune Subvention trouvé"
+      },
+      "created": "Une nouvelle Subvention a été créé avec l'identifiant {{ param }}",
+      "updated": "La Subvention avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "La Subvention avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer la Subvention {{ id }} ?"
+      },
+      "detail": {
+        "title": "Subvention"
+      },
+      "mntSubv": "Montant Subvention",
+      "dateOctSub": "dateOctSub",
+      "libSubv": "Libellé Subvention",
+      "dejaDepense": "deja Depense",
+      "cptSubVire": "Compte SubVire",
+      "cptSubRep": "Compte SubRep"
+    }
+  }
+}

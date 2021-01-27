@@ -4,7 +4,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import java.sql.Date;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import org.springframework.stereotype.Service;
@@ -12,27 +11,57 @@ import org.springframework.transaction.annotation.Transactional;
 
 import reactspr.domain.Immobilisation;
 import reactspr.domain.PrepaImmo;
+import reactspr.domain.SubImmo;
+import reactspr.domain.Subvention;
 import reactspr.repository.PrepaImmoRepository;
+import reactspr.repository.SubImmoRepository;
+import reactspr.repository.SubventionRepository;
 import reactspr.repository.ImmobilisationRepository;
+
 @Service
 @Transactional
 public class PrepaImmoService {
     private final PrepaImmoRepository prepaImmoRepository ;
+    private final SubventionRepository subventionRepository ;
+    private final SubImmoRepository subImmoRepository;
     private final Immobilisation immo;
+    private final SubImmo subImmo;
     private final ImmobilisationRepository immobilisationRepository;
+
+
     public PrepaImmoService(PrepaImmoRepository prepaImmoRepository,
-            ImmobilisationRepository immobilisationRepository, Immobilisation immo) {
+    SubventionRepository subventionRepository,
+    SubImmoRepository subImmoRepository,
+    ImmobilisationRepository immobilisationRepository,
+    Immobilisation immo, SubImmo subImmo) {
 		this.prepaImmoRepository = prepaImmoRepository;
         this.immobilisationRepository = immobilisationRepository;
+        this.subventionRepository = subventionRepository;
+        this.subImmoRepository = subImmoRepository;
         this.immo = immo;
+        this.subImmo = subImmo;
 	}
  
     @Transactional
     public Page<PrepaImmo> getAllManagedPage(Pageable pageable) {
         return prepaImmoRepository.findAll(pageable);
     }
+
     @Transactional
-    public java.util.Date operationValidation(PrepaImmo prepaImmo) {
+    
+    public void operationValidation(PrepaImmo prepaImmo) {
+        long result = prepaImmo.getNumSubv();
+        Subvention sub = subventionRepository.findById(result).get();
+        Float dejaDepensee = sub.getDejaDepense();
+        Float Valacq = prepaImmo.getValacq();
+        Date dms = prepaImmo.getDms();
+        Float mntSubvention = sub.getMntSubv();
+         Calendar calendar = new GregorianCalendar();
+         Float taux = prepaImmo.getTaux();
+         int Quantite = prepaImmo.getNbre();
+         int tauxSubv = prepaImmo.getTauxSubv();
+         long numeroImmo = prepaImmo.getNumero();
+
         if(prepaImmo.getNumero()!= null
          || prepaImmo.getMarque() != null
           || prepaImmo.getCdir() != null
@@ -43,18 +72,16 @@ public class PrepaImmoService {
         || prepaImmo.getDdac() != null
         || prepaImmo.getFourn() != null)
         {
-            if(//Subvention.dejaDepense + ValAcq * Quantite * tauxSubv > = mntSubvention  )
+         if(prepaImmo.getNumSubv()!=null && prepaImmo.getNumSubv()>0)
+            {
+            
+
+            if(dejaDepensee + Valacq * Quantite * tauxSubv <= mntSubvention)
             {
                 
                 if(prepaImmo.getTaux() != 0)
                 {
-                    Date dms = prepaImmo.getDms();
-                    //Date datef = prepaImmo.getDfact();
-
-                    Calendar calendar = new GregorianCalendar();
                     calendar.setTime(dms);
-                    Float taux = prepaImmo.getTaux();
-                    
                     int an = calendar.get(Calendar.YEAR) + Math.round(1/taux);
                     int mois = calendar.get(Calendar.MONTH) + 1;
                     int jour = calendar.get(Calendar.DAY_OF_MONTH);
@@ -117,27 +144,30 @@ public class PrepaImmoService {
                     immo.setImmoRattache(prepaImmo.getImmoRattache());
                     immo.setNumSubv(prepaImmo.getNumSubv());
                     immo.setBlocnotes(prepaImmo.getBlocnotes());
-                    for(int i =0; i< prepaImmo.getNbre();i++)
+                    for(int i =0; i< Quantite;i++)
                     {
-                       Immobilisation result = immobilisationRepository.save(immo);
+                       immobilisationRepository.save(immo);
                     }
                     if(prepaImmo.getNumSubv()!=0 && prepaImmo.getNumSubv() >0)
                     {
-                        /*
-                         rser.Edit
-                        rser!dejaDepense = rser!dejaDepense + txtValAcq * cboQuantite * tauxSubv
-                        rser.Update
-                        Set rserSelect = CurrentDb.OpenRecordset("select * from T_SUBVENTION where numSub = " & result, dbOpenDynaset, dbSeeChanges)
-                        cptResulSubVal = rser!cptSubVire
-                        cptSubRepVal = rser!cptSubRep
-                        For i = 1 To nbreAjout
-                        numeroImmo = numImmo + i
-                        sqlqub = ("insert into T_SUBIMMO([numSub],[numImmo],[tauxAmort],[montant], [tauxSubv],[dateServiceImmo],[cptResulSub],[cptSubRep]) " _
-                        & " values ([numSubv]," & numeroImmo & ",txtTaux,txtValAcq*tauxSubv,tauxSubv,txtDateMis," & cptResulSubVal & "," & cptSubRepVal & ")")
-                        Debug.Print sqlqub;
-                        DoCmd.RunSQL (sqlqub)
-                        Next i
-                        */
+                        dejaDepensee +=Valacq * Quantite*tauxSubv;
+                        sub.setDejaDepense(dejaDepensee);
+                        Subvention r = subventionRepository.save(sub);
+
+                        String cptResulSubVal = sub.getCptSubVire();
+                        String cptSubRepVal = sub.getCptSubRep();
+                        for(int i =0; i< Quantite;i++)
+                        {
+                            numeroImmo = numeroImmo +i;
+                            subImmo.setNumSub((long) prepaImmo.getNumSubv());
+                            subImmo.setNumImmo((int) numeroImmo);
+                            subImmo.setTauxAmort(taux);
+                            subImmo.setMontant(Valacq*tauxSubv);
+                            subImmo.setDateServImmo(dms);
+                            subImmo.setCptResulSub(cptResulSubVal);
+                            subImmo.setCptSubRep(cptSubRepVal);
+                            subImmoRepository.save(subImmo);
+                        }
                     } 
                 }
                 else
@@ -172,12 +202,18 @@ public class PrepaImmoService {
                     immo.setBlocnotes(prepaImmo.getBlocnotes());
                     for(int i =0; i< prepaImmo.getNbre();i++)
                     {
-                       Immobilisation result = immobilisationRepository.save(immo);
+                       Immobilisation result2 = immobilisationRepository.save(immo);
                     }
                 }
             }
-            
+            else{
+                throw new MessageException("Le montant des valeurs d'acquisition est supérieure au montant de la subvention ");
+            }
+
+ 
         }
+    
+    }
 
     }
 }
