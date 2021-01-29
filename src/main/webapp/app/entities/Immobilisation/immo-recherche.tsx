@@ -13,30 +13,53 @@ export interface IImmoProps extends StateProps, DispatchProps, RouteComponentPro
 
 export const ImmobilisationRecherche = (props: IImmoProps) => {
   const [search, setSearch] = useState('');
+  const [locals, setLocals] = useState('');
   useEffect(() => {
     props.getEntities();
   }, []);
 
   const { immobilisationList, match, loading } = props;
 
-  const setImmo = immobilisationList.filter(
-    immobilisation =>
-      immobilisation.local === search ||
-      immobilisation.libimmo === search ||
-      immobilisation.reference === search ||
-      immobilisation.type === search ||
-      immobilisation.cptimmo === search ||
-      immobilisation.immo.toString() === search
+  const setImmo = immobilisationList.filter(immobilisation =>
+    immobilisation.local === search || locals === ''
+      ? immobilisation.libimmo === search
+      : (immobilisation.libimmo === search && immobilisation.local === locals) || locals === ''
+      ? immobilisation.reference === search
+      : (immobilisation.reference === search && immobilisation.local === locals) || locals === ''
+      ? immobilisation.type === search
+      : (immobilisation.type === search && immobilisation.local === locals) || locals === ''
+      ? immobilisation.cptimmo === search
+      : (immobilisation.cptimmo === search && immobilisation.local === locals) || immobilisation.immo.toString() === search
   );
 
   const handleRecherche = e => {
-    // eslint-disable-next-line no-console
-    console.log(e.target.value);
     setSearch(e.target.value);
+  };
+
+  const handleLocals = e => {
+    setLocals(e.target.value);
   };
 
   function myFunction() {
     const x = document.getElementById('immo');
+    if (x.style.display === 'block') {
+      x.style.display = 'none';
+    } else {
+      x.style.display = 'block';
+    }
+  }
+
+  function showInput() {
+    const x = document.getElementById('local');
+    if (x.style.display === 'block') {
+      x.style.display = 'none';
+    } else {
+      x.style.display = 'block';
+    }
+  }
+
+  function show() {
+    const x = document.getElementById('ssfam');
     if (x.style.display === 'block') {
       x.style.display = 'none';
     } else {
@@ -54,18 +77,28 @@ export const ImmobilisationRecherche = (props: IImmoProps) => {
           <input className="form-check-input" type="checkbox" id="immobilisations" onClick={myFunction} value="immo" />
           <label className="form-check-label">immo</label>
         </div>
+        &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <div className="form-check form-check-inline">
-          <input className="form-check-input" type="checkbox" id="localisations" value="localisation" />
+          <input className="form-check-input" type="checkbox" id="localisations" onClick={showInput} value="localisation" />
           <label className="form-check-label">localisation</label>
+          <br />
+          &nbsp;
+          <input type="text" onChange={handleLocals} style={{ display: 'none' }} className="form-check-input" id="local" />
         </div>
+        &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <div className="form-check form-check-inline">
-          <input className="form-check-input" type="checkbox" id="ssfamilles" value="ssfamille" />
+          <input className="form-check-input" type="checkbox" id="ssfamilles" onClick={show} value="ssfamille" />
           <label className="form-check-label">Sous-famille</label>
+          <br />
+          &nbsp;
+          <input type="text" style={{ display: 'none' }} className="form-check-input" id="ssfam" />
         </div>
+        &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <div className="form-check form-check-inline">
           <input className="form-check-input" type="checkbox" id="references" value="references" />
           <label className="form-check-label">Reference</label>
         </div>
+        &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
       </div>
       <div className="container">
         <br />

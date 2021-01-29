@@ -1,5 +1,5 @@
 package reactspr.service;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import java.sql.Date;
@@ -8,7 +8,6 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import reactspr.domain.Immobilisation;
 import reactspr.domain.PrepaImmo;
 import reactspr.domain.SubImmo;
@@ -17,29 +16,31 @@ import reactspr.repository.PrepaImmoRepository;
 import reactspr.repository.SubImmoRepository;
 import reactspr.repository.SubventionRepository;
 import reactspr.repository.ImmobilisationRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Service
 @Transactional
 public class PrepaImmoService {
+
+    private final Logger log = LoggerFactory.getLogger(PrepaImmoService.class);
     private final PrepaImmoRepository prepaImmoRepository ;
+    private final ImmobilisationRepository immobilisationRepository;
     private final SubventionRepository subventionRepository ;
     private final SubImmoRepository subImmoRepository;
-    private final Immobilisation immo;
-    private final SubImmo subImmo;
-    private final ImmobilisationRepository immobilisationRepository;
+
+    private  Immobilisation immo;
+    private  SubImmo subImmo;
 
 
     public PrepaImmoService(PrepaImmoRepository prepaImmoRepository,
-    SubventionRepository subventionRepository,
-    SubImmoRepository subImmoRepository,
     ImmobilisationRepository immobilisationRepository,
-    Immobilisation immo, SubImmo subImmo) {
+    SubventionRepository subventionRepository,
+    SubImmoRepository subImmoRepository) {
 		this.prepaImmoRepository = prepaImmoRepository;
         this.immobilisationRepository = immobilisationRepository;
         this.subventionRepository = subventionRepository;
         this.subImmoRepository = subImmoRepository;
-        this.immo = immo;
-        this.subImmo = subImmo;
 	}
  
     @Transactional
@@ -48,8 +49,7 @@ public class PrepaImmoService {
     }
 
     @Transactional
-    
-    public void operationValidation(PrepaImmo prepaImmo) {
+    public void operation(PrepaImmo prepaImmo) {
         long result = prepaImmo.getNumSubv();
         Subvention sub = subventionRepository.findById(result).get();
         Float dejaDepensee = sub.getDejaDepense();

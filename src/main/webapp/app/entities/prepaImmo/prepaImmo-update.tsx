@@ -11,6 +11,7 @@ import { get, getUniqueSousFamille } from 'app/entities/sousfamille/sousfamille.
 import { getFamille, getUniqueFamille } from 'app/entities/famille/famille.reducer';
 import { getLocalisations, getUniqueLocalisation } from 'app/entities/localisation/localisation.reducer';
 import { getSite, getUniqueSite } from 'app/entities/site/site.reducer';
+import { getSubs, getUniqueSubvention } from 'app/entities/subvention/subvention.reducer';
 import { getService, getUniqueService } from 'app/entities/service/service.reducer';
 import { getDirection, getUniqueDirection } from 'app/entities/direction/direction.reducer';
 import { IPrepaImmo } from 'app/shared/model/prepaImmo.model';
@@ -35,6 +36,8 @@ export const PrepaImmoUpdate = (props: IPrepaImmoUpdateProps) => {
     siteEntity,
     sousFamilleEntity,
     familleList,
+    subventionEntity,
+    subventionList,
     sousFamilleList,
     loading,
     updating,
@@ -47,7 +50,6 @@ export const PrepaImmoUpdate = (props: IPrepaImmoUpdateProps) => {
     props.history.push('/prepaImmo');
   };
 
-  
   const handleChange = e => {
     if (e.target.value !== '') {
       props.getUniqueSousFamille(e.target.value[0] + e.target.value[1]);
@@ -59,6 +61,23 @@ export const PrepaImmoUpdate = (props: IPrepaImmoUpdateProps) => {
       props.getUniqueFamille(e.target.value[0] + e.target.value[1]);
     }
   };
+
+  const handleChangeSubvention = e => {
+    if (e.target.value !== '') {
+      props.getUniqueSubvention(
+        e.target.value[0] + e.target.value[1] + e.target.value[2] + e.target.value[3] + e.target.value[4] + e.target.value[5]
+      );
+    }
+  };
+
+  function showInput() {
+    const x = document.getElementById('sub');
+    if (x.style.display === 'block') {
+      x.style.display = 'none';
+    } else {
+      x.style.display = 'block';
+    }
+  }
 
   const handleChangeLocalisation = e => {
     if (e.target.value !== '') {
@@ -101,6 +120,7 @@ export const PrepaImmoUpdate = (props: IPrepaImmoUpdateProps) => {
     if (isNew) {
       props.reset();
       props.get();
+      props.getSubs();
       props.getFamille();
       props.getLocalisations();
       props.getSite();
@@ -110,6 +130,7 @@ export const PrepaImmoUpdate = (props: IPrepaImmoUpdateProps) => {
       props.getEntity(props.match.params.numero);
       props.reset();
       props.get();
+      props.getSubs();
       props.getFamille();
       props.getLocalisations();
       props.getSite();
@@ -355,24 +376,39 @@ export const PrepaImmoUpdate = (props: IPrepaImmoUpdateProps) => {
                     </AvGroup>
                     <AvGroup>
                       <div className="form-check form-check-inline">
-                        <input className="form-check-input" type="checkbox" id="numSubv" value="option1" />
-                        <label className="form-check-label">
-                        </label>
+                        <input className="form-check-input" type="checkbox" id="numSubv" onClick={showInput} value="option1" />
+                        <label className="form-check-label">Subventionnée</label>
                       </div>
-                      <Label id="numSubvLabel" for="prepaImmo-numSubv">
-                        <Translate contentKey="projectReactSprApp.prepaImmo.numSubv">numSubv</Translate>
-                      </Label>
-                      <AvField id="prepaImmo-numSubv" type="number" name="numSubv" />
+                      <AvGroup>
+                        <AvField
+                          type="select"
+                          id="sub"
+                          style={{ display: 'none' }}
+                          name="subvention"
+                          onChange={handleChangeSubvention}
+                          label=""
+                        >
+                          <option></option>
+                          {subventionList.map(subvention => (
+                            <>
+                              <option key={subvention.numSub}>
+                                {subvention.numSub} {subvention.libSubv}{' '}
+                              </option>
+                            </>
+                          ))}
+                        </AvField>
+                        <AvField id="prepaImmo-numSubv" value={subventionEntity.numSub} type="text" name="numSubv" />
+                      </AvGroup>
                     </AvGroup>
-                  <Row className="justify-content-start">
-                  <Col md="3">
-                    <AvGroup>
-                      <Label id="tauxSubvLabel" for="prepaImmo-tauxSubv">
-                        <Translate contentKey="projectReactSprApp.prepaImmo.tauxSubv">tauxSubv</Translate>
-                      </Label>
-                      <AvField id="prepaImmo-tauxSubv" type="number" name="tauxSubv" />
-                    </AvGroup>
-                    </Col>
+                    <Row className="justify-content-start">
+                      <Col md="3">
+                        <AvGroup>
+                          <Label id="tauxSubvLabel" for="prepaImmo-tauxSubv">
+                            <Translate contentKey="projectReactSprApp.prepaImmo.tauxSubv">tauxSubv</Translate>
+                          </Label>
+                          <AvField id="prepaImmo-tauxSubv" type="number" name="tauxSubv" />
+                        </AvGroup>
+                      </Col>
                     </Row>
                     <AvGroup>
                       <Label id="etatLabel" for="prepaImmo-etat">
@@ -506,7 +542,9 @@ const mapStateToProps = (storeState: IRootState) => ({
   sousFamilleEntity: storeState.sousFamille.entity,
   familleEntity: storeState.famille.entity,
   familleList: storeState.famille.entities,
+  subventionList: storeState.subvention.entities,
   serviceEntity: storeState.service.entity,
+  subventionEntity: storeState.subvention.entity,
   serviceList: storeState.service.entities,
   directionEntity: storeState.direction.entity,
   directionList: storeState.direction.entities,
@@ -525,6 +563,8 @@ const mapDispatchToProps = {
   createEntity,
   reset,
   get,
+  getSubs,
+  getUniqueSubvention,
   getFamille,
   getUniqueSite,
   getSite,
