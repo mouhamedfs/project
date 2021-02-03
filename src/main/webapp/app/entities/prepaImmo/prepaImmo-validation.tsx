@@ -48,12 +48,12 @@ export const PrepaImmoValidDialogProps = (props: IPrepaImmoValidDialogProps) => 
         ...immobilisationEntity,
         ...values,
       };
-      let n = prepaImmoEntity.nbre;
+      // n = prepaImmoEntity.nbre;
       if (!isNew) {
-        while (n !== 0) {
+        //while (n !== 0) {
           props.createEntity(entity);
-          n -= 1;
-        }
+         // n -= 1;
+       // }
       }
     }
   };

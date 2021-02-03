@@ -65,16 +65,23 @@ export const UserManagement = (props: IUserManagementProps) => {
     <div>
       <h2 id="user-management-page-heading">
         <Translate contentKey="userManagement.home.title">Users</Translate>
-
-        <Link  to={"/authority"} className="btn btn-danger float-right jh-create-entity">
-          <FontAwesomeIcon icon="home" /> <Translate contentKey="projectReactSprApp.role.home.gestionRole">Role</Translate>
-        </Link>
-
-          &nbsp;
-          &nbsp;
-        <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity">
-          <FontAwesomeIcon icon="plus" /> <Translate contentKey="userManagement.home.createLabel">Create a new user</Translate>
-        </Link>
+        <div>
+          <Link to={`${match.url}/new`} className="btn btn-primary float-right jh-create-entity">
+            <FontAwesomeIcon icon="plus" /> <Translate contentKey="userManagement.home.createLabel">Create a new user</Translate>
+          </Link>
+          <br />
+          <Link to={'/authority'} className="btn btn-danger float-right jh-create-entity">
+            <FontAwesomeIcon icon="home" /> <Translate contentKey="projectReactSprApp.role.home.gestionRole">Role</Translate>
+          </Link>
+          <br />
+          <Link to={'/admin/auditsentity'} className="btn btn-info float-right jh-create-entity">
+            <FontAwesomeIcon icon="home" /> <Translate contentKey="global.menu.admin.auditsEntity">Entity</Translate>
+          </Link>
+          <br />
+          <Link to={'/admin/audits'} className="btn btn-success float-right jh-create-entity">
+            <FontAwesomeIcon icon="bell" /> <Translate contentKey="global.menu.admin.audits">Role</Translate>
+          </Link>
+        </div>
       </h2>
       <Table responsive striped>
         <thead>

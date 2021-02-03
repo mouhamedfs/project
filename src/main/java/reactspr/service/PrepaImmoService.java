@@ -1,5 +1,4 @@
 package reactspr.service;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import java.sql.Date;
@@ -16,14 +15,11 @@ import reactspr.repository.PrepaImmoRepository;
 import reactspr.repository.SubImmoRepository;
 import reactspr.repository.SubventionRepository;
 import reactspr.repository.ImmobilisationRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @Service
 @Transactional
 public class PrepaImmoService {
 
-    private final Logger log = LoggerFactory.getLogger(PrepaImmoService.class);
     private final PrepaImmoRepository prepaImmoRepository ;
     private final ImmobilisationRepository immobilisationRepository;
     private final SubventionRepository subventionRepository ;
@@ -95,7 +91,7 @@ public class PrepaImmoService {
                         an = an -1;
                         jour = 30;
                     }
-                    mois = mois;
+                    //mois = mois;
                     jour-=1;
                     if(calendar.get(Calendar.DAY_OF_MONTH)==1)
                     {
@@ -105,7 +101,7 @@ public class PrepaImmoService {
                         {
                             mois=3;
                             jour =0;
-                            LocalDate datef = LocalDate.of( an , mois , jour );
+                            //LocalDate datef = LocalDate.of( an , mois , jour );
                         }
                     }
                     LocalDate datef = LocalDate.of( an , mois , jour );
